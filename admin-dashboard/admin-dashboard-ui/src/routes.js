@@ -5,21 +5,9 @@ const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
 // Base
-const RoomServiceRequests = React.lazy(() => import('./views/base/room_service/RoomServiceRequests'))
-const Breadcrumbs = React.lazy(() => import('./views/base/food_orders/FoodOrders'))
-const Cards = React.lazy(() => import('./views/base/cards/Cards'))
-const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
-const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
-const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
-const Navs = React.lazy(() => import('./views/base/navs/Navs'))
-const Paginations = React.lazy(() => import('./views/base/paginations/Paginations'))
-const Placeholders = React.lazy(() => import('./views/base/placeholders/Placeholders'))
-const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'))
-const Progress = React.lazy(() => import('./views/base/progress/Progress'))
-const Spinners = React.lazy(() => import('./views/base/spinners/Spinners'))
-const Tabs = React.lazy(() => import('./views/base/tabs/Tabs'))
-const Tables = React.lazy(() => import('./views/base/tables/Tables'))
-const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
+const RoomServiceRequests = React.lazy(() => import('./views/orders/room_service/RoomServiceRequests'))
+const FoodOrders = React.lazy(() => import('./views/orders/food_orders/FoodOrders'))
+
 
 // Buttons
 const Insights = React.lazy(() => import('./views/buttons/Insights/Insights'))
@@ -27,14 +15,14 @@ const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/Butt
 const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
 
 //Forms
-const ChecksRadios = React.lazy(() => import('./views/forms/checks-radios/ChecksRadios'))
-const FloatingLabels = React.lazy(() => import('./views/forms/floating-labels/FloatingLabels'))
-const FormControl = React.lazy(() => import('./views/forms/What_to_host/HostEvents'))
-const InputGroup = React.lazy(() => import('./views/forms/manage_events/ManageEvents'))
-const Layout = React.lazy(() => import('./views/forms/layout/Layout'))
-const Range = React.lazy(() => import('./views/forms/range/Range'))
-const Select = React.lazy(() => import('./views/forms/wellness_events/WellnessEvents'))
-const Validation = React.lazy(() => import('./views/forms/validation/Validation'))
+const ChecksRadios = React.lazy(() => import('./views/events/gigs/Gigs'))
+const FloatingLabels = React.lazy(() => import('./views/events/floating-labels/FloatingLabels'))
+const FormControl = React.lazy(() => import('./views/events/What_to_host/HostEvents'))
+const InputGroup = React.lazy(() => import('./views/events/manage_events/ManageEvents'))
+const Layout = React.lazy(() => import('./views/events/layout/Layout'))
+const Range = React.lazy(() => import('./views/events/range/Range'))
+const Select = React.lazy(() => import('./views/events/wellness_events/WellnessEvents'))
+const Validation = React.lazy(() => import('./views/events/validation/Validation'))
 
 const Charts = React.lazy(() => import('./views/charts/Charts'))
 
@@ -57,9 +45,9 @@ const routes = [
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
-  { path: '/orders', name: 'Orders', element: Cards, exact: true },
+  { path: '/orders', name: 'Orders', element: RoomServiceRequests, exact: true },
   { path: '/orders/room_service', name: 'Room Service', element: RoomServiceRequests },
-  { path: '/orders/food_delivery', name: 'Food delivery', element: Breadcrumbs },
+  { path: '/orders/food_delivery', name: 'Food delivery', element: FoodOrders },
   { path: '/reviews', name: 'Review Analysis', element: Insights, exact: true },
   { path: '/reviews/insights', name: 'Insights', element: Insights },
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },

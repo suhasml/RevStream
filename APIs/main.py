@@ -6,9 +6,15 @@ from pymongo import MongoClient
 from pydantic import BaseModel
 from bson import ObjectId
 import asyncio
+from datetime import datetime, timedelta
 from chatbot import ChatAgent
 import os
 from dotenv import load_dotenv
+import pandas as pd
+from pydantic import BaseModel, Field
+from typing import List, Dict
+from langchain_core.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
@@ -123,7 +129,8 @@ async def host_event(event: HostedEvent):
 @app.get("/hosted-events")
 async def get_hosted_events():
     try:
-        hosted_events = list(hosted_events_collection.find({}, {'_id': 0}))  # Exclude MongoDB's internal '_id'
+        hosted_events = list(hosted_events_collection.find({}))  # Exclude MongoDB's internal '_id' 
+        hosted_events = [serialize_mongo_obj(event) for event in hosted_events]
         return hosted_events
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error fetching hosted events")
@@ -164,7 +171,8 @@ async def request_event(event: HostedEvent):
 @app.get("/requested-events")
 async def get_requested_events():
     try:
-        requested_events = list(requested_events_collection.find({}, {'_id': 0}))  # Exclude MongoDB's internal '_id'
+        requested_events = list(requested_events_collection.find({}))  # Exclude MongoDB's internal '_id'
+        requested_events = [serialize_mongo_obj(event) for event in requested_events]
         return requested_events
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error fetching requested events")
@@ -227,9 +235,6 @@ async def chatbot(request: AgentMessage):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-
 
 if __name__ == "__main__":
     import uvicorn
