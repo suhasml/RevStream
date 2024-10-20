@@ -2,39 +2,136 @@
 
 /* General Calendar Styles */
 .react-calendar {
-    background-color: white; /* White background for the calendar */
-    color: #000; /* Black text color */
-    border: 1px solid #ddd; /* Light border for calendar */
-    border-radius: 8px; /* Rounded corners */
-    font-family: Arial, sans-serif; /* Ensure readable font */
-  }
-  
-  /* Ensure date and month names are visible */
-  .react-calendar__month-view__days__day {
-    color: #000; /* Ensure day numbers are black */
-  }
-  
-  .react-calendar__navigation button {
-    color: #000; /* Month navigation buttons (prev, next) */
-    font-weight: bold;
-  }
-  
-  /* Highlighted date styling */
-  .highlighted-date {
-    background-color: #007bff !important; /* Highlight selected date in blue */
-    color: white !important; /* Make the text white for contrast */
-    border-radius: 50%; /* Circle shape */
-  }
-  
-  /* Month/Year header */
-  .react-calendar__navigation__label {
-    color: #000; /* Ensure month name and year are visible */
-    font-size: 1.2em;
-  }
-  
-  /* Calendar weekday names */
-  .react-calendar__month-view__weekdays {
-    color: #000; /* Ensure weekday names (Mon, Tue, etc.) are black */
-    font-weight: bold;
-  }
-  
+  background-color: white;
+  /* White background for the calendar */
+  color: #000;
+  /* Black text color */
+  border: 1px solid #ddd;
+  /* Light border for calendar */
+  border-radius: 8px;
+  /* Rounded corners */
+  font-family: Arial, sans-serif;
+  /* Ensure readable font */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
+}
+
+/* Ensure date and month names are visible */
+.react-calendar__month-view__days__day {
+  color: #000;
+  /* Ensure day numbers are black */
+}
+
+.react-calendar__navigation button {
+  color: #000;
+  /* Month navigation buttons (prev, next) */
+  font-weight: bold;
+}
+
+/* Highlighted date styling */
+.highlighted-date {
+  background-color: lightgray;
+  /* Change fill to light gray */
+  color: black;
+  /* Change text color to black */
+  border-radius: 50%;
+  /* Keep the circle shape if needed */
+}
+
+/* Month/Year header */
+.react-calendar__navigation__label {
+  color: #000;
+  /* Ensure month name and year are visible */
+  font-size: 1.2em;
+}
+
+/* Calendar weekday names */
+.react-calendar__month-view__weekdays {
+  color: #000;
+  /* Ensure weekday names (Mon, Tue, etc.) are black */
+  font-weight: bold;
+}
+
+/* Wellness Event Card Styles */
+.wellness-event-card {
+  background: #f8f9fa;
+  /* Light background for the card */
+  border: 1px solid #ced4da;
+  /* Light border */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
+  margin-bottom: 20px;
+  /* Spacing between cards */
+}
+
+.wellness-event-card-header {
+  background: lightgray;
+  /* Blue background for header */
+  color: black;
+  /* White text color */
+  cursor: pointer;
+  /* Pointer cursor for clickable header */
+}
+
+.wellness-event-card-body {
+  padding: 15px;
+  /* Padding for card body */
+  background: white;
+  /* White background for card body */
+  color: #333;
+  /* Dark text color */
+}
+
+/* Update styles for the Select Event button */
+button.btn-primary {
+  background-color: black;
+  /* Set background to black */
+  color: white;
+  /* Set text color to white */
+  border: none;
+  /* Remove border if you want a clean look */
+}
+
+button.btn-primary:hover {
+  background-color: darkgray;
+  /* Optional: Change hover color for better visibility */
+}
+
+/* Default heading style */
+.card-header-title {
+  color: black;
+  /* Set heading text color to black */
+  font-weight: normal;
+  /* Set to normal weight */
+  transition: font-weight 0.3s;
+  /* Smooth transition for weight change */
+}
+
+/* Bold on hover */
+.card-header-title:hover,
+.card-header-title:focus {
+  font-weight: bold;
+  /* Set to bold on hover or focus */
+}
+
+.card-header-frequency {
+  color: black;
+  /* Set frequency text color to black */
+}
+
+.button-custom {
+  background-color: black;
+  /* Background color */
+  color: white;
+  /* Text color */
+  transition: font-weight 0.3s;
+  /* Smooth transition for font weight */
+}
+
+.button-custom:hover,
+.button-custom:active {
+  font-weight: bold;
+  /* Make text bold on hover and click */
+}

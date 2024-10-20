@@ -1,0 +1,21 @@
+.transparent-table {
+    background-color: transparent;
+    /* Make the table background transparent */
+    border: none;
+    /* Remove table border */
+}
+
+.transparent-table th,
+.transparent-table td {
+    background-color: transparent;
+    /* Make cells transparent */
+    border: none;
+    /* Remove borders from header and data cells */
+    color: white;
+    /* Set text color to white */
+}
+
+.transparent-table th {
+    color: white;
+    /* Ensure header text color is white */
+}

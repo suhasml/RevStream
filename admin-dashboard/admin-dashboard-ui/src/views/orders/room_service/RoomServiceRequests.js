@@ -131,6 +131,7 @@ import {
   CTableBody,
   CTableDataCell,
 } from '@coreui/react';
+import './styles.css'; // Import your CSS file here
 
 const RoomServiceRequests = () => {
   const [roomServices, setRoomServices] = useState([]);
@@ -197,8 +198,8 @@ const RoomServiceRequests = () => {
             <strong>Room Service Requests</strong>
           </CCardHeader>
           <CCardBody>
-            <CTable hover>
-              <CTableHead>
+            <CTable className="transparent-table" hover responsive>
+              <CTableHead color="light">
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Room Number</CTableHeaderCell>

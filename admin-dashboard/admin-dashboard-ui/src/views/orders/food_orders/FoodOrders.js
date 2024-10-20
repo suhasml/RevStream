@@ -12,6 +12,7 @@ import {
   CTableBody,
   CTableDataCell,
 } from '@coreui/react';
+import './styles.css'; // Import your CSS file here
 
 const FoodOrders = () => {
   const [foodOrders, setFoodOrders] = useState([]);
@@ -78,12 +79,12 @@ const FoodOrders = () => {
             <strong>Food Orders</strong>
           </CCardHeader>
           <CCardBody>
-            <CTable hover>
+            <CTable className="transparent-table" hover>
               <CTableHead>
                 <CTableRow>
                   <CTableHeaderCell scope="col">#</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Room Number</CTableHeaderCell>
-                  <CTableHeaderCell scope="col">Food Items</CTableHeaderCell> {/* Updated to match API response */}
+                  <CTableHeaderCell scope="col">Food Items</CTableHeaderCell>
                 </CTableRow>
               </CTableHead>
               <CTableBody>
@@ -92,12 +93,12 @@ const FoodOrders = () => {
                     <CTableRow key={order.id}>
                       <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
                       <CTableDataCell>{order.room_number}</CTableDataCell>
-                      <CTableDataCell>{order.items}</CTableDataCell> {/* Updated to match API response */}
+                      <CTableDataCell>{order.items}</CTableDataCell>
                     </CTableRow>
                   ))
                 ) : (
                   <CTableRow>
-                    <CTableDataCell colSpan="5">No data available</CTableDataCell>
+                    <CTableDataCell colSpan="3">No data available</CTableDataCell>
                   </CTableRow>
                 )}
               </CTableBody>

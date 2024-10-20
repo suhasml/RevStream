@@ -2,39 +2,124 @@
 
 /* General Calendar Styles */
 .react-calendar {
-    background-color: white; /* White background for the calendar */
-    color: #000; /* Black text color */
-    border: 1px solid #ddd; /* Light border for calendar */
-    border-radius: 8px; /* Rounded corners */
-    font-family: Arial, sans-serif; /* Ensure readable font */
-  }
-  
-  /* Ensure date and month names are visible */
-  .react-calendar__month-view__days__day {
-    color: #000; /* Ensure day numbers are black */
-  }
-  
-  .react-calendar__navigation button {
-    color: #000; /* Month navigation buttons (prev, next) */
-    font-weight: bold;
-  }
-  
-  /* Highlighted date styling */
-  .highlighted-date {
-    background-color: #007bff !important; /* Highlight selected date in blue */
-    color: white !important; /* Make the text white for contrast */
-    border-radius: 50%; /* Circle shape */
-  }
-  
-  /* Month/Year header */
-  .react-calendar__navigation__label {
-    color: #000; /* Ensure month name and year are visible */
-    font-size: 1.2em;
-  }
-  
-  /* Calendar weekday names */
-  .react-calendar__month-view__weekdays {
-    color: #000; /* Ensure weekday names (Mon, Tue, etc.) are black */
-    font-weight: bold;
-  }
-  
+  background-color: #333;
+  /* White background for the calendar */
+  color: #fff;
+  /* Black text color */
+  border: 1px solid #ddd;
+  /* Light border for calendar */
+  border-radius: 8px;
+  /* Rounded corners */
+  font-family: Arial, sans-serif;
+  /* Ensure readable font */
+}
+
+/* Card Styles for Event Cards */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.event-card {
+  background: #444;
+  /* White background just for the card */
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+
+.event-card:hover {
+  transform: scale(1.02);
+  /* Slightly enlarge card on hover */
+}
+
+.event-card-header {
+  padding: 15px;
+  cursor: pointer;
+  background: #f8f9fa;
+  /* Blue background for header */
+  color: black;
+  /* White text color */
+  border-top-left-radius: 10px;
+  /* Rounded corners for header */
+  border-top-right-radius: 10px;
+  /* Rounded corners for header */
+}
+
+.event-card-body {
+  background-color: white;
+  /* White background for the event table */
+  color: #333;
+  /* Dark text color for readability */
+  padding: 15px;
+  border-radius: 0 0 10px 10px;
+  /* Ensure rounded corners for bottom of card */
+}
+
+
+/* Ensure date and month names are visible */
+.react-calendar__month-view__days__day {
+  color: #000;
+  /* Ensure day numbers are black */
+}
+
+.react-calendar__navigation button {
+  color: #000;
+  /* Month navigation buttons (prev, next) */
+  font-weight: bold;
+}
+
+/* Highlighted date styling */
+.highlighted-date {
+  background-color: #555 !important;
+  /* Highlight selected date in blue */
+  color: white !important;
+  /* Make the text white for contrast */
+}
+
+/* Month/Year header */
+.react-calendar__navigation__label {
+  color: #000;
+  /* Ensure month name and year are visible */
+  font-size: 1.2em;
+}
+
+/* Calendar weekday names */
+.react-calendar__month-view__weekdays {
+  color: #000;
+  /* Ensure weekday names (Mon, Tue, etc.) are black */
+  font-weight: bold;
+}
+
+.button-custom {
+  background-color: black;
+  /* Background color */
+  color: white;
+  /* Text color */
+  transition: font-weight 0.3s;
+  /* Smooth transition for font weight */
+}
+
+.button-custom:hover,
+.button-custom:active {
+  font-weight: bold;
+  /* Make text bold on hover and click */
+}
+
+.button-custom {
+  background-color: black;
+  /* Background color */
+  color: white;
+  /* Text color */
+  transition: font-weight 0.3s;
+  /* Smooth transition for font weight */
+}
+
+.button-custom:hover,
+.button-custom:active {
+  font-weight: bold;
+  /* Make text bold on hover and click */
+}

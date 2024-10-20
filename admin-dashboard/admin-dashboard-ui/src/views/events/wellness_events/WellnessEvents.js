@@ -293,7 +293,7 @@ const wellnessEvents = [
 //       <CCol xs={12}>
 //         <h1 className="text-center mb-4">Wellness and Retreat Events</h1>
 //         {availableEvents.length === 0 && <p>No events available to host.</p>}
-        
+
 //         {availableEvents.map((event, index) => (
 //           <WellnessEventCard
 //             key={index}
@@ -338,13 +338,13 @@ const wellnessEvents = [
 // export default WellnessEventsPage
 const WellnessEventCard = ({ event, index, isOpen, toggle, onSelectEvent }) => {
   return (
-    <CCard className="mb-4">
+    <CCard className="wellness-event-card mb-4">
       <CCardHeader onClick={() => toggle(index)} style={{ cursor: 'pointer' }}>
-        <strong>{event.title}</strong>
-        <small className="float-end">{event.frequency}</small>
+        <strong className="card-header-title">{event.title}</strong>
+        <small className="float-end card-header-frequency">{event.frequency}</small>
       </CCardHeader>
       <CCollapse visible={isOpen}>
-        <CCardBody>
+        <CCardBody className="wellness-event-card-body">
           <p>{event.description}</p>
           <ul>
             {event.details.map((detail, idx) => (
@@ -357,8 +357,9 @@ const WellnessEventCard = ({ event, index, isOpen, toggle, onSelectEvent }) => {
         </CCardBody>
       </CCollapse>
     </CCard>
-  )
-}
+  );
+};
+
 
 const WellnessEventsPage = () => {
   const [openEvent, setOpenEvent] = useState(null)
@@ -471,13 +472,13 @@ const WellnessEventsPage = () => {
       <CCol xs={12}>
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h1>Wellness and Retreat Events</h1>
-          <CButton color="success" onClick={() => setShowCustomEventModal(true)}>
+          <CButton className="button-custom" onClick={() => setShowCustomEventModal(true)}>
             Add Custom Wellness Event
           </CButton>
         </div>
-        
+
         {availableEvents.length === 0 && <p>No events available to host.</p>}
-        
+
         {availableEvents.map((event, index) => (
           <WellnessEventCard
             key={index}

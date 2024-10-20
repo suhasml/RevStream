@@ -118,7 +118,7 @@
 //       description: selectedEvent.description,
 //       details: selectedEvent.details,
 //     }
-  
+
 //     fetch('http://localhost:8002/host-event', {
 //       method: 'POST',
 //       headers: {
@@ -135,8 +135,8 @@
 //         console.error('Error hosting event:', error)
 //       })
 //   }
-  
-  
+
+
 
 //   // CSS class logic for highlighting the selected date
 //   const tileClassName = ({ date, view }) => {
@@ -318,18 +318,18 @@ const localCulturalEvents = [
 //   const [hostedEvents, setHostedEvents] = useState([])
 //   const [availableThemedEvents, setAvailableThemedEvents] = useState([])
 //   const [availableLocalEvents, setAvailableLocalEvents] = useState([])
-  
+
 //   useEffect(() => {
 //     fetch('http://localhost:8002/hosted-events')
 //       .then((response) => response.json())
 //       .then((data) => {
 //         setHostedEvents(data)
 //         const hostedTitles = data.map(event => event.title)
-        
+
 //         setAvailableThemedEvents(themedEvents.filter(
 //           event => !hostedTitles.includes(event.title)
 //         ))
-        
+
 //         setAvailableLocalEvents(localCulturalEvents.filter(
 //           event => !hostedTitles.includes(event.title)
 //         ))
@@ -385,7 +385,7 @@ const localCulturalEvents = [
 //     <CRow>
 //       <CCol xs={12}>
 //         <h1 className="text-center mb-4">Events to Host</h1>
-        
+
 //         <h2 className="mb-4">Themed Events</h2>
 //         {availableThemedEvents.length === 0 && <p>No themed events available to host.</p>}
 //         {availableThemedEvents.map((event, index) => (
@@ -398,7 +398,7 @@ const localCulturalEvents = [
 //             onSelectEvent={handleSelectEvent}
 //           />
 //         ))}
-        
+
 //         <h2 className="mb-4 mt-5">Local Cultural Events</h2>
 //         {availableLocalEvents.length === 0 && <p>No local cultural events available to host.</p>}
 //         {availableLocalEvents.map((event, index) => (
@@ -411,7 +411,7 @@ const localCulturalEvents = [
 //             onSelectEvent={handleSelectEvent}
 //           />
 //         ))}
-        
+
 //         {/* Modal for event selection */}
 //         {selectedEvent && (
 //           <CModal visible={true} onClose={() => setSelectedEvent(null)}>
@@ -446,13 +446,15 @@ const localCulturalEvents = [
 
 const EventCard = ({ event, index, isOpen, toggle, onSelectEvent }) => {
   return (
-    <CCard className="mb-4">
-      <CCardHeader onClick={() => toggle(index)} style={{ cursor: 'pointer' }}>
-        <strong>{event.title}</strong>
-        <small className="float-end">{event.date}</small>
-      </CCardHeader>
+    <div className="event-card">
+      <div className="event-card-header" onClick={() => toggle(index)}>
+        <strong style={{ fontWeight: 'normal' }} onMouseOver={(e) => e.currentTarget.style.fontWeight = 'bold'} onMouseOut={(e) => e.currentTarget.style.fontWeight = 'normal'}>
+          {event.title}
+        </strong>
+        <small className="float-end" style={{ color: 'black' }}>{event.date}</small>
+      </div>
       <CCollapse visible={isOpen}>
-        <CCardBody>
+        <div className="event-card-body">
           <p>{event.description}</p>
           <ul>
             {event.details.map((detail, idx) => (
@@ -462,11 +464,12 @@ const EventCard = ({ event, index, isOpen, toggle, onSelectEvent }) => {
           <CButton color="primary" onClick={() => onSelectEvent(event)}>
             Select Event
           </CButton>
-        </CCardBody>
+        </div>
       </CCollapse>
-    </CCard>
-  )
-}
+    </div>
+  );
+};
+
 
 const EventsPage = () => {
   const [openEvent, setOpenEvent] = useState(null)
@@ -475,7 +478,7 @@ const EventsPage = () => {
   const [hostedEvents, setHostedEvents] = useState([])
   const [availableThemedEvents, setAvailableThemedEvents] = useState([])
   const [availableLocalEvents, setAvailableLocalEvents] = useState([])
-  
+
   // State for custom themed event modal
   const [customThemedEvent, setCustomThemedEvent] = useState({
     title: '',
@@ -500,11 +503,11 @@ const EventsPage = () => {
       .then((data) => {
         setHostedEvents(data)
         const hostedTitles = data.map(event => event.title)
-        
+
         setAvailableThemedEvents(themedEvents.filter(
           event => !hostedTitles.includes(event.title)
         ))
-        
+
         setAvailableLocalEvents(localCulturalEvents.filter(
           event => !hostedTitles.includes(event.title)
         ))
@@ -614,33 +617,35 @@ const EventsPage = () => {
     <CRow>
       <CCol xs={12}>
         <h1 className="text-center mb-4">Events to Host</h1>
-        
+
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h2 className="mb-0">Themed Events</h2>
-          <CButton color="success" onClick={() => setShowCustomEventModal(true)}>
+          <CButton className="button-custom" onClick={() => setShowCustomEventModal(true)}>
             Host Custom Themed Event
           </CButton>
         </div>
-        
-        {availableThemedEvents.length === 0 && <p>No themed events available to host.</p>}
-        {availableThemedEvents.map((event, index) => (
-          <EventCard
-            key={index}
-            event={event}
-            index={index}
-            isOpen={openEvent === index}
-            toggle={toggleEvent}
-            onSelectEvent={handleSelectEvent}
-          />
-        ))}
-        
+
+        <div className="card-container">
+          {availableThemedEvents.map((event, index) => (
+            <EventCard
+              key={index}
+              event={event}
+              index={index}
+              isOpen={openEvent === index}
+              toggle={toggleEvent}
+              onSelectEvent={handleSelectEvent}
+            />
+          ))}
+        </div>
+
+
         <div className="d-flex justify-content-between align-items-center mb-4 mt-5">
           <h2 className="mb-0">Local Cultural Events</h2>
-          <CButton color="success" onClick={() => setShowCustomCulturalEventModal(true)}>
+          <CButton className="button-custom" onClick={() => setShowCustomCulturalEventModal(true)}>
             Host Custom Cultural Event
           </CButton>
         </div>
-        
+
         {availableLocalEvents.length === 0 && <p>No local cultural events available to host.</p>}
         {availableLocalEvents.map((event, index) => (
           <EventCard
@@ -652,7 +657,7 @@ const EventsPage = () => {
             onSelectEvent={handleSelectEvent}
           />
         ))}
-        
+
         {/* Modal for event selection */}
         {selectedEvent && (
           <CModal visible={true} onClose={() => setSelectedEvent(null)}>
