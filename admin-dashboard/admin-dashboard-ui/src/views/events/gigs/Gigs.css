@@ -1,0 +1,49 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Adjust the minmax value as needed */
+  gap: 16px;
+  /* Space between cards */
+}
+
+.card-grid .mb-4 {
+  margin-bottom: 0;
+  /* Remove margin bottom for alignment */
+}
+
+/* Custom Button Styles */
+.custom-button {
+  background-color: black;
+  /* Black background */
+  color: white;
+  /* White text */
+  border: none;
+  /* Remove default border */
+}
+
+.custom-button:hover {
+  background-color: grey;
+  /* Change to grey on hover */
+  color: white;
+  /* Ensure text remains white on hover */
+}
+
+.custom-button:active {
+  background-color: darkgrey;
+  /* Darker grey when clicked */
+}
+
+/* Custom Card Styles */
+.card-grid .ccard {
+  background-color: white;
+  /* White background for the card */
+  color: black;
+  /* Black text for the card */
+}
+
+.card-grid .ccard-header {
+  background-color: lightgrey;
+  /* Light grey background for the header */
+  color: black;
+  /* Black text for the header */
+}
