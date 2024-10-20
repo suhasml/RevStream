@@ -16,6 +16,7 @@ import {
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
+  
   {
     component: CNavItem,
     name: 'Dashboard',
@@ -46,6 +47,7 @@ const _nav = [
     component: CNavTitle,
     name: 'Components',
   },
+  
   {
     component: CNavGroup,
     name: 'Orders',
@@ -101,7 +103,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Social Media Events',
-        to: '/forms/range',
+        to: '/events/sme',
       },
       {
         component: CNavItem,
@@ -112,13 +114,13 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Charts',
-    to: '/charts',
+    name: 'Loyalty Program',
+    to: '/loyalty',
     icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,
-    name: 'Icons',
+    name: 'Partnerships',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
     items: [
       {

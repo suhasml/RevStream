@@ -20,11 +20,11 @@ const FloatingLabels = React.lazy(() => import('./views/events/floating-labels/F
 const FormControl = React.lazy(() => import('./views/events/What_to_host/HostEvents'))
 const InputGroup = React.lazy(() => import('./views/events/manage_events/ManageEvents'))
 const Layout = React.lazy(() => import('./views/events/layout/Layout'))
-const Range = React.lazy(() => import('./views/events/range/Range'))
+const Range = React.lazy(() => import('./views/events/socialMedia/SocialMedia'))
 const Select = React.lazy(() => import('./views/events/wellness_events/WellnessEvents'))
 const Validation = React.lazy(() => import('./views/events/validation/Validation'))
 
-const Charts = React.lazy(() => import('./views/charts/Charts'))
+const Charts = React.lazy(() => import('./views/LoyaltyProgram/Loyalty'))
 
 // Icons
 const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
@@ -52,12 +52,12 @@ const routes = [
   { path: '/reviews/insights', name: 'Insights', element: Insights },
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
   { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
-  { path: '/charts', name: 'Charts', element: Charts },
+  { path: '/loyalty', name: 'Charts', element: Charts },
   { path: '/events', name: 'Events', element: FormControl, exact: true },
   { path: '/events/what-to-host', name: 'Host these', element: FormControl },
   { path: '/events/wellness', name: 'Wellness Events', element: Select },
   { path: '/events/gigs', name: 'Gigs', element: ChecksRadios },
-  { path: '/forms/range', name: 'Range', element: Range },
+  { path: '/events/sme', name: 'Social Media', element: Range },
   { path: '/forms/input-group', name: 'Manage Events', element: InputGroup },
   { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
   { path: '/forms/layout', name: 'Layout', element: Layout },
