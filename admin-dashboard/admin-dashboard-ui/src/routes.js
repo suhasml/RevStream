@@ -8,6 +8,13 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const RoomServiceRequests = React.lazy(() => import('./views/orders/room_service/RoomServiceRequests'))
 const FoodOrders = React.lazy(() => import('./views/orders/food_orders/FoodOrders'))
 
+const collab = React.lazy(() => import('./views/partnership/collaborators/Collaborators'))
+const ReachOut = React.lazy(() => import('./views/partnership/reachout/ReachOut'))
+const Packages = React.lazy(() => import('./views/partnership/packages/Packages'))
+const Tads = React.lazy(() => import('./views/partnership/targettedAds/targettedAds'))
+const Misc = React.lazy(() => import('./views/partnership/Miscellaneous/Miscellaneous'))
+
+const Community = React.lazy(() => import('./views/community/Community'))
 
 // Buttons
 const Insights = React.lazy(() => import('./views/buttons/Insights/Insights'))
@@ -59,19 +66,21 @@ const routes = [
   { path: '/events/gigs', name: 'Gigs', element: ChecksRadios },
   { path: '/events/sme', name: 'Social Media', element: Range },
   { path: '/forms/input-group', name: 'Manage Events', element: InputGroup },
+
   { path: '/forms/floating-labels', name: 'Floating Labels', element: FloatingLabels },
   { path: '/forms/layout', name: 'Layout', element: Layout },
   { path: '/forms/validation', name: 'Validation', element: Validation },
-  { path: '/icons', exact: true, name: 'Icons', element: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', element: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', element: Flags },
-  { path: '/icons/brands', name: 'Brands', element: Brands },
-  { path: '/notifications', name: 'Notifications', element: Alerts, exact: true },
-  { path: '/notifications/alerts', name: 'Alerts', element: Alerts },
-  { path: '/notifications/badges', name: 'Badges', element: Badges },
-  { path: '/notifications/modals', name: 'Modals', element: Modals },
-  { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
-  { path: '/widgets', name: 'Widgets', element: Widgets },
+
+  { path: '/icons', exact: true, name: 'Icons', element: collab },
+  { path: '/partners/collaborations', name: 'Collaborators', element: collab },
+  { path: '/partners/reach-out', name: 'Reach Out', element: ReachOut },
+  { path: '/partners/packages', name: 'Packages', element: Packages },
+  { path: '/partners/tads', name: 'Targetted Ads', element: Tads },
+  { path: '/partners/packages', name: 'Packages', element: Packages },
+  { path: '/partners/misc', name: 'Packages', element: Misc },
+
+
+  { path: '/community', name: 'Widgets', element: Community },
 ]
 
 export default routes

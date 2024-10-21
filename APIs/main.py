@@ -36,7 +36,12 @@ room_service_collection = db['room_service']
 food_orders_collection = db['food_orders']  # New collection for food orders
 hosted_events_collection = db['hosted_events']  # New collection for hosted events
 requested_events_collection = db['requested_events']  # New collection for requested events
-
+sponsored_packages_collection = db['sponsored_packages']  # New collection for sponsored packages
+# Custom Package Requests   
+custom_package_requests = db['custom_package_requests']  # New collection for custom package requests
+packages = db['packages']  # New collection for packages
+targeted_ads = db['targeted_ads_campaigns']  # New collection for targeted ads campaigns
+freelancers = db['freelancers']  # New collection for freelancers
 
 # Allow CORS for the frontend
 app.add_middleware(
@@ -92,6 +97,33 @@ class HostedEvent(BaseModel):
 class Request(BaseModel):
     session_id: str
 
+# Pydantic model for package
+class PackageBase(BaseModel):
+    title: str
+    description: str
+    price: float
+    duration: int
+
+class Package(PackageBase):
+    id: str
+
+# Pydantic model for sponsored package
+class SponsoredPackageBase(BaseModel):
+    title: str
+    description: str
+    price: float
+    duration: int
+
+class SponsoredPackage(SponsoredPackageBase):
+    id: str
+
+# Pydantic model for custom package request
+class CustomPackageRequestBase(BaseModel):
+    name: str
+    email: str
+    phone: str
+    details: str
+
 
 # Helper to serialize MongoDB objects
 def serialize_mongo_obj(obj):
@@ -127,7 +159,13 @@ class NewSMECampaign(BaseModel):
     description: str
     hashtag: str
 
-
+class TargetedAdsCampaign(BaseModel):
+    title: str
+    description: str
+    target_audience: str
+    start_date: str
+    end_date: str
+    budget: float
 
 # New collection for SME campaigns
 sme_campaigns_collection = db['sme_campaigns']
@@ -440,7 +478,7 @@ async def gigs(request: Request):
         response_data = {"artists": artists, "events": events}
 
         # Store the result in the Redis cache with session_id as key, set expiry time to 1 hour
-        await redis.set(session_id, json.dumps(response_data), ex=3600)  # Cache for 1 hour
+        await redis.set(session_id, json.dumps(response_data), ex=21600)
         print("Storing new response in cache")
 
         return response_data
@@ -448,7 +486,114 @@ async def gigs(request: Request):
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail=str(e))
-           
+    
+@app.get("/admin/packages")
+async def get_packages():
+    try:
+        result = list(packages.find({}))
+        return [serialize_mongo_obj(package) for package in result]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=f"Error fetching packages: {str(e)}")
+
+@app.post("/admin/packages", response_model=Package)
+async def create_package(package: PackageBase):
+    try:
+        data = {
+            "title": package.title,
+            "description": package.description,
+            "price": package.price,
+            "duration": package.duration
+        }
+        result = packages.insert_one(data)
+        new_package = packages.find_one({"_id": result.inserted_id})
+        return serialize_mongo_obj(new_package)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating package: {str(e)}")
+
+# Sponsored Packages
+@app.get("/admin/sponsored-packages")
+async def get_sponsored_packages():
+    try:
+        sponsored_packages = list(sponsored_packages_collection.find({}))
+        return [serialize_mongo_obj(package) for package in sponsored_packages]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching sponsored packages: {str(e)}")
+
+
+@app.post("/admin/sponsored-packages")
+async def create_sponsored_package(package: SponsoredPackageBase):
+    try:
+        data = {
+            "title": package.title,
+            "description": package.description,
+            "price": package.price,
+            "duration": package.duration
+        }
+        result = sponsored_packages_collection.insert_one(data)
+        new_package = sponsored_packages_collection.find_one({"_id": result.inserted_id})
+        return serialize_mongo_obj(new_package)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating sponsored package: {str(e)}")
+
+# Custom Package Requests
+@app.get("/admin/custom-package-requests")
+async def get_custom_package_requests():
+    try:
+        requests = list(custom_package_requests.find({}))
+        return [serialize_mongo_obj(request) for request in requests]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching custom package requests: {str(e)}")
+
+@app.post("/admin/custom-package-requests")
+async def create_custom_package_request(request: CustomPackageRequestBase):
+    try:
+        data = {
+            "name": request.name,
+            "email": request.email,
+            "phone": request.phone,
+            "details": request.details
+        }
+        result = custom_package_requests.insert_one(data)
+        new_request = custom_package_requests.find_one({"_id": result.inserted_id})
+        return serialize_mongo_obj(new_request)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating custom package request: {str(e)}")
+    
+# Targeted Ads Campaigns
+@app.get("/admin/targeted-ads")
+async def get_targeted_ads_campaigns():
+    try:
+        campaigns = list(targeted_ads.find({}))
+        return [serialize_mongo_obj(campaign) for campaign in campaigns]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching targeted ads campaigns: {str(e)}")
+    
+@app.post("/admin/targeted-ads")
+async def create_targeted_ads_campaign(campaign: TargetedAdsCampaign):
+    try:
+        data = {
+            "name": campaign.title,
+            "description": campaign.description,
+            "target_audience": campaign.target_audience,
+            "start_date": campaign.start_date,
+            "end_date": campaign.end_date,
+            "budget": campaign.budget,
+        }
+        result = targeted_ads.insert_one(data)
+        new_campaign = targeted_ads.find_one({"_id": result.inserted_id})
+        return serialize_mongo_obj(new_campaign)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating targeted ads campaign: {str(e)}")
+    
+@app.get("/search-freelancers")
+async def search_freelancers():
+    try:
+        freelancers_list = list(freelancers.find({}))
+        return [serialize_mongo_obj(freelancer) for freelancer in freelancers_list]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching freelancers: {str(e)}")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
