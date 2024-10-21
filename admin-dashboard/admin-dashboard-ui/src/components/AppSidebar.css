@@ -1,0 +1,46 @@
+.csidenav {
+    background-color: black;
+    /* Dark grey */
+    color: white;
+    /* Text color */
+    transition: width 0.3s ease;
+    /* Smooth transition */
+    overflow: hidden;
+    /* Hide overflow */
+}
+
+/* Collapsed state */
+.csidenav.collapsed {
+    width: 60px;
+    /* Adjust width when collapsed */
+}
+
+/* Hover effects */
+.csidenav.collapsed:hover {
+    width: 200px;
+    /* Width when hovered */
+}
+
+/* Link styles */
+.csidenav .nav-link {
+    color: white;
+    /* Link color */
+}
+
+.csidenav .nav-link:hover {
+    background-color: #444;
+    /* Lighter grey on hover */
+    color: white;
+    /* Text color on hover */
+}
+
+/* Text visibility on hover */
+.csidenav .nav-link-text {
+    display: none;
+    /* Hide text by default */
+}
+
+.csidenav.collapsed:hover .nav-link-text {
+    display: inline;
+    /* Show text on hover */
+}

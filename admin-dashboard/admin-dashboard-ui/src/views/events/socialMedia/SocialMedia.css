@@ -1,0 +1,44 @@
+/* SocialMediaEvents.css */
+
+.btn-black {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.btn-black:hover {
+    background-color: grey;
+}
+
+.btn-launch {
+    background-color: black;
+    color: white;
+    transition: color 0.3s;
+    /* border: none; */
+}
+
+.btn-launch:hover,
+.btn-launch:focus {
+    background-color: darkgrey;
+    /* Change the highlight color as needed */
+    outline: none;
+    /* Remove the outline on focus */
+}
+
+/* SocialMedia.css */
+
+/* Button styles */
+.button-custom {
+    background-color: black;
+    /* Background color */
+    color: white;
+    /* Text color */
+    transition: font-weight 0.3s;
+    /* Smooth transition for font weight */
+}
+
+.button-custom:hover,
+.button-custom:active {
+    font-weight: bold;
+    /* Make text bold on hover and active */
+}

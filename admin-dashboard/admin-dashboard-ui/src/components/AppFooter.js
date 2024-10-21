@@ -1,9 +1,10 @@
-import React from 'react'
-import { CFooter } from '@coreui/react'
+import React from 'react';
+import { CFooter } from '@coreui/react';
+import './AppFooter.css'; // Import your CSS file
 
 const AppFooter = () => {
   return (
-    <CFooter className="px-4">
+    <CFooter className="px-4 hidden-footer"> {/* Add hidden-footer class here */}
       <div>
         <a href="https://coreui.io" target="_blank" rel="noopener noreferrer">
           CoreUI
@@ -17,7 +18,7 @@ const AppFooter = () => {
         </a>
       </div>
     </CFooter>
-  )
+  );
 }
 
-export default React.memo(AppFooter)
+export default React.memo(AppFooter);

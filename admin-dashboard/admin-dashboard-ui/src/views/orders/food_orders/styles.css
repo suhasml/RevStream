@@ -1,21 +1,30 @@
 .transparent-table {
-    background-color: transparent;
-    /* Make the table background transparent */
-    border: none;
-    /* Remove table border */
+    background-color: white;
+    /* Set table background to white */
+    border: 1px solid #ccc;
+    /* Optional: Add a light border */
 }
 
 .transparent-table th,
 .transparent-table td {
-    background-color: transparent;
-    /* Make cells transparent */
-    border: none;
-    /* Remove borders from header and data cells */
-    color: white;
-    /* Set text color to white */
+    background-color: white;
+    /* Ensure cells have a white background */
+    border: 1px solid #ccc;
+    /* Add borders to header and data cells */
+    color: black;
+    /* Set text color to black for both header and data cells */
 }
 
 .transparent-table th {
-    color: white;
-    /* Ensure header text color is white */
+    background-color: #f0f0f0;
+    /* Light grey background for header */
+    color: black;
+    /* Ensure header text color is black */
+}
+
+.card-header-custom {
+    background-color: lightgray;
+    /* Dark grey background */
+    color: black;
+    /* Set text color to black for the header */
 }

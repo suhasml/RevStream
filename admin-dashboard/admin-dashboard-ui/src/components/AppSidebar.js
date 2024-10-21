@@ -1,6 +1,5 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   CCloseButton,
   CSidebar,
@@ -8,31 +7,29 @@ import {
   CSidebarFooter,
   CSidebarHeader,
   CSidebarToggler,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-
-import { AppSidebarNav } from './AppSidebarNav'
-
-import { logo } from 'src/assets/brand/logo'
-import { sygnet } from 'src/assets/brand/sygnet'
-
-// sidebar nav config
-import navigation from '../_nav'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { AppSidebarNav } from './AppSidebarNav';
+import { logo } from 'src/assets/brand/logo';
+import { sygnet } from 'src/assets/brand/sygnet';
+import navigation from '../_nav';
 
 const AppSidebar = () => {
-  const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const dispatch = useDispatch();
+  const unfoldable = useSelector((state) => state.sidebarUnfoldable);
+  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const [isCollapsed, setIsCollapsed] = useState(false); // Add local state
 
   return (
     <CSidebar
-      className="border-end"
+      style={{ backgroundColor: 'black', color: 'white' }}
+      className={`csidenav border-end ${isCollapsed ? 'collapsed' : ''}`} // Add collapsed class
       colorScheme="dark"
       position="fixed"
       unfoldable={unfoldable}
       visible={sidebarShow}
       onVisibleChange={(visible) => {
-        dispatch({ type: 'set', sidebarShow: visible })
+        dispatch({ type: 'set', sidebarShow: visible });
       }}
     >
       <CSidebarHeader className="border-bottom">
@@ -46,14 +43,17 @@ const AppSidebar = () => {
           onClick={() => dispatch({ type: 'set', sidebarShow: false })}
         />
       </CSidebarHeader>
-      <AppSidebarNav items={navigation} />
+      <AppSidebarNav items={navigation} isCollapsed={isCollapsed} /> {/* Pass isCollapsed */}
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler
-          onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+          onClick={() => {
+            dispatch({ type: 'set', sidebarUnfoldable: !unfoldable });
+            setIsCollapsed(!isCollapsed); // Toggle collapse state
+          }}
         />
       </CSidebarFooter>
     </CSidebar>
-  )
-}
+  );
+};
 
-export default React.memo(AppSidebar)
+export default React.memo(AppSidebar);

@@ -75,7 +75,7 @@ const FoodOrders = () => {
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
-          <CCardHeader>
+          <CCardHeader className="card-header-custom">
             <strong>Food Orders</strong>
           </CCardHeader>
           <CCardBody>

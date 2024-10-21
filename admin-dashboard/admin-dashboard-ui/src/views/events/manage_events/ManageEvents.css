@@ -1,0 +1,63 @@
+/* ManageEvents.css */
+
+.heading {
+    margin-bottom: 20px;
+    /* Space below the Manage Events heading */
+}
+
+.subheading {
+    margin-top: 20px;
+    /* Space above the subheadings */
+    margin-bottom: 10px;
+    /* Space below the subheadings */
+}
+
+/* Custom Button Styles */
+.custom-button {
+    background-color: black;
+    /* Black background */
+    color: white;
+    /* White text */
+    border: none;
+    /* Remove default border */
+}
+
+.custom-button:hover {
+    background-color: grey;
+    /* Change to grey on hover */
+    color: white;
+    /* Ensure text remains white on hover */
+}
+
+.custom-button:active {
+    background-color: darkgrey;
+    /* Darker grey when clicked */
+}
+
+/* Custom Card Styles */
+.ccard-header {
+    background-color: lightgrey;
+    /* Light grey background for the header */
+    color: black;
+    /* Black text for the header */
+}
+
+.ccard {
+    background-color: white !important;
+    /* White background for the card */
+    color: black;
+    /* Black text for the card */
+}
+
+/* Ensure consistent background for card body */
+.ccard-body {
+    background-color: white !important;
+    /* White background for the card body */
+    color: black;
+    /* Black text for the card body */
+}
+
+.button-space {
+    margin-left: 10px;
+    /* Adjust the value as needed */
+}

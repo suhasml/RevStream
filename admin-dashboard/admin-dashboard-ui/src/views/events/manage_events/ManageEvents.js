@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { CCard, CCardBody, CCardHeader, CCol, CRow, CButton } from '@coreui/react';
+import './ManageEvents.css'; // Import the CSS file
 
 const ManageEventsComponent = () => {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [requestedEvents, setRequestedEvents] = useState([]);
-  const [socialMediaEvents, setSocialMediaEvents] = useState([]); // State for social media events
+  const [socialMediaEvents, setSocialMediaEvents] = useState([]);
 
   const fetchEvents = () => {
     fetch('http://localhost:8002/hosted-events')
@@ -21,7 +22,6 @@ const ManageEventsComponent = () => {
       })
       .catch((error) => console.error('Error fetching requested events:', error));
 
-    // Fetch social media events
     fetch('http://localhost:8002/ongoing-sme-campaigns')
       .then((response) => response.json())
       .then((data) => {
@@ -126,19 +126,19 @@ const ManageEventsComponent = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <h2>Manage Events</h2>
+        <h2 className="heading">Manage Events</h2>
 
-        <h4>Upcoming Events</h4>
+        <h4 className="subheading">Upcoming Events</h4>
         {upcomingEvents.length === 0 ? (
           <p>No upcoming events.</p>
         ) : (
           upcomingEvents.map((event) => (
             <CCard key={event.id} className="mb-4">
-              <CCardHeader>{event.title}</CCardHeader>
-              <CCardBody>
+              <CCardHeader className="ccard-header">{event.title}</CCardHeader>
+              <CCardBody className="ccard-body">
                 <p>Date: {formatDateToSGT(event.date)}</p>
                 <p>Description: {event.description}</p>
-                <CButton color="danger" size="sm" onClick={() => cancelEvent(event.id)}>
+                <CButton className="custom-button" size="sm" onClick={() => cancelEvent(event.id)}>
                   Cancel Event
                 </CButton>
               </CCardBody>
@@ -146,19 +146,19 @@ const ManageEventsComponent = () => {
           ))
         )}
 
-        <h4>Requested Events</h4>
+        <h4 className="subheading">Requested Events</h4>
         {requestedEvents.length === 0 ? (
           <p>No event requests at the moment.</p>
         ) : (
           requestedEvents.map((event) => (
             <CCard key={event.id} className="mb-4">
-              <CCardHeader>{event.title}</CCardHeader>
-              <CCardBody>
+              <CCardHeader className="ccard-header">{event.title}</CCardHeader>
+              <CCardBody className="ccard-body">
                 <p>Description: {event.description}</p>
-                <CButton color="primary" onClick={() => acceptEvent(event)}>
+                <CButton className="custom-button" onClick={() => acceptEvent(event)}>
                   Accept
                 </CButton>
-                <CButton color="danger" className="ml-2" onClick={() => rejectEvent(event.id)}>
+                <CButton className="custom-button button-space" onClick={() => rejectEvent(event.id)}>
                   Reject
                 </CButton>
               </CCardBody>
@@ -166,17 +166,17 @@ const ManageEventsComponent = () => {
           ))
         )}
 
-        <h4>Social Media Events</h4>
+        <h4 className="subheading">Social Media Events</h4>
         {socialMediaEvents.length === 0 ? (
           <p>No social media events at the moment.</p>
         ) : (
           socialMediaEvents.map((event) => (
             <CCard key={event.id} className="mb-4">
-              <CCardHeader>{event.title}</CCardHeader>
-              <CCardBody>
+              <CCardHeader className="ccard-header">{event.title}</CCardHeader>
+              <CCardBody className="ccard-body">
                 <p>Description: {event.description}</p>
                 <p>Hashtag: {event.hashtag}</p>
-                <CButton color="danger" size="sm" onClick={() => cancelEvent(event.id)}>
+                <CButton className="custom-button" size="sm" onClick={() => cancelEvent(event.id)}>
                   Cancel Event
                 </CButton>
               </CCardBody>
