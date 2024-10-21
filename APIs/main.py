@@ -20,7 +20,7 @@ import json
 import requests
 import instaloader
 from bs4 import BeautifulSoup
-import re
+from chat2plot import chat2plot
 from starlette.concurrency import run_in_threadpool 
 
 load_dotenv()
@@ -447,7 +447,7 @@ async def gigs(request: Request):
 
         next_month_bookings = df[(df['arrival_datetime'] >= next_month) & (df['arrival_datetime'] < next_month + pd.DateOffset(months=1))]
         # next_month_data = next_month_bookings.to_dict(orient='records')
-        next_month_bookings = next_month_bookings[:25]  # Limit to 25 bookings
+        next_month_bookings = next_month_bookings[:50]  # Limit to 25 bookings
 
         class Gigs(BaseModel):
             artists: list = Field(description="A list of artists that can host events during the period")
@@ -476,6 +476,66 @@ async def gigs(request: Request):
         events = results.events
 
         response_data = {"artists": artists, "events": events}
+
+        # Store the result in the Redis cache with session_id as key, set expiry time to 1 hour
+        await redis.set(session_id, json.dumps(response_data), ex=21600)
+        print("Storing new response in cache")
+
+        return response_data
+
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/partner-events")
+async def gigs(request: Request):
+    try:
+        # Get session_id from the frontend request
+        
+        session_id = request.session_id
+        print(session_id)
+        # Check if the session ID exists in the Redis cache
+        cached_data = await redis.get(session_id)
+        if cached_data:
+            print("Returning cached response")
+            return json.loads(cached_data)
+
+        # Continue if there's no cached data
+        df = pd.read_csv("Hotel_dataset_modified.csv")
+        current_date = datetime.now()
+        next_month = (current_date.replace(day=1) + timedelta(days=32)).replace(day=1)
+        df['arrival_datetime'] = pd.to_datetime(df['arrival_datetime'])
+
+        next_month_bookings = df[(df['arrival_datetime'] >= next_month) & (df['arrival_datetime'] < next_month + pd.DateOffset(months=1))]
+        # next_month_data = next_month_bookings.to_dict(orient='records')
+        next_month_bookings = next_month_bookings[:50]  # Limit to 25 bookings
+
+        partner_df = pd.read_csv("partners.csv")
+        
+
+        class Gigs(BaseModel):
+            events: list = Field(description="A list of events that can be hosted during the period")
+
+        llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model='gpt-4o-mini')
+        llm_with_tool = llm.with_structured_output(Gigs)
+
+        prompt = PromptTemplate(
+            template=
+        """Here is the list of bookings for the next month: {next_month_data}.
+            Here are the list of partners and the events that they are capable of hosting: {partner_data}
+        Based on the people coming in, recommend the events that can be hosted by the partners. Give me:
+
+        1. A list of events that can be hosted during the period, based on the people that are coming and the possible dates of when the events can be hosted. Include they keys 'event', 'description', 'partner', 'why' and 'date' in the response.
+
+        Please give suggestions based on the number of guests and their market segment (e.g., direct, corporate, group bookings).""",
+            input_variables=["next_month_data", "partner_data"]
+        )
+
+        chain = prompt | llm_with_tool
+        results = chain.invoke({"next_month_data": next_month_bookings, "partner_data": partner_df.to_dict(orient='records')})
+        events = results.events
+
+        response_data = {"events": events}
 
         # Store the result in the Redis cache with session_id as key, set expiry time to 1 hour
         await redis.set(session_id, json.dumps(response_data), ex=21600)
@@ -593,6 +653,119 @@ async def search_freelancers():
         return [serialize_mongo_obj(freelancer) for freelancer in freelancers_list]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching freelancers: {str(e)}")
+    
+df = pd.read_csv('reviews.csv')
+
+# Initialize the LLM model
+chat_model = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model='gpt-4o-mini')
+
+# Define a request model to take date range
+class ChartRequest(BaseModel):
+    time_range: str  # 'last_week', 'last_month', 'last_3_months'
+
+
+# Helper function to generate plots using LLM
+def generate_plot(df, query):
+    current_date = datetime.now().strftime('%d/%m/%Y')
+    response = chat2plot(df=df, chat=chat_model, language='English').query(
+        query + f". The current date is {current_date}. Include a title and labels for the x and y axes."
+    )
+    if response.figure:
+        return response.figure.to_json()
+    else:
+        raise HTTPException(status_code=400, detail="Could not generate the chart.")
+    
+class review_analysis(BaseModel):
+    """Returns the analysis of the reviews."""
+    review: str = Field(..., title="Review", description="The analysis of the positive and negative reviews given by the guests in 100-150 words.")
+    painpoints: str = Field(..., title="Pain Points", description="The pain points identified in the reviews in bullet points.")
+    areas_of_improvement: str = Field(..., title="Areas of Improvement", description="The areas of improvement identified in the reviews and based on the pain points in bullet points.")
+
+# Helper function to filter data based on time range
+def filter_data_by_date(df, time_range):
+    current_date = datetime.now()
+    if time_range == 'last_week':
+        start_date = current_date - timedelta(weeks=1)
+    elif time_range == 'last_month':
+        start_date = current_date - timedelta(days=30)
+    elif time_range == 'last_3_months':
+        start_date = current_date - timedelta(days=90)
+    else:
+        raise HTTPException(status_code=400, detail="Invalid time range")
+    
+    df['VisitDate'] = pd.to_datetime(df['VisitDate'], errors='coerce')
+    filtered_df = df[df['VisitDate'] >= start_date]
+    return filtered_df
+
+# Review analysis using LLM and structured output
+def analyze_reviews(reviews):
+    # Define the prompt
+    prompt = PromptTemplate(
+        template=""" 
+        You will be given a list of reviews from the guests. Analyze the reviews and provide a summary of the positive and negative reviews given by the guests. \n
+        Change the hotel to 'Lyf Funan Singapore' in the analysis. \n
+        1. You should provide a summary of the reviews in 100-150 words.  \n
+        2. Identify the pain points mentioned in the reviews. \n
+        3. Identify the areas of improvement based on the pain points. \n
+        Reviews: {reviews}
+        """,
+        input_variables=["reviews"]
+    )
+    
+    llm_with_tool = chat_model.with_structured_output(review_analysis)
+    
+    # Chain the prompt and LLM model
+    chain = prompt | llm_with_tool
+    response = chain.invoke({"reviews": reviews})
+    
+    return {
+        "review": response.review,
+        "painpoints": response.painpoints,
+        "areas_of_improvement": response.areas_of_improvement
+    }
+
+
+# API endpoint to generate charts based on input
+@app.post("/generate-charts")
+async def generate_charts(request: ChartRequest):
+    # Filter the dataframe based on the input time range
+    
+    # Define your chart queries
+    chart_queries = [
+        "Which is the distribution of nationalities for the {request.time_range}?",
+        "What is the average Score for each room type for the {request.time_range}?",
+        "What is the distribution of the group types for the {request.time_range}?",
+    ]
+    
+    # Generate the figures for each query
+    charts = {}
+    for i, query in enumerate(chart_queries):
+        chart_key = f"chart_{i+1}"
+        charts[chart_key] = generate_plot(df, query)
+    
+    return charts
+
+
+# API endpoint to generate review analysis based on time range
+@app.post("/review-analysis")
+async def review_analysis_endpoint(request: ChartRequest):
+    # Filter the dataframe based on the input time range
+    filtered_df = filter_data_by_date(df, request.time_range)
+    
+    # Extract the positive and negative reviews from the filtered data
+    positive_reviews = filtered_df['PositiveReview'].dropna().tolist()
+    negative_reviews = filtered_df['NegativeReview'].dropna().tolist()
+    
+    # Combine positive and negative reviews
+    reviews = positive_reviews + negative_reviews
+    
+    if not reviews:
+        raise HTTPException(status_code=404, detail="No reviews found for the given time range.")
+    
+    # Analyze the reviews using the LLM
+    analysis = analyze_reviews(reviews)
+    
+    return analysis
 
 if __name__ == "__main__":
     import uvicorn
