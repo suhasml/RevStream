@@ -17,7 +17,6 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from upstash_redis.asyncio import Redis
 import json
-import requests
 import instaloader
 from bs4 import BeautifulSoup
 from chat2plot import chat2plot
