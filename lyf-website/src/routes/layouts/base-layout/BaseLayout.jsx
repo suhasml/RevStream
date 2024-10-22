@@ -13,7 +13,7 @@ import Chat from 'routes/chat-bot/Chat';
 const BaseLayout = () => {
   return (
     <>
-      <GlobalNavbar />
+      {/* <GlobalNavbar /> */}
       <ScrollToTop />
       <Chat />
       <Outlet />

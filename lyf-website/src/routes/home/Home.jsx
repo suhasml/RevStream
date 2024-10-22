@@ -7,6 +7,8 @@ import ResultsContainer from 'components/results-container/ResultsContainer';
 import { formatDate } from 'utils/date-helpers';
 import { useNavigate } from 'react-router-dom';
 import _debounce from 'lodash/debounce';
+import BestRooms from './components/bestrooms/BestRooms';
+import GlobalNavbar from 'components/global-navbar/GlobalNavbar';
 
 /**
  * Home component that renders the main page of the application.
@@ -18,6 +20,7 @@ const Home = () => {
   // State variables
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
   const [locationInputValue, setLocationInputValue] = useState('pune');
+  
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
   // const [popularDestinationsData, setPopularDestinationsData] = useState({
   //   isLoading: true,
@@ -141,6 +144,7 @@ const Home = () => {
 
   return (
     <>
+    <GlobalNavbar />
       <HeroCover />
       <div className="container mx-auto">
         {/* <PopularLocations popularDestinationsData={popularDestinationsData} /> */}
@@ -148,7 +152,7 @@ const Home = () => {
           <h2 className="text-3xl font-medium text-slate-700 text-center">
             Find Out Your Best Room
           </h2>
-          <GlobalSearchBox
+          {/* <GlobalSearchBox
             locationInputValue={locationInputValue}
             numGuestsInputValue={numGuestsInputValue}
             isDatePickerVisible={isDatePickerVisible}
@@ -160,7 +164,8 @@ const Home = () => {
             onDateChangeHandler={onDateChangeHandler}
             setisDatePickerVisible={setisDatePickerVisible}
             dateRange={dateRange}
-          />
+          /> */}
+          <BestRooms />
         </div>
         <div className="my-8">
           <h2 className="text-3xl font-medium text-slate-700 text-center my-2">

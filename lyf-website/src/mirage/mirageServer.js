@@ -45,6 +45,7 @@ export function makeServer({ environment = 'development' } = {}) {
       let loggedInUser = null;
 
       this.passthrough('http://localhost:4000/*');
+      this.passthrough('http://localhost:8002/*');
 
       this.get('/users/auth-user', () => {
         if (loggedInUser) {

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, PlainTextResponse
 from typing import AsyncIterable
 from pymongo import MongoClient
 from pydantic import BaseModel
@@ -381,48 +381,70 @@ async def get_frequent_visitors():
     
     return result
 
-#Endpoint for chatbot:
+# #Endpoint for chatbot:
+# @app.post("/chatbot")
+# async def chatbot(request: AgentMessage):
+#     try:
+#         async def get_response() -> AsyncIterable[str]:
+#             chat_agent = ChatAgent()
+#             task = asyncio.create_task(chat_agent.run_bot(request.message, request.session_id))
+#             queue = asyncio.Queue()
+
+#             async def agent_callback():
+#                 try:
+#                     answer = await task
+#                     await queue.put(answer)
+#                 except Exception as e:
+#                     await queue.put({"error": str(e)})
+#                 finally:
+#                     await queue.put(None)
+
+#             asyncio.create_task(agent_callback())
+
+#             while True:
+#                 try:
+#                     response = await asyncio.wait_for(queue.get(), timeout=2)
+#                     if response is None:
+#                         break
+#                     if "error" in response:
+#                         raise HTTPException(status_code=500, detail=response["error"])
+                    
+#                     async for message in response["answer"]:
+#                         print(f"Message: {message}")
+#                         if isinstance(message, dict):
+#                             if "content" in message and message["content"]:
+#                                 yield message["content"]
+#                             if "output" in message and message["output"]:
+#                                 yield message["output"]
+
+#                     break
+#                 except asyncio.TimeoutError:
+#                     await asyncio.sleep(1)  
+
+#         return StreamingResponse(get_response(), media_type="text/event-stream")
+
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/chatbot")
 async def chatbot(request: AgentMessage):
     try:
-        async def get_response() -> AsyncIterable[str]:
-            chat_agent = ChatAgent()
-            task = asyncio.create_task(chat_agent.run_bot(request.message, request.session_id))
-            queue = asyncio.Queue()
-
-            async def agent_callback():
-                try:
-                    answer = await task
-                    await queue.put(answer)
-                except Exception as e:
-                    await queue.put({"error": str(e)})
-                finally:
-                    await queue.put(None)
-
-            asyncio.create_task(agent_callback())
-
-            while True:
-                try:
-                    response = await asyncio.wait_for(queue.get(), timeout=2)
-                    if response is None:
-                        break
-                    if "error" in response:
-                        raise HTTPException(status_code=500, detail=response["error"])
-                    
-                    async for message in response["answer"]:
-                        print(f"Message: {message}")
-                        if isinstance(message, dict):
-                            if "content" in message and message["content"]:
-                                yield message["content"]
-                            if "output" in message and message["output"]:
-                                yield message["output"]
-
-                    break
-                except asyncio.TimeoutError:
-                    await asyncio.sleep(1)  
-
-        return StreamingResponse(get_response(), media_type="text/event-stream")
-
+        chat_agent = ChatAgent()
+        response = await chat_agent.run_bot(request.message, request.session_id)
+        
+        # Collect all the response chunks into a single string
+        full_response = ""
+        async for chunk in response["answer"]:
+            if isinstance(chunk, dict):
+                if content := chunk.get("content"):
+                    full_response += content
+                elif output := chunk.get("output"):
+                    full_response += output
+            elif isinstance(chunk, str):
+                full_response += chunk
+        
+        return PlainTextResponse(content=full_response)
+        
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -766,6 +788,62 @@ async def review_analysis_endpoint(request: ChartRequest):
     analysis = analyze_reviews(reviews)
     
     return analysis
+
+class RoomRequest(BaseModel):
+    purpose: str
+    guests: int
+    duration: int
+
+@app.post("/best-rooms")
+async def best_rooms(request: RoomRequest):
+    try:
+        purpose = request.purpose
+        guests = request.guests
+        duration = request.duration
+        
+        list_of_rooms = ''
+        with open('room_listing.txt', 'r') as file:
+            list_of_rooms = file.read()
+        
+
+        class Rooms(BaseModel):
+            best_room: str = Field(description="The best room for the given purpose, number of guests, and duration")
+            why : str = Field(description="The reason why it is the best room for the given purpose, number of guests, and duration. Give it in points and in markdown format.")
+
+        llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model='gpt-4o-mini')
+        llm_with_tool = llm.with_structured_output(Rooms)
+
+        prompt = PromptTemplate(
+            template=
+        """
+            Here are the list of rooms available in Lyf Funan Singapore: {list_of_rooms}
+        Based on the customers coming in, recommend the best room for the given purpose, number of guests, and duration. Include the room type, and the reason why it is the best room for the given purpose, number of guests, and duration.
+        Try to upsell the room if possible.
+        Purpose: {purpose}
+        Number of Guests: {guests}
+        Duration: {duration} days
+        Return:
+        1. The best room for the given purpose, number of guests, and duration and an explanation of why it is the best room.
+        2. Why it is the best room for the given purpose, number of guests, and duration. Give it in points and in markdown format.
+        """,
+            input_variables=["list_of_rooms", "purpose", "guests", "duration"]
+        )
+       
+
+        chain = prompt | llm_with_tool
+        results = chain.invoke({"list_of_rooms": list_of_rooms, "purpose": purpose, "guests": guests, "duration": duration})
+        events = results.best_room
+        why = results.why
+
+        response_data = {"best_room": events, "why": why}
+
+        return response_data
+
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
 if __name__ == "__main__":
     import uvicorn
