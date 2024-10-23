@@ -1,0 +1,9 @@
+.add-more-ideas-button {
+    background-color: black;
+    color: white;
+}
+
+.add-more-ideas-button:hover {
+    background-color: lightgrey;
+    color: black;
+}

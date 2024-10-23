@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CCard, CCardBody, CCardHeader, CCol, CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CButton, CModal, CModalHeader, CModalBody, CModalFooter, CForm, CFormInput, CFormLabel, CFormTextarea, CBadge } from '@coreui/react';
+import { CCard, CCardBody, CCardHeader, CCol, CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CButton, CModal, CModalHeader, CModalBody, CModalFooter, CForm, CFormInput, CFormLabel } from '@coreui/react';
 import axios from 'axios';
 import { Edit, Trash, Plus, Eye } from 'lucide-react';
+import './TargetedAds.css';
 
 const TargetedAdsDashboard = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -94,7 +95,7 @@ const TargetedAdsDashboard = () => {
             ))}
           </CTableBody>
         </CTable>
-        <CButton color="primary" onClick={() => handleModalOpen('add')}>
+        <CButton className="launch-campaign-button" onClick={() => handleModalOpen('add')}>
           <Plus size={18} /> Launch New Campaign
         </CButton>
       </CCardBody>
@@ -104,7 +105,7 @@ const TargetedAdsDashboard = () => {
   return (
     <div>
       <h2 className="mb-4">Targeted Ads Dashboard</h2>
-      
+
       <CRow>
         <CCol lg={12}>
           {renderCampaignTable(campaigns, 'Ongoing Campaigns')}

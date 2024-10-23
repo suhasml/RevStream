@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CCard, CCardBody, CCardHeader, CCol, CRow, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CButton, CModal, CModalHeader, CModalBody, CModalFooter, CForm, CFormInput, CFormLabel, CFormTextarea, CBadge } from '@coreui/react';
 import axios from 'axios';
 import { Edit, Trash, Plus, Eye } from 'lucide-react';
+import './Packages.css';
 
 const AdminPackageDashboard = () => {
   const [packages, setPackages] = useState([]);
@@ -9,7 +10,7 @@ const AdminPackageDashboard = () => {
   const [customRequests, setCustomRequests] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentPackage, setCurrentPackage] = useState({});
-  const [modalMode, setModalMode] = useState('view'); // 'view', 'edit', or 'add'
+  const [modalMode, setModalMode] = useState('view');
 
   useEffect(() => {
     fetchPackages();
@@ -116,7 +117,7 @@ const AdminPackageDashboard = () => {
             ))}
           </CTableBody>
         </CTable>
-        <CButton color="primary" onClick={() => handleModalOpen('add')}>
+        <CButton className="add-package-button" onClick={() => handleModalOpen('add')}>
           <Plus size={18} /> Add New Package
         </CButton>
       </CCardBody>
@@ -126,7 +127,7 @@ const AdminPackageDashboard = () => {
   return (
     <div>
       <h2 className="mb-4">Package Management Dashboard</h2>
-      
+
       <CRow>
         <CCol lg={6}>
           {renderPackageTable(packages, 'Regular Packages')}

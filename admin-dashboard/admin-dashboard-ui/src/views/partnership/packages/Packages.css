@@ -1,0 +1,9 @@
+.add-package-button {
+    background-color: black;
+    color: white;
+}
+
+.add-package-button:hover {
+    background-color: lightgrey;
+    color: black;
+}

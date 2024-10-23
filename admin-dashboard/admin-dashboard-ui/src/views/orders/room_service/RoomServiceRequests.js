@@ -82,7 +82,7 @@ const RoomServiceRequests = () => {
             <CTable className="transparent-table" hover responsive>
               <CTableHead>
                 <CTableRow>
-                  <CTableHeaderCell scope="col">#</CTableHeaderCell>
+                  <CTableHeaderCell scope="col"></CTableHeaderCell>
                   <CTableHeaderCell scope="col">Room Number</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Service Type</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Date</CTableHeaderCell>

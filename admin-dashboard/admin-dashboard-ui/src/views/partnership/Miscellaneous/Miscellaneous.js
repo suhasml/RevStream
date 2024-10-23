@@ -1,6 +1,7 @@
 import React from 'react';
 import { CCard, CCardBody, CCardHeader, CCol, CRow, CButton, CListGroup, CListGroupItem } from '@coreui/react';
 import { Plus } from 'lucide-react';
+import './Miscellaneous.css';
 
 const OtherPartnershipUses = () => {
   const additionalPartnershipIdeas = [
@@ -59,7 +60,7 @@ const OtherPartnershipUses = () => {
                 </CListGroupItem>
               ))}
             </CListGroup>
-            <CButton color="primary" className="mt-3" onClick={handleAddMore}>
+            <CButton className="add-more-ideas-button mt-3" onClick={handleAddMore}>
               <Plus size={18} /> Add More Ideas
             </CButton>
           </CCardBody>

@@ -1,0 +1,9 @@
+.launch-campaign-button {
+    background-color: black;
+    color: white;
+}
+
+.launch-campaign-button:hover {
+    background-color: lightgrey;
+    color: black;
+}

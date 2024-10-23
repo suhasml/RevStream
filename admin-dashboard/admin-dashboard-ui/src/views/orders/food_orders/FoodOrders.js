@@ -82,7 +82,7 @@ const FoodOrders = () => {
             <CTable className="transparent-table" hover>
               <CTableHead>
                 <CTableRow>
-                  <CTableHeaderCell scope="col">#</CTableHeaderCell>
+                  <CTableHeaderCell scope="col"></CTableHeaderCell>
                   <CTableHeaderCell scope="col">Room Number</CTableHeaderCell>
                   <CTableHeaderCell scope="col">Food Items</CTableHeaderCell>
                 </CTableRow>

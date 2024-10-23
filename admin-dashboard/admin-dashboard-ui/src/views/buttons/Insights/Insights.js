@@ -65,9 +65,9 @@
 //         <div style={{ width: '60%' }}>
 //           <h3>Review Summary</h3>
 //           <p>{reviewSummary}</p>
-          
+
 //           <hr />
-          
+
 //           <h3>Pain Points</h3>
 //           <ul>
 //             {painPoints.split('\n').map((point, index) => (

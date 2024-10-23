@@ -1,0 +1,60 @@
+.card-dark {
+    background-color: lightgray;
+    /* Dark grey */
+    color: black;
+    /* Black text */
+}
+
+.card-dark .text-muted {
+    color: #bbb;
+    /* Lighter grey for muted text */
+}
+
+/* If the skills are highlighted using a specific class like .skill-highlight */
+.skill-highlight {
+    color: black;
+    /* Change the text color to black */
+}
+
+/* If the background color is also blue and you want to change that */
+.skill-highlight {
+    background-color: black;
+    /* Change the background to black */
+    color: white;
+    /* You may want to set the text color to white if the background is black */
+}
+
+/* For text inside any specific box or section */
+.box-text {
+    color: black;
+    /* Change the text color to black */
+}
+
+/* Ensure all card text is black */
+.text-black {
+    color: black !important;
+}
+
+/* Make sure the card is using a dark theme if needed */
+.card-dark {
+    background-color: #f8f9fa;
+    /* Optional light color for background */
+    border: 1px solid #ccc;
+    /* Optional border */
+}
+
+/* Set badge color to black with white text */
+.c-badge.dark {
+    background-color: black;
+    color: white;
+}
+
+/* Dark gray badge for skills */
+.skill-badge {
+    background-color: #4d4d4d;
+    /* Dark gray */
+    color: white;
+    /* White text */
+    border: none;
+    /* Optional */
+}

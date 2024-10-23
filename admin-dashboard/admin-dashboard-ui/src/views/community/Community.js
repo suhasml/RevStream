@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CCard, CCardBody, CCardHeader, CCol, CRow, CSpinner, CBadge } from '@coreui/react';
 import axios from 'axios';
+import './styles.css'; // Import your styles here
 
 const LyfCommunity = () => {
   const [communityMembers, setCommunityMembers] = useState([]);
@@ -8,7 +9,6 @@ const LyfCommunity = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch the community members from the API
     const fetchCommunityMembers = async () => {
       try {
         const response = await axios.get('http://localhost:8002/search-freelancers');
@@ -42,21 +42,21 @@ const LyfCommunity = () => {
             <CRow>
               {communityMembers.map((member) => (
                 <CCol xs="12" sm="6" md="4" lg="3" key={member.email} className="mb-4">
-                  <CCard>
+                  <CCard className="card-dark">
                     <CCardBody>
-                      <div className="text-center">
+                      <div className="text-center text-black"> {/* Text color changed to black */}
                         <h5>{member.name}</h5>
-                        <p className="text-muted">{member.job_title}</p>
+                        <p>{member.job_title}</p>
                         <p>{member.bio.substring(0, 50)}...</p>
                         <div className="mb-2">
                           {member.skills.map((skill, index) => (
-                            <CBadge color="info" className="me-1" key={index}>
+                            <CBadge className="skill-badge me-1" key={index}> {/* Changed badge color to black */}
                               {skill}
                             </CBadge>
                           ))}
                         </div>
-                        <p className="text-muted">Experience: {member.experience_years} years</p>
-                        <p className="text-muted">Hourly Rate: ${member.hourly_rate}</p>
+                        <p>Experience: {member.experience_years} years</p>
+                        <p>Hourly Rate: ${member.hourly_rate}</p>
                       </div>
                     </CCardBody>
                   </CCard>

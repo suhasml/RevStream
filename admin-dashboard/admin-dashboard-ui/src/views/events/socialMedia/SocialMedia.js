@@ -94,17 +94,17 @@ const SocialMediaEvents = () => {
   return (
     <CRow>
       <CCol xs={12}>
-        <h1 className="text-center mb-4">Social Media Events</h1>
+        <h1 className="text-center mb-5">Social Media Events</h1>
 
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <h2 className="mb-0">Launch a Social Media Event</h2>
+          <h3 className="mb-0">Launch a Social Media Event</h3>
           <CButton className="button-custom" onClick={() => setShowLaunchModal(true)}>
             Launch Social Media Event
           </CButton>
         </div>
 
         <div className="mb-4">
-          <h5>Search Instagram by Hashtag</h5>
+          <h6>Search Instagram by Hashtag</h6>
           <CFormInput
             placeholder="Enter a hashtag (e.g., travel)"
             value={searchTag}
@@ -114,8 +114,8 @@ const SocialMediaEvents = () => {
             Search
           </CButton>
 
-          <div className="mt-4">
-            <h2>Top 5 Posts</h2>
+          <div className="mt-5">
+            <h3>Top 5 Posts</h3>
             {topPosts.length > 0 ? (
               topPosts.map((post, index) => (
                 <CCard key={index} className="mb-3">
@@ -138,8 +138,8 @@ const SocialMediaEvents = () => {
           </div>
         </div>
 
-        <div className="mt-4">
-          <h2>Ongoing SME Campaigns</h2>
+        <div className="mt-5">
+          <h3>Ongoing SME Campaigns</h3>
           {ongoingCampaigns.length > 0 ? (
             ongoingCampaigns.map((campaign, index) => (
               <CCard key={index} className="mb-3">
