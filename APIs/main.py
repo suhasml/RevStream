@@ -21,6 +21,8 @@ import instaloader
 from bs4 import BeautifulSoup
 from chat2plot import chat2plot
 from starlette.concurrency import run_in_threadpool 
+import random
+import string
 
 load_dotenv()
 
@@ -258,6 +260,82 @@ async def launch_sme_campaign(campaign: NewSMECampaign):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error launching SME campaign: {str(e)}")
     
+
+hotel_bookings_collection = db['hotel_bookings']
+
+class PaymentConfirmation(BaseModel):
+    email: str
+    nameOnCard: str
+    cardNumber: str
+    expiry: str
+    cvc: str
+    address: str
+    city: str
+    state: str
+    postalCode: str
+    checkIn: str
+    checkOut: str
+    hotelName: str
+
+def generate_confirmation_code():
+    """Generate a random 6-digit confirmation code."""
+    return ''.join(random.choices(string.digits, k=6))
+
+@app.post("/payments/confirmation")
+async def confirm_payment(payment_details: PaymentConfirmation):
+    try:
+        # Generate a unique confirmation code
+        confirmation_code = generate_confirmation_code()
+
+        
+        # Keep generating until we get a unique code
+        while hotel_bookings_collection.find_one({"confirmation_code": confirmation_code}):
+            confirmation_code = generate_confirmation_code()
+        
+        # Create booking record
+        booking_data = {
+            "confirmation_code": confirmation_code,
+            "email": payment_details.email,
+            "hotel_name": payment_details.hotelName,
+            "check_in": payment_details.checkIn,
+            "check_out": payment_details.checkOut,
+            "billing_address": {
+                "address": payment_details.address,
+                "city": payment_details.city,
+                "state": payment_details.state,
+                "postal_code": payment_details.postalCode
+            },
+            "booking_date": datetime.now(),
+            "payment_status": "confirmed"
+        }
+
+
+        
+        # Insert into database
+        result = hotel_bookings_collection.insert_one(booking_data)
+        
+        if result.inserted_id:
+            return {
+                "status": "success",
+                "confirmation_code": confirmation_code,
+                "data": {
+                    "booking_details": {
+                        "hotel_name": payment_details.hotelName,
+                        "check_in": payment_details.checkIn,
+                        "check_out": payment_details.checkOut,
+                        "email": payment_details.email
+                    }
+                },
+                "errors": []
+            }
+        else:
+            raise HTTPException(status_code=500, detail="Failed to create booking")
+            
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
 # Endpoint to get room services
 @app.get("/get-room-services")
 async def get_room_services():

@@ -139,6 +139,8 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "components/ux/loader/loader";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import ReactMarkdown from "react-markdown";
 
 const Chat = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -146,29 +148,35 @@ const Chat = () => {
     const [input, setInput] = useState("");
     const [conversationId, setConversationId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isListening, setIsListening] = useState(false);
+
+    const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
     useEffect(() => {
         setConversationId(uuidv4());
     }, []);
 
+    useEffect(() => {
+        if (transcript && !listening) {
+            handleSendMessage(transcript); 
+        }
+    }, [transcript, listening]);
+
     const toggleChat = () => {
         setIsOpen(!isOpen);
     };
 
-    const sendMessage = async () => {
-        if (!input.trim()) return;
+    const handleSendMessage = async (message) => {
+        if (!message.trim()) return;
 
-        // Add user message
         const userMessage = {
             id: Date.now(),
             conversation_id: conversationId,
-            message: input.trim(),
-            sender: "user"
+            message: message.trim(),
+            sender: "user",
         };
-        setMessages(prev => [...prev, userMessage]);
-        
-        // Clear input and set loading
-        const currentInput = input.trim();
+        setMessages((prev) => [...prev, userMessage]);
+
         setInput("");
         setIsLoading(true);
 
@@ -179,8 +187,8 @@ const Chat = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    message: currentInput,
-                    session_id: conversationId
+                    message: message.trim(),
+                    session_id: conversationId,
                 }),
             });
 
@@ -188,25 +196,28 @@ const Chat = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            // Get the response text
             const botResponse = await response.text();
 
-            // Add bot message
-            setMessages(prev => [...prev, {
-                id: Date.now(),
-                conversation_id: conversationId,
-                message: botResponse,
-                sender: "bot"
-            }]);
-
+            setMessages((prev) => [
+                ...prev,
+                {
+                    id: Date.now(),
+                    conversation_id: conversationId,
+                    message: botResponse,
+                    sender: "bot",
+                },
+            ]);
         } catch (error) {
             console.error("Error in chat:", error);
-            setMessages(prev => [...prev, {
-                id: Date.now(),
-                conversation_id: conversationId,
-                message: "Sorry, there was an error processing your message. Please try again.",
-                sender: "bot"
-            }]);
+            setMessages((prev) => [
+                ...prev,
+                {
+                    id: Date.now(),
+                    conversation_id: conversationId,
+                    message: "Sorry, there was an error processing your message. Please try again.",
+                    sender: "bot",
+                },
+            ]);
         } finally {
             setIsLoading(false);
         }
@@ -215,9 +226,25 @@ const Chat = () => {
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            sendMessage();
+            handleSendMessage(input);
         }
     };
+
+    const toggleListening = () => {
+        if (isListening) {
+            SpeechRecognition.stopListening();
+            setIsListening(false);
+        } else {
+            resetTranscript();
+            SpeechRecognition.startListening({ continuous: true, language: "en-US" });
+            setIsListening(true);
+        }
+    };
+
+    // Check if browser supports speech recognition
+    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+        return <div>Speech Recognition is not supported by your browser.</div>;
+    }
 
     return (
         <div>
@@ -262,7 +289,11 @@ const Chat = () => {
                                                 : "bg-gray-200 text-gray-800"
                                         }`}
                                     >
-                                        {msg.message}
+                                        {msg.sender === "bot" ? (
+                                            <ReactMarkdown>{msg.message}</ReactMarkdown>
+                                        ) : (
+                                            msg.message
+                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -286,7 +317,7 @@ const Chat = () => {
                                     disabled={isLoading}
                                 />
                                 <button
-                                    onClick={sendMessage}
+                                    onClick={() => handleSendMessage(input)}
                                     className={`bg-black text-white px-4 py-2 rounded-lg transition ${
                                         isLoading 
                                             ? "opacity-50 cursor-not-allowed" 
@@ -295,6 +326,21 @@ const Chat = () => {
                                     disabled={isLoading}
                                 >
                                     Send
+                                </button>
+                                <button
+                                    onClick={toggleListening}
+                                    className={`${
+                                        isListening
+                                            ? "bg-red-500"
+                                            : "bg-green-500"
+                                    } text-white px-4 py-2 rounded-lg transition ${
+                                        isLoading 
+                                            ? "opacity-50 cursor-not-allowed" 
+                                            : "hover:bg-green-600"
+                                    }`}
+                                    disabled={isLoading}
+                                >
+                                    {isListening ? "🎙️ Stop" : "🎤 Start"}
                                 </button>
                             </div>
                         </div>

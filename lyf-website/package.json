@@ -27,6 +27,7 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
+    "react-speech-recognition": "^3.10.0",
     "react-to-print": "^2.15.1",
     "rive-react": "^3.0.54",
     "sass": "^1.75.0",
