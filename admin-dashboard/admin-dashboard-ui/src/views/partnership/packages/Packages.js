@@ -97,24 +97,29 @@ const AdminPackageDashboard = () => {
             </CTableRow>
           </CTableHead>
           <CTableBody>
-            {packages.map((pkg) => (
-              <CTableRow key={pkg.id}>
+          {packages.map((pkg) => (
+  <CTableRow key={pkg.id}>
+              {pkg.title ? (
+                <CTableDataCell>{pkg.title}</CTableDataCell>
+              ) : pkg.name ? (
                 <CTableDataCell>{pkg.name}</CTableDataCell>
-                <CTableDataCell>${pkg.price}</CTableDataCell>
-                <CTableDataCell>{pkg.duration}</CTableDataCell>
-                <CTableDataCell>
-                  <CButton color="info" size="sm" className="me-2" onClick={() => handleModalOpen('view', pkg)}>
-                    <Eye size={18} />
-                  </CButton>
-                  <CButton color="warning" size="sm" className="me-2" onClick={() => handleModalOpen('edit', pkg)}>
-                    <Edit size={18} />
-                  </CButton>
-                  <CButton color="danger" size="sm" onClick={() => handlePackageDelete(pkg.id)}>
-                    <Trash size={18} />
-                  </CButton>
-                </CTableDataCell>
-              </CTableRow>
-            ))}
+              ) : null}
+              <CTableDataCell>${pkg.price}</CTableDataCell>
+              <CTableDataCell>{pkg.duration}</CTableDataCell>
+              <CTableDataCell>
+                <CButton color="info" size="sm" className="me-2" onClick={() => handleModalOpen('view', pkg)}>
+                  <Eye size={18} />
+                </CButton>
+                <CButton color="warning" size="sm" className="me-2" onClick={() => handleModalOpen('edit', pkg)}>
+                  <Edit size={18} />
+                </CButton>
+                <CButton color="danger" size="sm" onClick={() => handlePackageDelete(pkg.id)}>
+                  <Trash size={18} />
+                </CButton>
+              </CTableDataCell>
+            </CTableRow>
+          ))}
+
           </CTableBody>
         </CTable>
         <CButton className="add-package-button" onClick={() => handleModalOpen('add')}>
@@ -182,7 +187,7 @@ const AdminPackageDashboard = () => {
             <CFormLabel htmlFor="packageName">Package Name</CFormLabel>
             <CFormInput
               id="packageName"
-              value={currentPackage.name || ''}
+              value={currentPackage.title || ''}
               onChange={(e) => setCurrentPackage({ ...currentPackage, name: e.target.value })}
               disabled={modalMode === 'view'}
               className="mb-3"

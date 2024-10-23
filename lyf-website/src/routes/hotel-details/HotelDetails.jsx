@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { networkAdapter } from 'services/NetworkAdapter';
 import HotelDetailsViewCard from './components/hotel-details-view-card/HotelDetailsViewCard';
 import HotelDetailsViewCardSkeleton from './components/hotel-details-view-card-skeleton/HotelDetailsViewCardSkeleton';
+import HotelDetailsNavbar from 'components/hotelDetailsNavBar/hotelNavBar';
 
 /**
  * Represents the hotel details component.
@@ -30,6 +31,7 @@ const HotelDetails = () => {
 
   return (
     <>
+      <HotelDetailsNavbar />
       {hotelDetails.isLoading ? (
         <HotelDetailsViewCardSkeleton />
       ) : (

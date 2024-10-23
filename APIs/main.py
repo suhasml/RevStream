@@ -101,7 +101,7 @@ class PackageBase(BaseModel):
     title: str
     description: str
     price: float
-    duration: int
+    duration: str
 
 class Package(PackageBase):
     id: str
@@ -119,9 +119,9 @@ class SponsoredPackage(SponsoredPackageBase):
 # Pydantic model for custom package request
 class CustomPackageRequestBase(BaseModel):
     name: str
-    email: str
-    phone: str
-    details: str
+    desccription: str
+    requests : str
+    status: str
 
 
 # Helper to serialize MongoDB objects
@@ -572,6 +572,7 @@ async def gigs(request: Request):
 async def get_packages():
     try:
         result = list(packages.find({}))
+        print(result)
         return [serialize_mongo_obj(package) for package in result]
     except Exception as e:
         print(e)
@@ -631,9 +632,9 @@ async def create_custom_package_request(request: CustomPackageRequestBase):
     try:
         data = {
             "name": request.name,
-            "email": request.email,
-            "phone": request.phone,
-            "details": request.details
+            "description": request.description,
+            "requests": request.requests,
+            "status": request.status
         }
         result = custom_package_requests.insert_one(data)
         new_request = custom_package_requests.find_one({"_id": result.inserted_id})

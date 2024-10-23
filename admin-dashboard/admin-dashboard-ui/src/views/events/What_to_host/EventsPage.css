@@ -1,17 +1,31 @@
 /* EventsPage.css */
 
+/* Section Spacing */
+.recurring-events {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Reduced from 3rem */
+  margin-bottom: 1.5rem; /* Reduced from 3rem */
+}
+
+/* Add space between major sections */
+.card-container + .d-flex,
+.recurring-events + .d-flex {
+  margin-top: 1.5rem; /* Reduced from 3rem */
+}
+
+/* Section Header Spacing */
+.d-flex.justify-content-between {
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+}
+
 /* General Calendar Styles */
 .react-calendar {
-  background-color: #333;
-  /* White background for the calendar */
+  background-color: white;
   color: #fff;
-  /* Black text color */
   border: 1px solid #ddd;
-  /* Light border for calendar */
   border-radius: 8px;
-  /* Rounded corners */
   font-family: Arial, sans-serif;
-  /* Ensure readable font */
 }
 
 /* Card Styles for Event Cards */
@@ -19,107 +33,132 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 1.5rem; /* Reduced from 3rem */
 }
 
 .event-card {
   background: #444;
-  /* White background just for the card */
   border: 1px solid #ced4da;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
 
-
 .event-card:hover {
   transform: scale(1.02);
-  /* Slightly enlarge card on hover */
 }
 
 .event-card-header {
   padding: 15px;
   cursor: pointer;
   background: #f8f9fa;
-  /* Blue background for header */
   color: black;
-  /* White text color */
   border-top-left-radius: 10px;
-  /* Rounded corners for header */
   border-top-right-radius: 10px;
-  /* Rounded corners for header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .event-card-body {
   background-color: white;
-  /* White background for the event table */
   color: #333;
-  /* Dark text color for readability */
   padding: 15px;
   border-radius: 0 0 10px 10px;
-  /* Ensure rounded corners for bottom of card */
 }
 
-
-/* Ensure date and month names are visible */
+/* Calendar Specific Styles */
 .react-calendar__month-view__days__day {
   color: #000;
-  /* Ensure day numbers are black */
 }
 
 .react-calendar__navigation button {
   color: #000;
-  /* Month navigation buttons (prev, next) */
   font-weight: bold;
 }
 
-/* Highlighted date styling */
 .highlighted-date {
   background-color: #555 !important;
-  /* Highlight selected date in blue */
   color: white !important;
-  /* Make the text white for contrast */
 }
 
-/* Month/Year header */
 .react-calendar__navigation__label {
   color: #000;
-  /* Ensure month name and year are visible */
   font-size: 1.2em;
 }
 
-/* Calendar weekday names */
 .react-calendar__month-view__weekdays {
   color: #000;
-  /* Ensure weekday names (Mon, Tue, etc.) are black */
   font-weight: bold;
 }
 
+/* Button Styles */
 .button-custom {
   background-color: black;
-  /* Background color */
   color: white;
-  /* Text color */
-  transition: font-weight 0.3s;
-  /* Smooth transition for font weight */
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
 }
 
 .button-custom:hover,
 .button-custom:active {
   font-weight: bold;
-  /* Make text bold on hover and click */
+  background-color: #333;
+  transform: translateY(-1px);
 }
 
-.button-custom {
-  background-color: black;
-  /* Background color */
-  color: white;
-  /* Text color */
-  transition: font-weight 0.3s;
-  /* Smooth transition for font weight */
+/* Section Titles */
+h3.mb-3 {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
 }
 
-.button-custom:hover,
-.button-custom:active {
-  font-weight: bold;
-  /* Make text bold on hover and click */
+/* Page Title */
+h1.text-center {
+  margin-bottom: 2rem !important; /* Reduced from 3rem */
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem;
+}
+
+/* Form Styles */
+.form-label {
+  margin-top: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .recurring-events {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-container {
+    margin-bottom: 1rem;
+  }
+
+  h1.text-center {
+    margin-bottom: 1.5rem !important;
+  }
 }

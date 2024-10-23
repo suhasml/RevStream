@@ -150,12 +150,13 @@ class ChatAgent:
             print(f"Search Query: {query}")
 
             documents = retriever.invoke(query)
+            state['conversation_ended'] = False
             return {"documents": documents, "question": question, "conversation_ended": state["conversation_ended"]}
 
         async def generate(state):
             question = state["question"]
             documents = state["documents"]
-
+            print("Inside generate")
             full_response = ''
 
             async def stream_response() -> AsyncGenerator[AIMessageChunk, None]:
