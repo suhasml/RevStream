@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.453.0",
     "miragejs": "^0.1.48",
+    "qrcode.react": "^4.1.0",
     "query-string": "^9.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",

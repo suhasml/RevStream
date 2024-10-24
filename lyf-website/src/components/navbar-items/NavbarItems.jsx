@@ -99,7 +99,7 @@ const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
             }`}
             onClick={onHamburgerMenuToggle}
           >
-            Login/Register
+            Login
           </Link>
         )}
       </li>

@@ -336,6 +336,21 @@ async def confirm_payment(payment_details: PaymentConfirmation):
         raise HTTPException(status_code=500, detail=str(e))
     
 
+class Booking(BaseModel):
+    email: str
+    reservation_id: str
+
+@app.post("/get-details")
+async def get_booking_details(booking: Booking):
+    try:
+        booking_details = hotel_bookings_collection.find_one({"confirmation_code": booking.reservation_id, "email": booking.email})
+        if booking_details:
+            return serialize_mongo_obj(booking_details)
+        else:
+            raise HTTPException(status_code=404, detail="Booking not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error fetching booking details")
+
 # Endpoint to get room services
 @app.get("/get-room-services")
 async def get_room_services():
