@@ -32,6 +32,7 @@
     "classnames": "^2.5.1",
     "core-js": "^3.38.1",
     "lucide-react": "^0.453.0",
+    "papaparse": "^5.4.1",
     "plotly.js": "^2.35.2",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",

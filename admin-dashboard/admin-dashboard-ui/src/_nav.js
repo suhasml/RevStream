@@ -13,7 +13,7 @@ import {
   cilSpeedometer,
   cilStar,
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+import { CNavGroup, CNavItem, CNavTitle, CBadge} from '@coreui/react'
 
 const _nav = [
   
@@ -49,13 +49,18 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Review Analytics',
+    name: 'Analytics',
     to: '/reviews',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Insights',
+        name: 'Event Insights',
+        to: '/reviews/event-insights',
+      },
+      {
+        component: CNavItem,
+        name: 'Review Insights',
         to: '/reviews/insights',
       }
       
@@ -122,8 +127,8 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'Targetted Ads',
-        to: '/partners/tads',
+        name: 'Affiliations',
+        to: '/partners/affiliations',
       },
       {
         component: CNavItem,
@@ -134,14 +139,35 @@ const _nav = [
   },
   
   {
-    component: CNavItem,
-    name: 'Lyf Community',
-    to: '/community',
+    // component: CNavItem,
+    component: CNavGroup,
+    name: (
+      <>
+        Lyf Community <CBadge color="info" className="ms-2">NEW</CBadge>
+      </>
+    ),
     icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // },
+    items: [
+      {
+        component: CNavItem,
+        name: 'Exclusive Events',
+        to: '/community/exclusive-events',
+      },
+      {
+        component: CNavItem,
+        name: 'Talent',
+        to: '/community',
+      },
+      {
+        component: CNavItem,
+        name: 'Products',
+        to: '/community',
+      },
+    ],
   },
   
 ]

@@ -11,15 +11,17 @@ const FoodOrders = React.lazy(() => import('./views/orders/food_orders/FoodOrder
 const collab = React.lazy(() => import('./views/partnership/collaborators/Collaborators'))
 const ReachOut = React.lazy(() => import('./views/partnership/reachout/ReachOut'))
 const Packages = React.lazy(() => import('./views/partnership/packages/Packages'))
-const Tads = React.lazy(() => import('./views/partnership/targettedAds/targettedAds'))
+const Tads = React.lazy(() => import('./views/partnership/targettedAds/Affiliations'))
 const Misc = React.lazy(() => import('./views/partnership/Miscellaneous/Miscellaneous'))
 
 const Community = React.lazy(() => import('./views/community/Community'))
+const exclusiveEvents = React.lazy(() => import('./views/community/exclusiveEvents/exclusiveEvents'))
 
 // Buttons
-const Insights = React.lazy(() => import('./views/buttons/Insights/Insights'))
-const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'))
-const Dropdowns = React.lazy(() => import('./views/buttons/dropdowns/Dropdowns'))
+const Insights = React.lazy(() => import('./views/insights/ReviewInsights/Insights'))
+const EventInsights = React.lazy(() => import('./views/insights/EventInsights/Eventinsights'))
+const ButtonGroups = React.lazy(() => import('./views/insights/button-groups/ButtonGroups'))
+const Dropdowns = React.lazy(() => import('./views/insights/dropdowns/Dropdowns'))
 
 //Forms
 const ChecksRadios = React.lazy(() => import('./views/events/gigs/Gigs'))
@@ -56,7 +58,10 @@ const routes = [
   { path: '/orders/room_service', name: 'Room Service', element: RoomServiceRequests },
   { path: '/orders/food_delivery', name: 'Food delivery', element: FoodOrders },
   { path: '/reviews', name: 'Review Analysis', element: Insights, exact: true },
-  { path: '/reviews/insights', name: 'Insights', element: Insights },
+  
+  { path: '/reviews/insights', name: 'Reviews Insights', element: Insights },
+  { path: '/reviews/event-insights', name: 'Event Insights', element: EventInsights },
+  
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
   { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
   { path: '/loyalty', name: 'Charts', element: Charts },
@@ -75,12 +80,13 @@ const routes = [
   { path: '/partners/collaborations', name: 'Collaborators', element: collab },
   { path: '/partners/reach-out', name: 'Reach Out', element: ReachOut },
   { path: '/partners/packages', name: 'Packages', element: Packages },
-  { path: '/partners/tads', name: 'Targetted Ads', element: Tads },
+  { path: '/partners/affiliations', name: 'Affiliations', element: Tads },
   { path: '/partners/packages', name: 'Packages', element: Packages },
   { path: '/partners/misc', name: 'Packages', element: Misc },
 
 
   { path: '/community', name: 'Widgets', element: Community },
+  { path: '/community/exclusive-events', name: 'Exclusive Events', element: exclusiveEvents },
 ]
 
 export default routes

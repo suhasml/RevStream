@@ -350,6 +350,20 @@ async def get_booking_details(booking: Booking):
             raise HTTPException(status_code=404, detail="Booking not found")
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error fetching booking details")
+    
+@app.get("/coupons")
+async def get_coupons():
+    try:
+        # Read the CSV file
+        df = pd.read_excel("Coupons.xlsx")
+        
+        # Convert the DataFrame into a list of dictionaries
+        coupons = df['Coupons'].to_list()
+        discounts = df['Discount'].to_list()
+        coupons_list = [{"coupon": coupon, "discount": discount} for coupon, discount in zip(coupons, discounts)]
+        return {"coupons": coupons_list}
+    except Exception as e:
+        return {"error": str(e)}
 
 # Endpoint to get room services
 @app.get("/get-room-services")

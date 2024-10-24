@@ -18,7 +18,7 @@ const OtherPartnershipUses = () => {
       description: 'Collaborate with nearby parking services to manage traffic and provide better parking options for guests during peak times, ensuring convenience for large events or high-traffic seasons.',
     },
     {
-      title: 'Host Workshops & Trainings',
+      title: 'Host Workshops & Trainings, Courses',
       description: 'Work with partners to host workshops or training sessions for both residents and external attendees, providing value-added experiences around technology, wellness, or other trending topics.',
     },
     {
