@@ -19,8 +19,8 @@ const Home = () => {
 
   // State variables
   const [isDatePickerVisible, setisDatePickerVisible] = useState(false);
-  const [locationInputValue, setLocationInputValue] = useState('pune');
-  
+  const [locationInputValue, setLocationInputValue] = useState('Singapore');
+
   const [numGuestsInputValue, setNumGuestsInputValue] = useState('');
   // const [popularDestinationsData, setPopularDestinationsData] = useState({
   //   isLoading: true,
@@ -144,7 +144,7 @@ const Home = () => {
 
   return (
     <>
-    <GlobalNavbar />
+      <GlobalNavbar />
       <HeroCover />
       <div className="container mx-auto">
         {/* <PopularLocations popularDestinationsData={popularDestinationsData} /> */}

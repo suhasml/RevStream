@@ -73,15 +73,15 @@ describe('ResultsContainer', () => {
             accessibleText: 'hyatt pune hotel',
           },
         ],
-        title: 'Hyatt Pune',
-        subtitle: 'Kalyani Nagar, Pune | 3.3 kms from city center',
+        title: 'lyf one-north Singapore',
+        subtitle: '80 Nepal Park, Singapore 139409',
         benefits: [
           'Free cancellation',
           'No prepayment needed – pay at the property',
         ],
-        price: '18900',
-        ratings: '5',
-        city: 'pune',
+        price: '12304',
+        ratings: '4',
+        city: 'Singapore',
         reviews: {
           data: [
             {
@@ -198,15 +198,15 @@ describe('ResultsContainer', () => {
             accessibleText: 'Courtyard by Marriott Pune',
           },
         ],
-        title: 'Courtyard by Marriott Pune Hinjewadi',
-        subtitle: '500 meters from the Rajiv Gandhi Infotech Park',
+        title: 'lyf Farrer Park Singapore',
+        subtitle: '2 Perumal Rd, #01-01, Singapore 218773',
         benefits: [
           'Free cancellation',
           'No prepayment needed – pay at the property',
           'Free wifi',
           'Free lunch',
         ],
-        price: '25300',
+        price: '13634',
         ratings: '4',
         city: 'pune',
       },
@@ -319,7 +319,7 @@ describe('ResultsContainer', () => {
           enableFilters={true}
           filtersData={{ ...mockFiltersData, isLoading: false }}
           selectedFiltersState={selectedFiltersState}
-          onFiltersUpdate={() => {}}
+          onFiltersUpdate={() => { }}
         />
       </BrowserRouter>
     );
@@ -334,7 +334,7 @@ describe('ResultsContainer', () => {
           enableFilters={true}
           filtersData={{ ...mockFiltersData, isLoading: true }}
           selectedFiltersState={[]}
-          onFiltersUpdate={() => {}}
+          onFiltersUpdate={() => { }}
         />
       </BrowserRouter>
     );

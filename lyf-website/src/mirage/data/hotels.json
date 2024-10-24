@@ -5,33 +5,14 @@
       {
         "imageUrl": "/images/hotels/481481762/481481762.jpg",
         "accessibleText": "hyatt pune hotel"
-      },
-      {
-        "imageUrl": "/images/hotels/481481762/525626081.jpg",
-        "accessibleText": "hyatt pune hotel"
-      },
-      {
-        "imageUrl": "/images/hotels/481481762/525626095.jpg",
-        "accessibleText": "hyatt pune hotel"
-      },
-      {
-        "imageUrl": "/images/hotels/481481762/525626104.jpg",
-        "accessibleText": "hyatt pune hotel"
-      },
-      {
-        "imageUrl": "/images/hotels/481481762/525626212.jpg",
-        "accessibleText": "hyatt pune hotel"
       }
     ],
-    "title": "Hyatt Pune",
-    "subtitle": "Kalyani Nagar, Pune | 3.3 kms from city center",
-    "benefits": [
-      "Free cancellation",
-      "No prepayment needed – pay at the property"
-    ],
-    "price": "18900",
-    "ratings": "5",
-    "city": "pune",
+    "title": "lyf one-north Singapore",
+    "subtitle": "80 Nepal Park, Singapore 139409",
+    "benefits": [],
+    "price": "12304",
+    "ratings": "4",
+    "city": "Singapore",
     "reviews": {
       "data": [
         {
@@ -146,202 +127,150 @@
     "hotelCode": 71223,
     "images": [
       {
+        "imageUrl": "/images/hotels/481481762/525626095.jpg",
+        "accessibleText": "hyatt pune hotel"
+      }
+    ],
+    "title": "lyf Farrer Park Singapore",
+    "subtitle": "2 Perumal Rd, #01-01, Singapore 218773",
+    "benefits": [],
+    "price": "13634",
+    "ratings": "4",
+    "city": "Singapore"
+  },
+  {
+    "hotelCode": 71224,
+    "images": [
+      {
+        "imageUrl": "/images/hotels/481481762/525626081.jpg",
+        "accessibleText": "hyatt pune hotel"
+      }
+    ],
+    "title": "lyf Funan Singapore",
+    "subtitle": "67 Hill St, Level 4 Funan, Singapore 179370",
+    "benefits": [],
+    "price": "10594",
+    "ratings": "4",
+    "city": "Singapore"
+  },
+  {
+    "hotelCode": 71225,
+    "images": [
+      {
+        "imageUrl": "/images/hotels/481481762/525626104.jpg",
+        "accessibleText": "hyatt pune hotel"
+      }
+    ],
+    "title": "Citadines Connect City Centre Singapore",
+    "subtitle": "182 Clemenceau Ave, Singapore 239923",
+    "benefits": [],
+    "price": "10619",
+    "ratings": "4",
+    "city": "Singapore"
+  },
+  {
+    "hotelCode": 71226,
+    "images": [
+      {
+        "imageUrl": "/images/hotels/481481762/525626212.jpg",
+        "accessibleText": "hyatt pune hotel"
+      }
+    ],
+    "title": "Ascott Orchard Singapore",
+    "subtitle": "No. 11 Cairnhill Rd, Singapore 229724",
+    "benefits": [],
+    "price": "17405",
+    "ratings": "5",
+    "city": "Singapore"
+  },
+  {
+    "hotelCode": 71227,
+    "images": [
+      {
         "imageUrl": "/images/hotels/465660377/465660377.jpg",
         "accessibleText": "Courtyard by Marriott Pune"
       }
     ],
-    "title": "Courtyard by Marriott Pune Hinjewadi",
-    "subtitle": "500 meters from the Rajiv Gandhi Infotech Park",
-    "benefits": [
-      "Free cancellation",
-      "No prepayment needed – pay at the property",
-      "Free wifi",
-      "Free lunch"
-    ],
-    "price": "25300",
+    "title": "Citadines Rochor Singapore",
+    "subtitle": "2 Serangoon Rd, #03-01 Tekka Place, Singapore 218227",
+    "benefits": [],
+    "price": "12780",
     "ratings": "4",
-    "city": "pune"
+    "city": "Singapore"
   },
   {
-    "hotelCode": 71224,
+    "hotelCode": 71228,
     "images": [
       {
         "imageUrl": "/images/hotels/469186143/469186143.jpg",
         "accessibleText": "The Westin Pune Koregaon Park"
       }
     ],
-    "title": "The Westin Pune Koregaon Park",
-    "subtitle": "5.4 km from centre",
-    "benefits": [
-      "Free cancellation",
-      "No prepayment needed – pay at the property",
-      "Free wifi"
-    ],
-    "price": "11300",
-    "ratings": "5",
-    "city": "pune"
+    "title": "Oakwood Studios Singapore",
+    "subtitle": "18 Mount Elizabeth, Singapore 228514",
+    "benefits": [],
+    "price": "15891",
+    "ratings": "4",
+    "city": "Singapore"
   },
   {
-    "hotelCode": 71225,
+    "hotelCode": 71229,
     "images": [
       {
         "imageUrl": "/images/hotels/252004905/252004905.jpg",
         "accessibleText": "Novotel Pune Viman Nagar Road"
       }
     ],
-    "title": "Novotel Pune Viman Nagar Road",
-    "subtitle": "Weikfield IT City Infopark | 7.1 km from centre",
-    "benefits": [
-      "Pets allowed",
-      "Dinner + Lunch included",
-      "Free wifi",
-      "Free taxi from airport"
-    ],
-    "price": "14599",
-    "ratings": "3",
-    "city": "pune"
+    "title": "KēSa House by The Unlimited Collection",
+    "subtitle": "55 Keong Saik Rd., #01-01, Singapore 089158",
+    "benefits": [],
+    "price": "12444",
+    "ratings": "4",
+    "city": "Singapore"
   },
   {
-    "hotelCode": 71226,
+    "hotelCode": 71230,
     "images": [
       {
         "imageUrl": "/images/hotels/54360345/54360345.jpg",
         "accessibleText": "Vivanta Pune"
       }
     ],
-    "title": "Vivanta Pune",
-    "subtitle": "Xion Complex, | 14.2 km from centre",
-    "benefits": [
-      "Pets allowed",
-      "Free wifi",
-      "Free cancellation",
-      "No prepayment needed – pay at the property"
-    ],
-    "price": "9799",
-    "ratings": "4.3",
-    "city": "pune"
+    "title": "lyf Bugis Singapore",
+    "subtitle": "200 Middle Rd, Singapore 188980",
+    "benefits": [],
+    "price": "10547",
+    "ratings": "4",
+    "city": "Singapore"
   },
   {
-    "hotelCode": 81223,
+    "hotelCode": 71231,
     "images": [
       {
         "imageUrl": "/images/hotels/13800549/13800549.jpg",
         "accessibleText": "Taj Lands End"
       }
     ],
-    "title": "Taj Lands End",
-    "subtitle": "200 metres from the seafrontBandstand",
-    "benefits": [
-      "Daily housekeeping",
-      "Safety deposit box",
-      "Free wifi",
-      "Outdoor swimming pool"
-    ],
-    "price": "34100",
-    "ratings": "4.2",
-    "city": "mumbai"
+    "title": "Ann Siang House by The Unlimited Collection",
+    "subtitle": "28 Ann Siang Rd, Singapore 069708",
+    "benefits": [],
+    "price": "19921",
+    "ratings": "4",
+    "city": "Singapore"
   },
   {
-    "hotelCode": 81224,
+    "hotelCode": 71232,
     "images": [
       {
         "imageUrl": "/images/hotels/32810889/32810889.jpg",
         "accessibleText": "Trident Nariman Point"
       }
     ],
-    "title": "Trident Nariman Point",
-    "subtitle": "24 km from Chhatrapati Shivaji International Airport",
-    "benefits": [
-      "Airport shuttle",
-      "Spa and wellness centre",
-      "Free wifi",
-      "Tea/coffee maker in all rooms",
-      "Fitness centre"
-    ],
-    "price": "38460",
-    "ratings": "3.9",
-    "city": "mumbai"
-  },
-  {
-    "hotelCode": 81225,
-    "images": [
-      {
-        "imageUrl": "/images/hotels/503567645/503567645.jpg",
-        "accessibleText": "Aurika - Luxury by Lemon Tree Hotels"
-      }
-    ],
-    "title": "Aurika - Luxury by Lemon Tree Hotels",
-    "subtitle": "5.1 km from Phoenix Market City Mall, Aurika",
-    "benefits": [
-      "Outdoor swimming pool",
-      "Spa and wellness centre",
-      "Free wifi",
-      "Free parking",
-      "Bar"
-    ],
-    "price": "17460",
-    "ratings": "4.9",
-    "city": "mumbai"
-  },
-  {
-    "hotelCode": 81226,
-    "images": [
-      {
-        "imageUrl": "/images/hotels/472036509/472036509.jpg",
-        "accessibleText": "Four Seasons Hotel Mumbai"
-      }
-    ],
-    "title": "Four Seasons Hotel Mumbai",
-    "subtitle": "In the heart of Worli, the business hub of India’s largest city",
-    "benefits": [
-      "Kitchen",
-      "Pets allowed",
-      "Free wifi",
-      "Free parking",
-      "24-hour front desk"
-    ],
-    "price": "12460",
-    "ratings": "3.5",
-    "city": "mumbai"
-  },
-  {
-    "hotelCode": 81227,
-    "images": [
-      {
-        "imageUrl": "/images/hotels/516847915/516847915.jpg",
-        "accessibleText": "Treebo Trend New Light Suites"
-      }
-    ],
-    "title": "Treebo Trend New Light Suites",
-    "subtitle": "6.2 km from The Heritage Centre & Aerospace Museum",
-    "benefits": [
-      "Non-smoking rooms",
-      "Laundry",
-      "Free wifi",
-      "Tea/coffee maker in all rooms"
-    ],
-    "price": "5460",
-    "ratings": "3.5",
-    "city": "bangalore"
-  },
-  {
-    "hotelCode": 81228,
-    "images": [
-      {
-        "imageUrl": "/images/hotels/513923904/513923904.jpg",
-        "accessibleText": "Renaissance Bengaluru Race Course Hotel"
-      }
-    ],
-    "title": "Renaissance Bengaluru Race Course Hotel",
-    "subtitle": "Located in the heart of Bengaluru Renaissance Bengaluru Race Course Hotel",
-    "benefits": [
-      "Outdoor swimming poo",
-      "Spa and wellness centre",
-      "Airport shuttle",
-      "Bar"
-    ],
-    "price": "21460",
-    "ratings": "5",
-    "city": "bangalore"
+    "title": "Wanderlust by The Unlimited Collection",
+    "subtitle": "2 Dickson Rd, Singapore 209494",
+    "benefits": [],
+    "price": "17095",
+    "ratings": "4",
+    "city": "Singapore"
   }
 ]
