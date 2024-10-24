@@ -364,6 +364,40 @@ async def get_coupons():
         return {"coupons": coupons_list}
     except Exception as e:
         return {"error": str(e)}
+    
+products_collection = db['products']
+
+class Product(BaseModel):
+    name: str
+    description: str
+    image_url: str
+    price: float
+
+@app.post("/products")
+async def add_product(product: Product):
+    try:
+        # Insert the product into the database
+        data = {
+            "name": product.name,
+            "description": product.description,
+            "image_url": product.image_url,
+            "price": product.price
+        }
+        result = products_collection.insert_one(data)
+        
+        # Return the inserted ID as confirmation
+        return {"message": "Product added successfully", "id": str(result.inserted_id)}
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to add product: {str(e)}")
+    
+@app.get("/products")
+async def get_products():
+    try:
+        products = list(products_collection.find())
+        return [serialize_mongo_obj(product) for product in products]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Error fetching products")
 
 # Endpoint to get room services
 @app.get("/get-room-services")
