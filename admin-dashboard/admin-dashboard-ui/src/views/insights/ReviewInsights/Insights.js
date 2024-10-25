@@ -194,7 +194,7 @@ const Dashboard = () => {
             <h3>Pain Points</h3>
             <ul>
               {painPoints.split('\n').map((point, index) => (
-                <li key={index}>{point}</li>
+                <li key={index}>{point.replace('-', '')}</li>
               ))}
             </ul>
           </div>
@@ -204,7 +204,7 @@ const Dashboard = () => {
             <h3>Suggestions</h3>
             <ul>
               {suggestions.split('\n').map((suggestion, index) => (
-                <li key={index}>{suggestion}</li>
+                <li key={index}>{suggestion.replace('-', '')}</li>
               ))}
             </ul>
           </div>

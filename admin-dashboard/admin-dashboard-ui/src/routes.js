@@ -13,6 +13,9 @@ const ReachOut = React.lazy(() => import('./views/partnership/reachout/ReachOut'
 const Packages = React.lazy(() => import('./views/partnership/packages/Packages'))
 const Tads = React.lazy(() => import('./views/partnership/targettedAds/Affiliations'))
 const Misc = React.lazy(() => import('./views/partnership/Miscellaneous/Miscellaneous'))
+const Influencers = React.lazy(() => import('./views/partnership/influencers/Influencer'))
+
+const Referral = React.lazy(() => import('./views/referrals/Referral'))
 
 const Community = React.lazy(() => import('./views/community/Community'))
 const exclusiveEvents = React.lazy(() => import('./views/community/exclusiveEvents/exclusiveEvents'))
@@ -22,6 +25,7 @@ const CommunityHome = React.lazy(() => import('./views/community/Home/home'))
 // Buttons
 const Insights = React.lazy(() => import('./views/insights/ReviewInsights/Insights'))
 const EventInsights = React.lazy(() => import('./views/insights/EventInsights/Eventinsights'))
+
 const ButtonGroups = React.lazy(() => import('./views/insights/button-groups/ButtonGroups'))
 const Dropdowns = React.lazy(() => import('./views/insights/dropdowns/Dropdowns'))
 
@@ -36,6 +40,8 @@ const Select = React.lazy(() => import('./views/events/wellness_events/WellnessE
 const Validation = React.lazy(() => import('./views/events/validation/Validation'))
 
 const Charts = React.lazy(() => import('./views/LoyaltyProgram/Loyalty'))
+
+
 
 // Icons
 const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
@@ -85,7 +91,9 @@ const routes = [
   { path: '/partners/affiliations', name: 'Affiliations', element: Tads },
   { path: '/partners/packages', name: 'Packages', element: Packages },
   { path: '/partners/misc', name: 'Packages', element: Misc },
+  { path: '/partners/influencers', name: 'Influencers', element: Influencers },
 
+  { path: '/referral', name: 'Referrals', element: Referral },
 
   { path: '/community', name: 'Widgets', element: Community },
   { path: '/community/home', name: 'Widgets', element: CommunityHome },

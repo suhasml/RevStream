@@ -61,12 +61,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <button className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300">
-            Join Our Community
-          </button>
-        </div>
+
       </div>
     </div>
   );

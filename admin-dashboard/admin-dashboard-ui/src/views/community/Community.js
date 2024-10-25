@@ -36,7 +36,7 @@ const LyfCommunity = () => {
       <CCol lg={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <h4>Lyf Community Members</h4>
+            <h4>Lyf Community Members</h4>``
           </CCardHeader>
           <CCardBody>
             <CRow>

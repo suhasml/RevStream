@@ -838,6 +838,68 @@ def generate_plot(df, query):
     else:
         raise HTTPException(status_code=400, detail="Could not generate the chart.")
     
+class EventAnalysis(BaseModel):
+    eventId: str
+
+@app.post("/event-plot")
+def generate_event_plot(request: EventAnalysis):
+    event_id = request.eventId
+    if event_id == 'event1':
+        df = pd.read_csv('harmony_music_festival_reviews.csv', encoding='latin1')
+    elif event_id == 'event2':
+        df = pd.read_csv('ai_data_science_workshop_reviews.csv', encoding='latin1')
+
+    response = chat2plot(df=df, chat=chat_model, language='English').query(
+        "Give the count for each rating given by the guests in the reviews. Include a title and labels for the x and y axes."
+    )
+    if response.figure:
+        return response.figure.to_json()
+    else:
+        raise HTTPException(status_code=400, detail="Could not generate the chart.")
+
+@app.post("/event-sentiment")
+def generate_event_sentiment(request: EventAnalysis):
+    try:
+        event_id = request.eventId
+        if event_id == 'event1':
+            df = pd.read_csv('harmony_music_festival_reviews.csv', encoding='latin1')
+        elif event_id == 'event2':
+            df = pd.read_csv('ai_data_science_workshop_reviews.csv', encoding='latin1')
+
+        class event_analysis(BaseModel):
+            """Returns the analysis of the reviews."""
+            review_sentiment: str = Field(..., title="Review", description="The sentiment of the reviews given by the guests. The sentiment can be positive, negative, or neutral.")
+            painpoints: str = Field(..., title="Pain Points", description="The pain points identified in the reviews in bullet points.")
+            areas_of_improvement: str = Field(..., title="Areas of Improvement", description="The areas of improvement identified in the reviews and based on the pain points in bullet points.")
+
+        # Define the prompt
+        prompt = PromptTemplate(
+            template=""" 
+            You will be given a list of reviews from the guests. Analyze the reviews and provide a summary of the positive and negative reviews given by the guests. \n
+            Change the hotel to 'Lyf Funan Singapore' in the analysis. \n
+            1. You should provide the sentiment of the reviews.  \n
+            2. Identify the pain points mentioned in the reviews. \n
+            3. Identify the areas of improvement based on the pain points. \n
+            Reviews: {reviews}
+            """,
+            input_variables=["reviews"]
+        )
+        
+        llm_with_tool = chat_model.with_structured_output(event_analysis)
+        
+        # Chain the prompt and LLM model
+        chain = prompt | llm_with_tool
+        response = chain.invoke({"reviews": df['Review'].tolist()})
+        
+        return {
+            "sentiment": response.review_sentiment,
+            "painpoints": response.painpoints,
+            "areas_of_improvement": response.areas_of_improvement
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 class review_analysis(BaseModel):
     """Returns the analysis of the reviews."""
     review: str = Field(..., title="Review", description="The analysis of the positive and negative reviews given by the guests in 100-150 words.")

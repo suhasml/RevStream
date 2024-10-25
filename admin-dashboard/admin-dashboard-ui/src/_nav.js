@@ -133,7 +133,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Influencers',
-        to: '/partners/affiliations',
+        to: '/partners/influencers',
       },
       {
         component: CNavItem,
