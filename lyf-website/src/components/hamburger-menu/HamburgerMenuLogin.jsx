@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import NavbarItems from 'components/navbar-items/NavbarItems';
+import UserLoginItems from 'components/navbar-items/UserLoginItems';
 
 /**
  * HamburgerMenu Component
@@ -13,7 +13,7 @@ import NavbarItems from 'components/navbar-items/NavbarItems';
  * @param {Function} props.onHamburgerMenuToggle - Callback function to toggle the visibility of the menu.
  * @param {boolean} props.isAuthenticated - Indicates whether the user is authenticated.
  */
-const HamburgerMenu = (props) => {
+const HamburgerMenuLogin = (props) => {
   const { isVisible, onHamburgerMenuToggle, isAuthenticated } = props;
 
   return (
@@ -33,7 +33,7 @@ const HamburgerMenu = (props) => {
         />
       </div>
       <ul className="list-none mt-12">
-        <NavbarItems
+        <UserLoginItems
           onHamburgerMenuToggle={onHamburgerMenuToggle}
           isAuthenticated={isAuthenticated}
         />
@@ -42,4 +42,4 @@ const HamburgerMenu = (props) => {
   );
 };
 
-export default HamburgerMenu;
+export default HamburgerMenuLogin;

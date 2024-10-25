@@ -320,7 +320,7 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('/nearbyHotels', () => {
         const hotels = hotelsData.filter((hotel) => {
-          return hotel.city === 'pune';
+          return hotel.city === 'singapore';
         });
         return new Response(
           200,
@@ -518,7 +518,7 @@ export function makeServer({ environment = 'development' } = {}) {
           {
             errors: [],
             data: {
-              elements: ['pune', 'bangalore', 'mumbai'],
+              elements: ['singapore', 'bangalore', 'mumbai'],
             },
           }
         );
