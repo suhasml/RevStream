@@ -16,6 +16,8 @@ const Misc = React.lazy(() => import('./views/partnership/Miscellaneous/Miscella
 
 const Community = React.lazy(() => import('./views/community/Community'))
 const exclusiveEvents = React.lazy(() => import('./views/community/exclusiveEvents/exclusiveEvents'))
+const Products = React.lazy(() => import('./views/community/products/products'))
+const CommunityHome = React.lazy(() => import('./views/community/Home/home'))
 
 // Buttons
 const Insights = React.lazy(() => import('./views/insights/ReviewInsights/Insights'))
@@ -86,7 +88,9 @@ const routes = [
 
 
   { path: '/community', name: 'Widgets', element: Community },
+  { path: '/community/home', name: 'Widgets', element: CommunityHome },
   { path: '/community/exclusive-events', name: 'Exclusive Events', element: exclusiveEvents },
+  { path: '/products', name: 'Products', element: Products },
 ]
 
 export default routes

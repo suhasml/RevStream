@@ -132,6 +132,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Influencers',
+        to: '/partners/affiliations',
+      },
+      {
+        component: CNavItem,
         name: 'Miscellaneous',
         to: '/partners/misc',
       },
@@ -154,20 +159,31 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Community',
+        to: '/community/home',
+      },
+      {
+        component: CNavItem,
         name: 'Exclusive Events',
         to: '/community/exclusive-events',
       },
       {
         component: CNavItem,
-        name: 'Talent',
+        name: 'Members',
         to: '/community',
       },
       {
         component: CNavItem,
         name: 'Products',
-        to: '/community',
+        to: '/products',
       },
     ],
+  },
+  {
+    component: CNavItem,
+    name: 'Referral Program',
+    to: '/referral',
+    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
   },
   
 ]
