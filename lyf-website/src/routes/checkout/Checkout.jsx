@@ -9,8 +9,7 @@ import { useContext } from 'react';
 import { networkAdapter } from 'services/NetworkAdapter';
 import Loader from 'components/ux/loader/loader';
 import Toast from 'components/ux/toast/Toast';
-// import GlobalNavbar from 'components/global-navbar/GlobalNavbar';
-import HotelDetailsNavbar from 'components/hotelDetailsNavBar/hotelNavBar';
+import GlobalNavbar from 'components/global-navbar/GlobalNavbar';
 
 /**
  * Checkout component for processing payments and collecting user information.
@@ -179,7 +178,6 @@ const Checkout = () => {
         checkIn: searchParams.get('checkIn'), // Make sure this is in the correct date format
         checkOut: searchParams.get('checkOut'), // Make sure this is in the correct date format
         hotelName: searchParams.get('hotelName').replaceAll('-', ' '),
-        package: searchParams.get('packages').replaceAll('-',' ')
       };
       console.log('Payload being sent:', JSON.stringify(paymentPayload, null, 2));
       const response = await fetch('http://localhost:8002/payments/confirmation', {
@@ -205,7 +203,6 @@ const Checkout = () => {
               bookingDetails: [
                 { label: 'Confirmation Code', value: data.confirmation_code },
                 { label: 'Hotel', value: data.data.booking_details.hotel_name },
-                { label: 'Package', value:data.data.booking_details.packages },
                 { label: 'Check-in', value: checkInDateTime },
                 { label: 'Check-out', value: checkOutDateTime },
                 { label: 'Email', value: data.data.booking_details.email }
@@ -228,7 +225,7 @@ const Checkout = () => {
 
   return (
     <>
-    <HotelDetailsNavbar />
+    <GlobalNavbar />
     <div className="flex flex-col justify-center items-center">
       <FinalBookingSummary
         hotelName={searchParams.get('hotelName').replaceAll('-', ' ')}
