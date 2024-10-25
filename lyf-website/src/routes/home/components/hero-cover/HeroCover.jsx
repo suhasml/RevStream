@@ -3,8 +3,8 @@ import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import images for the carousel
-import SliderImg from '../../../../assests/slider/1.png';
-import SliderImg1 from '../../../../assests/slider/2.png';
+import SliderImg from '../../../../assets/slider/1.png';
+import SliderImg1 from '../../../../assets/slider/2.png';
 
 /**
  * HeroCover Component

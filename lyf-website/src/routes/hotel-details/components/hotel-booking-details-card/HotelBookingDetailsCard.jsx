@@ -174,7 +174,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
 
   return (
     <div className="mx-2 bg-white shadow-xl rounded-xl overflow-hidden mt-2 md:mt-0 w-full md:w-[380px]">
-      <div className="px-6 py-4 bg-brand text-white">
+      <div className="px-6 py-4 bg-black text-white">
         <h2 className="text-xl font-bold">Booking Details</h2>
       </div>
       <div className="p-6 text-sm md:text-base">
@@ -183,7 +183,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
           <div className="text-lg font-semibold text-gray-800 mb-1">
             Total Price
           </div>
-          <div className="text-xl font-bold text-indigo-600">{total}</div>
+          <div className="text-xl font-bold text-blue-500">{total}</div>
           <div className="text-sm text-green-600">
             {bookingDetails.cancellationPolicy}
           </div>
@@ -256,7 +256,7 @@ const HotelBookingDetailsCard = ({ hotelCode }) => {
       <div className="px-6 py-4 bg-gray-50">
         <button
           onClick={onBookingConfirm}
-          className="w-full bg-brand-secondary text-white py-2 rounded hover:bg-yellow-600 transition duration-300"
+          className="w-full bg-black text-white py-2 rounded hover:bg-green-600 transition duration-300"
         >
           Confirm Booking
         </button>

@@ -1,5 +1,5 @@
 import HeroCover from './components/hero-cover/HeroCover';
-import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
+// import GlobalSearchBox from 'components/global-search-box/GlobalSearchbox';
 import { networkAdapter } from 'services/NetworkAdapter';
 import { useState, useEffect, useCallback } from 'react';
 import { MAX_GUESTS_INPUT_VALUE } from 'utils/constants';

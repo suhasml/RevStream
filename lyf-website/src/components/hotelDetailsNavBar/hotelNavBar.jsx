@@ -168,11 +168,11 @@ const EventCard = ({ event, onAddToPackage }) => (
   <div className="bg-white border rounded-lg p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-shadow">
     <img 
       src={event.image || "/api/placeholder/200/150"} 
-      alt={event.name} 
+      alt={event.title} 
       className="w-full md:w-48 h-40 object-cover rounded"
     />
     <div className="flex-1">
-      <h3 className="text-lg font-semibold">{event.name}</h3>
+      <h3 className="text-lg font-semibold">{event.title}</h3>
       <p className="text-gray-600 mt-2">{event.description}</p>
       <div className="mt-4 flex flex-wrap gap-4">
         <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
@@ -202,11 +202,11 @@ const PackageCard = ({ pkg, onAddToPackage }) => (
   <div className="bg-white border rounded-lg p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-shadow">
     <img 
       src={pkg.image || "/api/placeholder/200/150"} 
-      alt={pkg.name} 
+      alt={pkg.title} 
       className="w-full md:w-48 h-40 object-cover rounded"
     />
     <div className="flex-1">
-      <h3 className="text-lg font-semibold">{pkg.name}</h3>
+      <h3 className="text-lg font-semibold">{pkg.title}</h3>
       <p className="text-gray-600 mt-2">{pkg.description}</p>
       <div className="mt-4 flex flex-wrap gap-4">
         <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
@@ -219,12 +219,6 @@ const PackageCard = ({ pkg, onAddToPackage }) => (
       </div>
     </div>
     <div className="flex items-center">
-      <button
-        onClick={() => onAddToPackage(pkg)}
-        className={`px-4 py-2 rounded-lg transition-colors bg-blue-600 text-white hover:bg-blue-700`}
-      >
-        Add to Package
-      </button>
     </div>
   </div>
 );

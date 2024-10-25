@@ -1,4 +1,4 @@
-import logo from 'assests/logos/stay_booker_logo.png';
+import logo from 'assets/logos/lyf_White.png';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HamburgerMenu from 'components/hamburger-menu/HamburgerMenu';
