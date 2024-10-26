@@ -14,16 +14,12 @@ const OtherPartnershipUses = () => {
       description: 'Provide opportunities for partners or external organizations to use the venue for filmmaking, photoshoots, or content creation, turning it into a visually attractive location.',
     },
     {
+       title : 'Collaborate with Local Cab Services',
+        description : 'Collaborate with local cab services to provide transportation options for guests, ensuring a seamless experience and reducing the need for parking spaces.'
+    },
+    {
       title: 'Parking Collaborations During Peak Times',
       description: 'Collaborate with nearby parking services to manage traffic and provide better parking options for guests during peak times, ensuring convenience for large events or high-traffic seasons.',
-    },
-    {
-      title: 'Host Workshops & Trainings, Courses',
-      description: 'Work with partners to host workshops or training sessions for both residents and external attendees, providing value-added experiences around technology, wellness, or other trending topics.',
-    },
-    {
-      title: 'Exclusive Discounts & Perks',
-      description: 'Collaborate with partners to provide residents and guests with exclusive discounts or perks on services such as restaurants, fitness classes, or local experiences, enhancing the value of the stay.',
     },
     {
       title: 'Pop-Up Shops & Markets',

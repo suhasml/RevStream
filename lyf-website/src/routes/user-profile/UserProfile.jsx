@@ -8,6 +8,7 @@ import useOutsideClickHandler from 'hooks/useOutsideClickHandler';
 import { useNavigate, useLocation } from 'react-router-dom';
 import BookingPanel from './components/BookingPanel';
 import LoginNavbar from 'components/login-navbar/LoginNavbar';
+import TargetedAd from './components/TargettedAd';
 
 /**
  * UserProfile
@@ -53,6 +54,7 @@ const UserProfile = () => {
             <FontAwesomeIcon icon={isTabsVisible ? faXmark : faBars} size="lg" />
           </button>
         </div>
+        <TargetedAd />
         <Tabs isTabsVisible={isTabsVisible} wrapperRef={wrapperRef}>
           <TabPanel label="Booking Details" icon={faHotel}>
             <BookingPanel

@@ -17,6 +17,8 @@ import ForgotPassword from './routes/forgot-password/ForgotPassword';
 import Checkout from 'routes/checkout/Checkout';
 import BookingConfirmation from 'routes/booking-confimation/BookingConifrmation';
 import ProductCatalog from 'routes/products/products'
+import Events from 'routes/events/events'
+import AmenitiesView from 'routes/amenities/amenities';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
       {
         path: '/store',
         element: <ProductCatalog />,
+      },
+      {
+        path: '/events',
+        element: <Events />,
+      },
+      {
+        path: '/amenities',
+        element: <AmenitiesView />,
       }
     ],
   },

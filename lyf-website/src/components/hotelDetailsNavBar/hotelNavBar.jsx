@@ -125,6 +125,21 @@
 
 import React, { useState, useEffect } from 'react';
 import { X, Loader2, List } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/logos/lyf_White.png';
+
+const formatDateToSGT = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-SG', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Asia/Singapore'
+  });
+};
+
 
 // Modal Component with proper hook usage
 const Modal = ({ isOpen, onClose, title, children }) => {
@@ -164,35 +179,20 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 };
 
 // Event Card Component with improved layout
-const EventCard = ({ event, onAddToPackage }) => (
-  <div className="bg-white border rounded-lg p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-shadow">
-    <img 
-      src={event.image || "/api/placeholder/200/150"} 
-      alt={event.title} 
-      className="w-full md:w-48 h-40 object-cover rounded"
-    />
-    <div className="flex-1">
+const EventCard = ({ event }) => (
+  <div className="bg-white border rounded-lg overflow-hidden mb-4">
+    <div className="p-4 border-b bg-gray-50">
       <h3 className="text-lg font-semibold">{event.title}</h3>
-      <p className="text-gray-600 mt-2">{event.description}</p>
-      <div className="mt-4 flex flex-wrap gap-4">
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-          ${event.price}
-        </span>
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-          {event.duration}
-        </span>
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
-          {event.capacity} people
-        </span>
-      </div>
     </div>
-    <div className="flex items-center">
-      <button
-        onClick={() => onAddToPackage(event)}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        Add to Package
-      </button>
+    <div className="p-4">
+      <div className="space-y-2">
+        <p className="text-gray-600">
+          <span className="font-medium">Date:</span> {event.date.split('T')[0]}
+        </p>
+        <p className="text-gray-600">
+          <span className="font-medium">Description:</span> {event.description}
+        </p>
+      </div>
     </div>
   </div>
 );
@@ -200,11 +200,7 @@ const EventCard = ({ event, onAddToPackage }) => (
 // Package Card Component
 const PackageCard = ({ pkg, onAddToPackage }) => (
   <div className="bg-white border rounded-lg p-4 flex flex-col md:flex-row gap-4 hover:shadow-md transition-shadow">
-    <img 
-      src={pkg.image || "/api/placeholder/200/150"} 
-      alt={pkg.title} 
-      className="w-full md:w-48 h-40 object-cover rounded"
-    />
+   
     <div className="flex-1">
       <h3 className="text-lg font-semibold">{pkg.title}</h3>
       <p className="text-gray-600 mt-2">{pkg.description}</p>
@@ -242,7 +238,7 @@ const HotelDetailsNavbar = () => {
       try {
         if (activeModal === 'events') {
           // Fetch events
-          const response = await fetch('http://localhost:8002/admin/events');
+          const response = await fetch('http://localhost:8002/hosted-events');
           const data = await response.json();
           console.log('Events data:', data);
           setEvents(data || []);
@@ -484,15 +480,15 @@ const CustomPackageForm = ({ onSubmit }) => {
       case 'benefits':
         return (
           <div className="space-y-6">
-            <p className="text-gray-700">Enjoy these exclusive benefits during your stay:</p>
+            <p className="text-gray-700">Enjoy these exclusive Amenities during your stay:</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
-                "Complimentary Breakfast",
-                "Free High-Speed Wi-Fi",
-                "24/7 Fitness Center Access",
-                "Flexible Check-out Options",
-                "Loyalty Points Program",
-                "Concierge Services"
+                "Gaming Room Access",
+                "Karoake Lounge Access",
+                "Pool & Spa Access",
+                "VR/AR Experience",
+                "Photo Booth",
+                
               ].map((benefit, index) => (
                 <div 
                   key={index}
@@ -514,7 +510,7 @@ const CustomPackageForm = ({ onSubmit }) => {
   const navItems = [
     { id: 'events', label: 'Events' },
     { id: 'packages', label: 'Packages' },
-    { id: 'benefits', label: 'Benefits' }
+    { id: 'benefits', label: 'Amenities' }
   ];
 
   return (
@@ -523,11 +519,13 @@ const CustomPackageForm = ({ onSubmit }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <img 
-                src="/api/placeholder/150/50"
-                alt="Hotel Logo"
-                className="h-8 w-auto"
-              />
+            <Link to="/" className="flex items-center">
+                <img 
+                  src={logo}
+                  alt="Hotel Logo"
+                  className="h-8 w-auto cursor-pointer"
+                />
+              </Link>
             </div>
             
             <div className="flex items-center space-x-8">

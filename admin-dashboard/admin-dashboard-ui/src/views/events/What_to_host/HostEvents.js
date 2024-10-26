@@ -339,6 +339,32 @@ const recurringEvents = {
         'Holistic wellness practices',
       ],
     }
+  ],
+  gaming: [
+    {
+      title: 'Gaming Tournaments',
+      date: 'Monthly, Saturday evenings',
+      description: 'Competitive gaming tournaments for various popular games and consoles.',
+      details: [
+        'Different game titles each month (Fighting, Racing, Battle Royale)',
+        'Cash prizes for winners',
+        'Live streaming of matches',
+        'Professional gaming setups',
+        'Audience participation games',
+      ],
+    },
+    {
+      title: 'Retro Gaming Nights',
+      date: 'Bi-weekly, Friday nights',
+      description: 'Nostalgic gaming nights featuring classic arcade games and consoles.',
+      details: [
+        'Retro game consoles (Atari, NES, Sega)',
+        'Arcade game machines',
+        'High score competitions',
+        'Retro gaming trivia',
+        'Themed cocktails and snacks',
+      ],
+    }
   ]
 }
 
@@ -885,6 +911,15 @@ const EventsPage = () => {
             onSelectEvent={handleSelectEvent}
             startIndex={workshopsStartIndex}
             onAddCustom={() => openCustomModal('Workshop')}
+          />
+          <RecurringEventSection
+            title="Gaming"
+            events={recurringEvents.gaming}
+            openEvent={openEvent}
+            toggleEvent={toggleEvent}
+            onSelectEvent={handleSelectEvent}
+            startIndex={themedStartIndex}
+            onAddCustom={() => openCustomModal('Gaming')}
           />
         </div>
 

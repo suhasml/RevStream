@@ -74,12 +74,12 @@ const UserLoginItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
             </li>
             <li className="p-4 hover:bg-black-900 md:hover:bg-black">
                 <Link
-                    to="/benefits"
-                    className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/benefits') && 'active-link'
+                    to="/amenities"
+                    className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/amenities') && 'active-link'
                         }`}
                     onClick={onHamburgerMenuToggle}
                 >
-                    benefits
+                    Amenities
                 </Link>
             </li>
             <li
