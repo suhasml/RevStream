@@ -28,87 +28,17 @@ const _nav = [
     component: CNavTitle,
     name: 'Components',
   },
-  
-  {
-    component: CNavGroup,
-    name: 'Orders',
-    to: '/orders',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Room Service',
-        to: '/orders/room_service',
-      },
-      {
-        component: CNavItem,
-        name: 'Food Delivery',
-        to: '/orders/food_delivery',
-      }
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Analytics',
-    to: '/reviews',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Event Insights',
-        to: '/reviews/event-insights',
-      },
-      {
-        component: CNavItem,
-        name: 'Review Insights',
-        to: '/reviews/insights',
-      }
-      
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Events',
-    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'What to Host!!',
-        to: '/events/what-to-host',
-      },
-      {
-        component: CNavItem,
-        name: 'Wellness Retreats',
-        to: '/events/wellness',
-      },
-      {
-        component: CNavItem,
-        name: 'Gigs',
-        to: '/events/gigs',
-      },
-      {
-        component: CNavItem,
-        name: 'Social Media Events',
-        to: '/events/sme',
-      },
-      {
-        component: CNavItem,
-        name: 'Manage Events',
-        to: '/forms/input-group',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Loyalty Program',
-    to: '/loyalty',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
+
   {
     component: CNavGroup,
     name: 'Partnerships',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
     items: [
+      {
+        component: CNavItem,
+        name: 'Affiliations',
+        to: '/partners/affiliations',
+      },
       {
         component: CNavItem,
         name: 'Collaborations',
@@ -125,11 +55,7 @@ const _nav = [
         name: 'Packages',
         to: '/partners/packages',
       },
-      {
-        component: CNavItem,
-        name: 'Affiliations',
-        to: '/partners/affiliations',
-      },
+      
       {
         component: CNavItem,
         name: 'Influencers',
@@ -179,6 +105,86 @@ const _nav = [
       },
     ],
   },
+  {
+    component: CNavGroup,
+    name: 'Events',
+    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'What to Host!!',
+        to: '/events/what-to-host',
+      },
+      {
+        component: CNavItem,
+        name: 'Wellness Retreats',
+        to: '/events/wellness',
+      },
+      {
+        component: CNavItem,
+        name: 'Gigs',
+        to: '/events/gigs',
+      },
+      {
+        component: CNavItem,
+        name: 'Social Media Events',
+        to: '/events/sme',
+      },
+      {
+        component: CNavItem,
+        name: 'Manage Events',
+        to: '/forms/input-group',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Analytics',
+    to: '/reviews',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Event Insights',
+        to: '/reviews/event-insights',
+      },
+      {
+        component: CNavItem,
+        name: 'Review Insights',
+        to: '/reviews/insights',
+      }
+      
+    ],
+  },
+
+  {
+    component: CNavGroup,
+    name: 'Orders',
+    to: '/orders',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Room Service',
+        to: '/orders/room_service',
+      },
+      {
+        component: CNavItem,
+        name: 'Food Delivery',
+        to: '/orders/food_delivery',
+      }
+    ],
+  },
+  
+  
+  {
+    component: CNavItem,
+    name: 'Loyalty Program',
+    to: '/loyalty',
+    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+  },
+
+  
   {
     component: CNavItem,
     name: 'Referral Program',
