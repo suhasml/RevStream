@@ -19,6 +19,8 @@ import BookingConfirmation from 'routes/booking-confimation/BookingConifrmation'
 import ProductCatalog from 'routes/products/products'
 import Events from 'routes/events/events'
 import AmenitiesView from 'routes/amenities/amenities';
+import Offers from 'routes/offers/offers';
+import Community from 'routes/joinCommunity/joinCommunity';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
       {
         path: '/amenities',
         element: <AmenitiesView />,
+      },
+      {
+        path: '/offers',
+        element: <Offers />,  
+      },
+      {
+        path: '/join-community',
+        element: <Community />,
       }
     ],
   },
