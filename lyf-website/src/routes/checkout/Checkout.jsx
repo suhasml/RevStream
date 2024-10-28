@@ -94,52 +94,6 @@ const Checkout = () => {
    * @todo Implement form submission loading state.
    * @todo Implement form submission error state.
    */
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   let isValid = true;
-  //   const newErrors = {};
-
-  //   Object.keys(formData).forEach((field) => {
-  //     const isFieldValid = validationSchema[field](formData[field]);
-  //     newErrors[field] = !isFieldValid;
-  //     isValid = isValid && isFieldValid;
-  //   });
-
-  //   setErrors(newErrors);
-
-  //   if (!isValid) {
-  //     return; // Stop form submission if there are errors
-  //   }
-
-  //   setIsSubmitDisabled(true);
-  //   setPaymentConfirmationDetails({
-  //     isLoading: true,
-  //     data: {},
-  //   });
-  //   const response = await networkAdapter.post(
-  //     '/api/payments/confirmation',
-  //     formData
-  //   );
-  //   if (response && response.data && response.errors.length === 0) {
-  //     setPaymentConfirmationDetails({
-  //       isLoading: false,
-  //       data: response.data,
-  //     });
-  //     const hotelName = searchParams.get('hotelName').replaceAll('-', '_');
-  //     navigate(`/booking-confirmation?payment=sucess&hotel=${hotelName}`, {
-  //       state: {
-  //         confirmationData: response.data,
-  //       },
-  //     });
-  //   } else {
-  //     setToastMessage('Payment failed. Please try again.');
-  //     setIsSubmitDisabled(false);
-  //     setPaymentConfirmationDetails({
-  //       isLoading: false,
-  //       data: {},
-  //     });
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

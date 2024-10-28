@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Gift, Users, TrendingUp, DollarSign, PlusCircle } from 'lucide-react';
+import './referral.css'; // Import the CSS file
 
 const ReferralProgram = () => {
   const [showForm, setShowForm] = useState(false);
@@ -36,7 +37,6 @@ const ReferralProgram = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically integrate with your database
     console.log('Campaign Data:', formData);
     alert('Referral campaign created successfully!');
     setShowForm(false);
@@ -67,19 +67,21 @@ const ReferralProgram = () => {
         </p>
       </div>
 
-      {/* Benefits Section */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         {benefits.map((benefit, index) => (
-          <div 
+          <div
             key={index}
-            className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            className="bg-white rounded-2xl p-6 shadow-lg flex flex-col justify-center items-center h-64 benefit-box"
+            style={{
+              borderRadius: '1rem',
+            }}
           >
-            <div className="flex justify-center mb-4">
+            <div className="benefit-icon">
               {benefit.icon}
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
+            <h4 className="text-xl font-semibold text-gray-800 benefit-title text-center">
               {benefit.title}
-            </h3>
+            </h4>
             <p className="text-gray-600 text-center">
               {benefit.description}
             </p>
@@ -87,12 +89,14 @@ const ReferralProgram = () => {
         ))}
       </div>
 
-      {/* Launch Campaign Button */}
       {!showForm && (
         <div className="text-center mb-8">
           <button
             onClick={() => setShowForm(true)}
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold flex items-center mx-auto hover:bg-blue-700 transition-colors duration-300"
+            style={{ backgroundColor: 'black', color: 'white', padding: '12px 32px', borderRadius: '8px' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'lightgrey'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'black'}
+            className="font-semibold flex items-center mx-auto transition-colors duration-300"
           >
             <PlusCircle className="w-5 h-5 mr-2" />
             Launch Referral Campaign
@@ -100,39 +104,75 @@ const ReferralProgram = () => {
         </div>
       )}
 
-      {/* Campaign Creation Form */}
       {showForm && (
-        <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            Create New Referral Campaign
-          </h2>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Campaign Name
-              </label>
-              <input
-                type="text"
-                name="campaignName"
-                value={formData.campaignName}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              />
-            </div>
+        <div className="modal-overlay">
+          <div className="modal-content relative">
+            <button
+              onClick={() => setShowForm(false)}
+              className="modal-close-button"
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Create New Referral Campaign
+            </h2>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  Referral Reward
+                  Campaign Name
                 </label>
                 <input
                   type="text"
-                  name="referralReward"
-                  value={formData.referralReward}
+                  name="campaignName"
+                  value={formData.campaignName}
                   onChange={handleChange}
-                  placeholder="e.g., $50 off next stay"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Referral Reward
+                  </label>
+                  <input
+                    type="text"
+                    name="referralReward"
+                    value={formData.referralReward}
+                    onChange={handleChange}
+                    placeholder="e.g., $50 off next stay"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Referrer Reward
+                  </label>
+                  <input
+                    type="text"
+                    name="referrerReward"
+                    value={formData.referrerReward}
+                    onChange={handleChange}
+                    placeholder="e.g., 20% discount"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  Expiry Date
+                </label>
+                <input
+                  type="date"
+                  name="expiryDate"
+                  value={formData.expiryDate}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
                 />
@@ -140,64 +180,36 @@ const ReferralProgram = () => {
 
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  Referrer Reward
+                  Terms & Conditions
                 </label>
-                <input
-                  type="text"
-                  name="referrerReward"
-                  value={formData.referrerReward}
+                <textarea
+                  name="terms"
+                  value={formData.terms}
                   onChange={handleChange}
-                  placeholder="e.g., 20% discount"
+                  rows="4"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
-                />
+                ></textarea>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Expiry Date
-              </label>
-              <input
-                type="date"
-                name="expiryDate"
-                value={formData.expiryDate}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              />
-            </div>
+              <div className="flex justify-center mt-6">
+                <button
+                  type="button"
+                  className="cancel"
+                  onClick={() => setShowForm(false)}
+                >
+                  Cancel
+                </button>
 
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">
-                Terms & Conditions
-              </label>
-              <textarea
-                name="terms"
-                value={formData.terms}
-                onChange={handleChange}
-                rows="4"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              ></textarea>
-            </div>
-
-            <div className="flex justify-end space-x-4">
-              <button
-                type="button"
-                onClick={() => setShowForm(false)}
-                className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-300"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
-              >
-                Create Campaign
-              </button>
-            </div>
-          </form>
+                <button
+                  type="submit"
+                  className="create-campaign"
+                >
+                  Create Campaign
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

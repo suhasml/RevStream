@@ -13,17 +13,17 @@ import {
   cilSpeedometer,
   cilStar,
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle, CBadge} from '@coreui/react'
+import { CNavGroup, CNavItem, CNavTitle, CBadge } from '@coreui/react'
 
 const _nav = [
-  
+
   {
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
-  
+
   {
     component: CNavTitle,
     name: 'Components',
@@ -43,7 +43,7 @@ const _nav = [
         component: CNavItem,
         name: 'Collaborations',
         to: '/partners/collaborations',
-       
+
       },
       {
         component: CNavItem,
@@ -55,7 +55,7 @@ const _nav = [
         name: 'Packages',
         to: '/partners/packages',
       },
-      
+
       {
         component: CNavItem,
         name: 'Influencers',
@@ -68,7 +68,7 @@ const _nav = [
       },
     ],
   },
-  
+
   {
     // component: CNavItem,
     component: CNavGroup,
@@ -86,17 +86,17 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Community',
-        to: '/community/home',
+        to: '/community',
       },
       {
         component: CNavItem,
         name: 'Exclusive Events',
-        to: '/community/exclusive-events',
+        to: '/exclusive-events',
       },
       {
         component: CNavItem,
         name: 'Members',
-        to: '/community',
+        to: '/members',
       },
       {
         component: CNavItem,
@@ -153,7 +153,7 @@ const _nav = [
         name: 'Review Insights',
         to: '/reviews/insights',
       }
-      
+
     ],
   },
 
@@ -175,8 +175,8 @@ const _nav = [
       }
     ],
   },
-  
-  
+
+
   {
     component: CNavItem,
     name: 'Loyalty Program',
@@ -184,14 +184,14 @@ const _nav = [
     icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
   },
 
-  
+
   {
     component: CNavItem,
     name: 'Referral Program',
     to: '/referral',
     icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
   },
-  
+
 ]
 
 export default _nav

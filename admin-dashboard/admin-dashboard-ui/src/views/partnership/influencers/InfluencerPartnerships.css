@@ -1,0 +1,151 @@
+/* InfluencerPartnerships.css */
+.container {
+    max-width: 1200px;
+    /* Increase max width for a larger display */
+    margin: 0 auto;
+    padding: 40px;
+    /* Add padding for spacing */
+}
+
+.title {
+    font-size: 3rem;
+    /* Adjust title size */
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 32px;
+    /* Space below title */
+    text-align: center;
+    /* Center align title */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* Responsive grid */
+    gap: 20px;
+    /* Space between cards */
+}
+
+.card {
+    background-color: white;
+    /* Card background */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Smooth hover transition */
+    overflow: hidden;
+    /* Hide overflow */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Lift effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    /* Deeper shadow on hover */
+}
+
+.image-container {
+    position: relative;
+    /* Positioning for overlay */
+}
+
+.image {
+    width: 100%;
+    height: 200px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    /* Cover for images */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* Dark overlay for images */
+}
+
+.content {
+    padding: 24px;
+    /* Internal padding */
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    /* Space below icon */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    /* Title size */
+    font-weight: bold;
+    color: #2c3e50;
+    /* Darker color for title */
+    margin-bottom: 12px;
+    /* Space below title */
+    text-align: center;
+    /* Center title */
+}
+
+.description {
+    color: #7f8c8d;
+    /* Lighter color for description */
+    margin-bottom: 20px;
+    /* Space below description */
+    text-align: center;
+    /* Center align description */
+}
+
+.benefits {
+    text-align: left;
+    /* Align benefits to the left */
+}
+
+.benefits-title {
+    font-weight: bold;
+    /* Make benefits title bold */
+    color: #34495e;
+    /* Darker color for benefits title */
+    margin-bottom: 8px;
+    /* Space below benefits title */
+}
+
+.benefits-list {
+    list-style: none;
+    /* Remove default list styling */
+    padding: 0;
+    /* Remove padding */
+}
+
+.benefit-item {
+    color: #7f8c8d;
+    /* Color for benefits */
+    display: flex;
+    align-items: center;
+    /* Align items vertically */
+}
+
+.benefit-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #3498db;
+    /* Dot color */
+    border-radius: 50%;
+    /* Make it circular */
+    margin-right: 8px;
+    /* Space between dot and text */
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    /* Center the icon horizontally */
+    margin-bottom: 16px;
+    /* Space below icon */
+}

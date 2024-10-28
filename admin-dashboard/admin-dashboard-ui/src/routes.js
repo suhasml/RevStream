@@ -66,10 +66,10 @@ const routes = [
   { path: '/orders/room_service', name: 'Room Service', element: RoomServiceRequests },
   { path: '/orders/food_delivery', name: 'Food delivery', element: FoodOrders },
   { path: '/reviews', name: 'Review Analysis', element: Insights, exact: true },
-  
+
   { path: '/reviews/insights', name: 'Reviews Insights', element: Insights },
   { path: '/reviews/event-insights', name: 'Event Insights', element: EventInsights },
-  
+
   { path: '/buttons/dropdowns', name: 'Dropdowns', element: Dropdowns },
   { path: '/buttons/button-groups', name: 'Button Groups', element: ButtonGroups },
   { path: '/loyalty', name: 'Charts', element: Charts },
@@ -95,9 +95,9 @@ const routes = [
 
   { path: '/referral', name: 'Referrals', element: Referral },
 
-  { path: '/community', name: 'Widgets', element: Community },
-  { path: '/community/home', name: 'Widgets', element: CommunityHome },
-  { path: '/community/exclusive-events', name: 'Exclusive Events', element: exclusiveEvents },
+  { path: '/members', name: 'Widgets', element: Community },
+  { path: '/community', name: 'Widgets', element: CommunityHome },
+  { path: '/exclusive-events', name: 'Exclusive Events', element: exclusiveEvents },
   { path: '/products', name: 'Products', element: Products },
 ]
 

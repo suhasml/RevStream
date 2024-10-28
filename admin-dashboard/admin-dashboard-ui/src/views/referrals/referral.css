@@ -1,0 +1,136 @@
+/* referral.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Floating animation */
+@keyframes floatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    z-index: 1001;
+    position: relative;
+    animation: floatIn 0.8s ease-out;
+    /* Apply the floating animation */
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Button styling */
+button {
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: normal;
+    transition: background-color 0.3s;
+}
+
+button.create-campaign {
+    background-color: black;
+    color: white;
+}
+
+button.create-campaign:hover {
+    background-color: darkgrey;
+}
+
+button.cancel {
+    background-color: black;
+    color: white;
+    margin-right: 16px;
+}
+
+button.cancel:hover {
+    background-color: grey;
+}
+
+/* Styling for the benefit box container */
+.benefit-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centers horizontally */
+    justify-content: center;
+    /* Centers vertically */
+    text-align: center;
+    height: 100%;
+    /* Ensures the box fills available space */
+}
+
+/* Centering and adjusting the icon */
+.benefit-icon {
+    margin-bottom: 1.5rem;
+    /* Space below the icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Centers icon horizontally */
+}
+
+/* Optional: Add hover effects */
+.benefit-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    /* Space below labels */
+}
+
+/* Style for input fields */
+input,
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    /* Adjust padding as necessary */
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    /* Space above input fields */
+}
+
+/* Additional styles for the form */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    /* Change border color on focus */
+}

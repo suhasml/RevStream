@@ -45,9 +45,8 @@ const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
       <li className="p-4 hover:bg-black-900 md:hover:bg-black">
         <Link
           to="/"
-          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
-            isActive('/') && 'active-link'
-          }`}
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/') && 'active-link'
+            }`}
           onClick={onHamburgerMenuToggle}
         >
           Home
@@ -56,9 +55,8 @@ const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
       <li className="p-4 hover:bg-black-900 md:hover:bg-black">
         <Link
           to="/hotels"
-          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
-            isActive('/hotels') && 'active-link'
-          }`}
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/hotels') && 'active-link'
+            }`}
           onClick={onHamburgerMenuToggle}
         >
           Hotels
@@ -66,21 +64,19 @@ const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
       </li>
       <li className="p-4 hover:bg-black-900 md:hover:bg-black">
         <Link
-          to="https://9998-2401-4900-2182-163c-3d41-8700-9889-595b.ngrok-free.app"
-          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
-            isActive('/about-us') && 'active-link'
-          }`}
+          to="http://localhost:3000/#/dashboard"
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/about-us') && 'active-link'
+            }`}
           onClick={onHamburgerMenuToggle}
         >
-         Dashboard
+          Dashboard
         </Link>
       </li>
       <li className="p-4 hover:bg-black-900 md:hover:bg-black">
         <Link
           to="/about-us"
-          className={`uppercase font-medium text-slate-100 hover-underline-animation ${
-            isActive('/about-us') && 'active-link'
-          }`}
+          className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/about-us') && 'active-link'
+            }`}
           onClick={onHamburgerMenuToggle}
         >
           About us
@@ -94,9 +90,8 @@ const NavbarItems = ({ isAuthenticated, onHamburgerMenuToggle }) => {
         ) : (
           <Link
             to="/login"
-            className={`uppercase font-medium text-slate-100 hover-underline-animation ${
-              isActive('/login') && 'active-link'
-            }`}
+            className={`uppercase font-medium text-slate-100 hover-underline-animation ${isActive('/login') && 'active-link'
+              }`}
             onClick={onHamburgerMenuToggle}
           >
             Login

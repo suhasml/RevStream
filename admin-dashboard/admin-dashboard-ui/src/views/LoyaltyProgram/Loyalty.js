@@ -81,7 +81,7 @@ const FrequentVisitorsDashboard = () => {
                 datasets: [
                   {
                     label: 'Number of Visits',
-                    backgroundColor: '#4A4A4A',
+                    backgroundColor: '#001F3F',
                     data: visitorCounts,
                   },
                 ],

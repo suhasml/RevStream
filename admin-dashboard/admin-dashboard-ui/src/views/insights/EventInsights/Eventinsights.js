@@ -126,8 +126,8 @@ const EventInsightsDashboard = () => {
       </h1>
 
       <div style={{ textAlign: 'left', marginBottom: '24px' }}>
-        <select 
-          value={selectedEvent} 
+        <select
+          value={selectedEvent}
           onChange={(e) => setSelectedEvent(e.target.value)}
           style={selectStyle}
         >
@@ -146,7 +146,7 @@ const EventInsightsDashboard = () => {
       ) : (
         <>
           <div style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Event Word Cloud</h2>
+            <h2 style={sectionTitleStyle}>Ratings</h2>
             <div style={{ width: '100%', height: '400px' }}>
               {renderPlot()}
             </div>

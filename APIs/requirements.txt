@@ -16,3 +16,4 @@ uvicorn
 beautifulsoup4
 starlette
 openpyxl
+faiss-cpu

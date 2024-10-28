@@ -163,6 +163,7 @@ class ChatAgent:
                 nonlocal full_response
                 try:
                     async for chunk in agent_executor.astream({"input": question, "context": documents, "chat_history": chat_history}):
+                        print("Chunk", chunk)
                         full_response += chunk['output']
                         yield chunk
                 # response = agent_executor.invoke({"input": question, 

@@ -1,0 +1,102 @@
+/* AdminEventsDashboard.css */
+.dashboard-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    background-color: transparent;
+    /* Make background transparent */
+    border: none;
+    /* Remove border */
+    padding: 0;
+}
+
+.header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.header-icon {
+    width: 32px;
+    height: 32px;
+    color: #d1a42b;
+}
+
+.event-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 16px;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.event-header {
+    background: linear-gradient(135deg, #f3f4f6 30%, #e5e7eb 100%);
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-type {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.event-date {
+    color: #4b5563;
+}
+
+.event-description {
+    padding: 24px;
+    color: #374151;
+}
+
+.event-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.event-info .info-item {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+}
+
+.event-info .info-item span {
+    margin-left: 8px;
+}
+
+.discount-info {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    color: #374151;
+}
+
+.discount-info span {
+    margin-left: 8px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CCard, CCardBody, CCardHeader, CCol, CRow, CButton, CListGroup, CListGroupItem } from '@coreui/react';
+import { CCard, CCardBody, CCardHeader, CCol, CRow, CButton } from '@coreui/react';
 import { Plus } from 'lucide-react';
 import './Miscellaneous.css';
 
@@ -14,8 +14,8 @@ const OtherPartnershipUses = () => {
       description: 'Provide opportunities for partners or external organizations to use the venue for filmmaking, photoshoots, or content creation, turning it into a visually attractive location.',
     },
     {
-       title : 'Collaborate with Local Cab Services',
-        description : 'Collaborate with local cab services to provide transportation options for guests, ensuring a seamless experience and reducing the need for parking spaces.'
+      title: 'Collaborate with Local Cab Services',
+      description: 'Collaborate with local cab services to provide transportation options for guests, ensuring a seamless experience and reducing the need for parking spaces.'
     },
     {
       title: 'Parking Collaborations During Peak Times',
@@ -36,7 +36,6 @@ const OtherPartnershipUses = () => {
   ];
 
   const handleAddMore = () => {
-    // Functionality to handle adding more partnership ideas can go here.
     alert('Add more ideas for using partnerships!');
   };
 
@@ -48,14 +47,14 @@ const OtherPartnershipUses = () => {
             <h4>Other Ways to Utilize Partnerships</h4>
           </CCardHeader>
           <CCardBody>
-            <CListGroup>
+            <div className="partnership-ideas-container">
               {additionalPartnershipIdeas.map((idea, index) => (
-                <CListGroupItem key={index}>
+                <div key={index} className="partnership-idea-box">
                   <h5>{idea.title}</h5>
                   <p>{idea.description}</p>
-                </CListGroupItem>
+                </div>
               ))}
-            </CListGroup>
+            </div>
             <CButton className="add-more-ideas-button mt-3" onClick={handleAddMore}>
               <Plus size={18} /> Add More Ideas
             </CButton>

@@ -575,6 +575,7 @@ async def chatbot(request: AgentMessage):
         # Collect all the response chunks into a single string
         full_response = ""
         async for chunk in response["answer"]:
+            print("Chunk", chunk)
             if isinstance(chunk, dict):
                 if content := chunk.get("content"):
                     full_response += content
@@ -586,6 +587,7 @@ async def chatbot(request: AgentMessage):
         return PlainTextResponse(content=full_response)
         
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/gigs")
@@ -907,19 +909,46 @@ class review_analysis(BaseModel):
     areas_of_improvement: str = Field(..., title="Areas of Improvement", description="The areas of improvement identified in the reviews and based on the pain points in bullet points.")
 
 # Helper function to filter data based on time range
-def filter_data_by_date(df, time_range):
-    current_date = datetime.now()
+def filter_data_by_date(df, time_range, reference_date=None):
+    """
+    Filter dataframe by date range using a specified or default reference date
+    
+    Args:
+        df: DataFrame with a 'VisitDate' column
+        time_range: 'last_week', 'last_month', or 'last_3_months'
+        reference_date: Optional reference date to use instead of current date
+    """
+    df = df.copy()
+    df['VisitDate'] = pd.to_datetime(df['VisitDate'], errors='coerce')
+    
+    # Use provided reference date or find the latest date in the dataset
+    if reference_date is None:
+        reference_date = df['VisitDate'].max()
+    
+    # Calculate start date based on time range
     if time_range == 'last_week':
-        start_date = current_date - timedelta(weeks=1)
+        start_date = reference_date - timedelta(weeks=1)
     elif time_range == 'last_month':
-        start_date = current_date - timedelta(days=30)
+        start_date = reference_date - timedelta(days=30)
     elif time_range == 'last_3_months':
-        start_date = current_date - timedelta(days=90)
+        start_date = reference_date - timedelta(days=90)
     else:
         raise HTTPException(status_code=400, detail="Invalid time range")
     
-    df['VisitDate'] = pd.to_datetime(df['VisitDate'], errors='coerce')
+    # Add debug prints
+    print(f"Reference date: {reference_date}")
+    print(f"Start date: {start_date}")
+    print("\nDate range in data:")
+    print(f"Earliest date: {df['VisitDate'].min()}")
+    print(f"Latest date: {df['VisitDate'].max()}")
+    
+    # Filter the dataframe
     filtered_df = df[df['VisitDate'] >= start_date]
+    
+    print(f"\nFiltering Results:")
+    print(f"Original DataFrame size: {len(df)}")
+    print(f"Filtered DataFrame size: {len(filtered_df)}")
+    
     return filtered_df
 
 # Review analysis using LLM and structured output
@@ -972,7 +1001,7 @@ async def generate_charts(request: ChartRequest):
 
 
 # API endpoint to generate review analysis based on time range
-@app.post("/review-analysis")
+@app.post("/reviews-analysis")
 async def review_analysis_endpoint(request: ChartRequest):
     # Filter the dataframe based on the input time range
     filtered_df = filter_data_by_date(df, request.time_range)
@@ -991,6 +1020,27 @@ async def review_analysis_endpoint(request: ChartRequest):
     analysis = analyze_reviews(reviews)
     
     return analysis
+
+# API endpoint to generate review analysis based on time range
+# @app.post("/review-analysis")
+# async def review_analysis_endpoint(request: ChartRequest):
+#     # Filter the dataframe based on the input time range
+#     filtered_df = filter_data_by_date(df, request.time_range)
+
+#     # Extract the positive and negative reviews from the filtered data
+#     positive_reviews = filtered_df['PositiveReview'].dropna().tolist()
+#     negative_reviews = filtered_df['NegativeReview'].dropna().tolist()
+
+#     # Combine positive and negative reviews
+#     reviews = positive_reviews + negative_reviews
+
+#     if not reviews:
+#         raise HTTPException(status_code=404, detail="No reviews found for the given time range.")
+
+#     # Analyze the reviews using the LLM
+#     analysis = analyze_reviews(reviews)
+
+#     return analysis
 
 class RoomRequest(BaseModel):
     purpose: str

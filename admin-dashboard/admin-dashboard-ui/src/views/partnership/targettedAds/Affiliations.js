@@ -166,39 +166,39 @@ const AffiliationsDashboard = () => {
             </CCardBody>
           </CCard> */}
           <CCard className="mb-4">
-  <CCardHeader>
-    <h4>Innovative Affiliations</h4>
-  </CCardHeader>
-  <CCardBody>
-    <p>
-      <strong>
-      Hotels and chains can partner with companies or startups to promote their products through various hotel amenities like displaying logos on cups, showing ads on the TV, or using hotel lobby displays. This allows partners to promote their brands while the hotel earns a commission or a fixed fee for the promotional space.
-      </strong>
-    </p>
+            <CCardHeader>
+              <h4>Innovative Affiliations</h4>
+            </CCardHeader>
+            <CCardBody>
+              <p>
+                <strong>
+                  Hotels and chains can partner with companies or startups to promote their products through various hotel amenities like displaying logos on cups, showing ads on the TV, or using hotel lobby displays. This allows partners to promote their brands while the hotel earns a commission or a fixed fee for the promotional space.
+                </strong>
+              </p>
 
-    <p>
-      In addition to traditional methods, hotels can introduce more innovative affiliation opportunities:
-    </p>
-    <ul>
-     
-      
-     
-      <li>
-        <strong>Customized Room Ambiance by Brand:</strong> Allow guests to select a specific room ambiance or theme sponsored by a partner brand, where the lighting, scent, and digital content (on screens or smart devices) are tailored to a particular product or lifestyle, like a wellness theme for fitness brands.
-      </li>
-      <li>
-        <strong>Branded Hotel Amenities:</strong> In addition to traditional branded toiletries, hotels can partner with luxury brands for branded amenities like branded sleep masks, workout gear, or even tech gadgets (such as wireless chargers) that guests can use during their stay and buy at checkout.
-      </li>
-     
-  
-    </ul>
-    <p>
-      These innovative affiliation methods provide both immersive guest experiences and new revenue streams for hotels, while giving brands more creative and personalized ways to engage with potential customers.
-    </p>
-  </CCardBody>
-</CCard>
+              <p>
+                In addition to traditional methods, hotels can introduce more innovative affiliation opportunities:
+              </p>
+              <ul>
+
+
+
+                <li>
+                  <strong>Customized Room Ambiance by Brand:</strong> Allow guests to select a specific room ambiance or theme sponsored by a partner brand, where the lighting, scent, and digital content (on screens or smart devices) are tailored to a particular product or lifestyle, like a wellness theme for fitness brands.
+                </li>
+                <li>
+                  <strong>Branded Hotel Amenities:</strong> In addition to traditional branded toiletries, hotels can partner with luxury brands for branded amenities like branded sleep masks, workout gear, or even tech gadgets (such as wireless chargers) that guests can use during their stay and buy at checkout.
+                </li>
+
+
+              </ul>
+              <p>
+                These innovative affiliation methods provide both immersive guest experiences and new revenue streams for hotels, while giving brands more creative and personalized ways to engage with potential customers.
+              </p>
+            </CCardBody>
+          </CCard>
           {/* Targeted Ads Section */}
-          {renderCampaignTable(campaigns, 'Targetted Ads Campaigns')}
+          {renderCampaignTable(campaigns, 'Targeted Ads Campaigns')}
 
           {/* Coupons/Offers Section */}
           {renderCouponsTable()}

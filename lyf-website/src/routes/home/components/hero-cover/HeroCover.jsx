@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Import images for the carousel
 import SliderImg from '../../../../assets/slider/1.png';
 import SliderImg1 from '../../../../assets/slider/2.png';
+import SliderImg2 from '../../../../assets/slider/3.png';
+import SliderImg3 from '../../../../assets/slider/4.png';
 
 /**
  * HeroCover Component
@@ -53,8 +55,8 @@ const HeroCover = () => {
 
                 {/* Overlay container for text */}
                 <div className="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-end text-white bg-black bg-opacity-50 pb-5">
-                  <h2 className="text-4xl font-bold">Luxury Stays Await</h2>
-                  <p className="text-lg mt-2">Experience comfort and relaxation</p>
+                  <h2 className="text-4xl font-bold">Indulge in Unmatched Comfort</h2>
+                  <p className="text-lg mt-2">Escape the ordinary</p>
                 </div>
               </div>
             </div>
@@ -69,12 +71,12 @@ const HeroCover = () => {
             >
               <div className="carousel-content position-relative d-flex flex-column align-items-center justify-content-center h-100">
                 {/* Image */}
-                <img src={SliderImg1} className="d-block w-100" alt="First Slide" />
+                <img src={SliderImg2} className="d-block w-100" alt="First Slide" />
 
                 {/* Overlay container for text */}
                 <div className="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-end text-white bg-black bg-opacity-50 pb-5">
-                  <h2 className="text-4xl font-bold">Luxury Stays Await</h2>
-                  <p className="text-lg mt-2">Experience comfort and relaxation</p>
+                  <h2 className="text-4xl font-bold">Escape to a World of Opulence</h2>
+                  <p className="text-lg mt-2">Discover serene retreats designed to elevate your travel</p>
                 </div>
               </div>
             </div>
@@ -89,12 +91,12 @@ const HeroCover = () => {
             >
               <div className="carousel-content position-relative d-flex flex-column align-items-center justify-content-center h-100">
                 {/* Image */}
-                <img src={SliderImg1} className="d-block w-100" alt="First Slide" />
+                <img src={SliderImg3} className="d-block w-100" alt="First Slide" />
 
                 {/* Overlay container for text */}
                 <div className="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-end text-white bg-black bg-opacity-50 pb-5">
-                  <h2 className="text-4xl font-bold">Luxury Stays Await</h2>
-                  <p className="text-lg mt-2">Experience comfort and relaxation</p>
+                  <h2 className="text-4xl font-bold">Your Dream Getaway Starts Here</h2>
+                  <p className="text-lg mt-2">Immerse yourself in unparalleled service</p>
                 </div>
               </div>
             </div>

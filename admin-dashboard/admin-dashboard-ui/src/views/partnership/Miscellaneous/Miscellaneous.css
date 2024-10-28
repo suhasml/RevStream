@@ -1,9 +1,89 @@
 .add-more-ideas-button {
     background-color: black;
     color: white;
+    transition: background-color 0.3s;
 }
 
 .add-more-ideas-button:hover {
     background-color: lightgrey;
     color: black;
+}
+
+.partnership-ideas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    /* Space between boxes */
+}
+
+.partnership-idea-box {
+    flex: 1 1 calc(25% - 16px);
+    /* Maintain consistent width */
+    padding: 20px;
+    /* Increased padding */
+    border-radius: 50%;
+    /* Make boxes circular */
+    background-color: #f9f9f9;
+    /* Subtle background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Enhanced shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Smooth transitions */
+    display: flex;
+    /* Use flexbox for internal alignment */
+    flex-direction: column;
+    /* Align content vertically */
+    justify-content: center;
+    /* Center content vertically */
+    align-items: center;
+    /* Center content horizontally */
+    height: 200px;
+    /* Fixed height for all boxes */
+    width: 200px;
+    /* Fixed width to ensure circular shape */
+}
+
+.partnership-idea-box:hover {
+    transform: translateY(-5px);
+    /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow on hover */
+}
+
+.partnership-idea-box h5 {
+    font-size: 1.2em;
+    /* Larger title */
+    font-weight: bold;
+    /* Bold title */
+    color: #333;
+    /* Darker title color */
+    margin: 0;
+    /* Remove default margin */
+    text-align: center;
+    /* Center text */
+}
+
+.partnership-idea-box p {
+    font-size: 0.9em;
+    /* Smaller description */
+    color: #666;
+    /* Softer text color */
+    margin: 0;
+    /* Remove default margin */
+    text-align: center;
+    /* Center text */
+}
+
+@media (max-width: 768px) {
+    .partnership-idea-box {
+        flex: 1 1 calc(50% - 16px);
+        /* 2 boxes on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .partnership-idea-box {
+        flex: 1 1 100%;
+        /* Stack boxes on small screens */
+    }
 }
