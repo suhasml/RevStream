@@ -18,8 +18,6 @@ from langchain_openai import ChatOpenAI
 from upstash_redis.asyncio import Redis
 from langchain_core.messages import AIMessage
 import json
-import instaloader
-from bs4 import BeautifulSoup
 from chat2plot import chat2plot
 from starlette.concurrency import run_in_threadpool 
 import random
@@ -173,60 +171,6 @@ class TargetedAdsCampaign(BaseModel):
 sme_campaigns_collection = db['sme_campaigns']
 
 L = instaloader.Instaloader()
-
-# @app.get("/search-instagram", response_model=List[InstagramPost])
-# async def search_instagram(tag: str):
-#     try:
-#         posts = []
-#         hashtag = instaloader.Hashtag.from_name(L.context, tag)
-#         print(f"Hashtag: {hashtag}")
-        
-#         for post in hashtag.get_top_posts():
-#             posts.append(InstagramPost(
-#                 shortcode=post.shortcode,
-#                 display_url=post.url,
-#                 likes=post.likes,
-#                 comments=post.comments,
-#                 caption=post.caption if post.caption else "",
-#                 timestamp=post.date_local.isoformat()
-#             ))
-#             if len(posts) >= 5:
-#                 break
-        
-#         return posts
-#     except Exception as e:
-#         print(e)
-#         raise HTTPException(status_code=500, detail=f"Error fetching Instagram posts: {str(e)}")
-
-@app.get("/search-instagram", response_model=List[InstagramPost])
-async def search_instagram(tag: str):
-    try:
-        # Create a new list to store posts
-        posts = []
-        
-        # Run blocking operation in a threadpool
-        hashtag = await run_in_threadpool(instaloader.Hashtag.from_name, L.context, tag)
-        
-        # Iterate over the top posts of the hashtag
-        async for post in run_in_threadpool(hashtag.get_top_posts):
-            posts.append(InstagramPost(
-                shortcode=post.shortcode,
-                display_url=post.url,
-                likes=post.likes,
-                comments=post.comments,
-                caption=post.caption if post.caption else "",
-                timestamp=post.date_local.isoformat()
-            ))
-
-            # Limit the number of posts to 5
-            if len(posts) >= 5:
-                break
-        
-        return posts
-
-    except Exception as e:
-        print(e)
-        raise HTTPException(status_code=500, detail=f"Error fetching Instagram posts: {str(e)}")
 
 @app.get("/ongoing-sme-campaigns")
 async def get_ongoing_sme_campaigns():
