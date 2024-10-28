@@ -29,7 +29,7 @@ const PartnerEventsTable = () => {
           setLoading(false);
         } else {
           // Make the API call and update the cache
-          const response = await axios.post('http://localhost:8002/partner-events', {
+          const response = await axios.post('https://revstream-461943786929.us-central1.run.app/partner-events', {
             session_id: sessionId,
             time_range: timeRange, // Pass the selected time range to the API
           });

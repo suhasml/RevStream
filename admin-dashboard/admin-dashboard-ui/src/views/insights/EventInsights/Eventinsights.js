@@ -27,7 +27,7 @@ const EventInsightsDashboard = () => {
       setIsLoading(true);
       try {
         // Fetch plot data
-        const plotResponse = await fetch('http://localhost:8002/event-plot', {
+        const plotResponse = await fetch('https://revstream-461943786929.us-central1.run.app/event-plot', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const EventInsightsDashboard = () => {
         setPlotData(plotJson);
 
         // Fetch sentiment analysis data
-        const sentimentResponse = await fetch('http://localhost:8002/event-sentiment', {
+        const sentimentResponse = await fetch('https://revstream-461943786929.us-central1.run.app/event-sentiment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

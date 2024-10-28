@@ -30,7 +30,7 @@ const SocialMediaEvents = () => {
   const handleSearchTag = () => {
     if (!searchTag) return;
 
-    fetch(`http://localhost:8002/search-instagram?tag=${searchTag}`)
+    fetch(`https://revstream-461943786929.us-central1.run.app/search-instagram?tag=${searchTag}`)
       .then((response) => response.json())
       .then((data) => {
         setTopPosts(data);
@@ -41,7 +41,7 @@ const SocialMediaEvents = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8002/ongoing-sme-campaigns') // Fixed URL syntax
+    fetch('https://revstream-461943786929.us-central1.run.app/ongoing-sme-campaigns') // Fixed URL syntax
       .then((response) => response.json())
       .then((data) => setOngoingCampaigns(data))
       .catch((error) => {
@@ -50,7 +50,7 @@ const SocialMediaEvents = () => {
   }, []);
 
   const handleLaunchEvent = () => {
-    fetch('http://localhost:8002/launch-sme-campaign', {
+    fetch('https://revstream-461943786929.us-central1.run.app/launch-sme-campaign', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const SocialMediaEvents = () => {
     }
 
     if (window.confirm('Are you sure you want to remove this campaign?')) {
-      fetch(`http://localhost:8002/ongoing-sme-campaigns/${campaignId}`, {
+      fetch(`https://revstream-461943786929.us-central1.run.app/ongoing-sme-campaigns/${campaignId}`, {
         method: 'DELETE',
       })
         .then((response) => {

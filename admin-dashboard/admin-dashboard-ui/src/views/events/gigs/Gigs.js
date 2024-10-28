@@ -30,7 +30,7 @@ const ManageGigsComponent = () => {
   useEffect(() => {
     const sessionId = getSessionId();
 
-    fetch('http://localhost:8002/gigs', {
+    fetch('https://revstream-461943786929.us-central1.run.app/gigs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

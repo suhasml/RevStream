@@ -8,21 +8,21 @@ const ManageEventsComponent = () => {
   const [socialMediaEvents, setSocialMediaEvents] = useState([]);
 
   const fetchEvents = () => {
-    fetch('http://localhost:8002/hosted-events')
+    fetch('https://revstream-461943786929.us-central1.run.app/hosted-events')
       .then((response) => response.json())
       .then((data) => {
         setUpcomingEvents(Array.isArray(data) ? data : []);
       })
       .catch((error) => console.error('Error fetching upcoming events:', error));
 
-    fetch('http://localhost:8002/requested-events')
+    fetch('https://revstream-461943786929.us-central1.run.app/requested-events')
       .then((response) => response.json())
       .then((data) => {
         setRequestedEvents(Array.isArray(data) ? data : []);
       })
       .catch((error) => console.error('Error fetching requested events:', error));
 
-    fetch('http://localhost:8002/ongoing-sme-campaigns')
+    fetch('https://revstream-461943786929.us-central1.run.app/ongoing-sme-campaigns')
       .then((response) => response.json())
       .then((data) => {
         setSocialMediaEvents(Array.isArray(data) ? data : []);
@@ -46,7 +46,7 @@ const ManageEventsComponent = () => {
     }
 
     if (window.confirm('Are you sure you want to cancel this event?')) {
-      fetch(`http://localhost:8002/hosted-events/${eventId}`, {
+      fetch(`https://revstream-461943786929.us-central1.run.app/hosted-events/${eventId}`, {
         method: 'DELETE',
       })
         .then((response) => {
@@ -67,7 +67,7 @@ const ManageEventsComponent = () => {
     }
 
     if (window.confirm('Are you sure you want to accept this event?')) {
-      fetch('http://localhost:8002/host-event', {
+      fetch('https://revstream-461943786929.us-central1.run.app/host-event', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const ManageEventsComponent = () => {
           }
         })
         .then(() => {
-          return fetch(`http://localhost:8002/requested-events/${event.id}`, {
+          return fetch(`https://revstream-461943786929.us-central1.run.app/requested-events/${event.id}`, {
             method: 'DELETE',
           });
         })
@@ -109,7 +109,7 @@ const ManageEventsComponent = () => {
     }
 
     if (window.confirm('Are you sure you want to reject this event?')) {
-      fetch(`http://localhost:8002/requested-events/${eventId}`, {
+      fetch(`https://revstream-461943786929.us-central1.run.app/requested-events/${eventId}`, {
         method: 'DELETE',
       })
         .then((response) => {

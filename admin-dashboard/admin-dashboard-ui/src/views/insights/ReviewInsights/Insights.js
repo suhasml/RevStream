@@ -17,7 +17,7 @@ const Dashboard = () => {
 
       try {
         // Fetch chart data
-        const chartResponse = await axios.post('http://localhost:8002/generate-charts', { time_range: timeRange });
+        const chartResponse = await axios.post('https://revstream-461943786929.us-central1.run.app/generate-charts', { time_range: timeRange });
         const parsedCharts = Object.keys(chartResponse.data).reduce((acc, chartKey) => {
           acc[chartKey] = JSON.parse(chartResponse.data[chartKey]);
           return acc;
@@ -25,7 +25,7 @@ const Dashboard = () => {
         setCharts(parsedCharts);
 
         // Fetch review analysis data
-        const analysisResponse = await axios.post('http://localhost:8002/reviews-analysis', { time_range: timeRange });
+        const analysisResponse = await axios.post('https://revstream-461943786929.us-central1.run.app/reviews-analysis', { time_range: timeRange });
         setReviewSummary(analysisResponse.data.review);
         setPainPoints(analysisResponse.data.painpoints);
         setSuggestions(analysisResponse.data.areas_of_improvement);

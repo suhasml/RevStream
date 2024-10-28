@@ -222,7 +222,7 @@ const EventsPage = () => {
   })
 
   useEffect(() => {
-    fetch('http://localhost:8002/hosted-events')
+    fetch('https://revstream-461943786929.us-central1.run.app/hosted-events')
       .then((response) => response.json())
       .then((data) => {
         setHostedEvents(data)
@@ -261,7 +261,7 @@ const EventsPage = () => {
       details: event.details,
     }
 
-    fetch('http://localhost:8002/host-event', {
+    fetch('https://revstream-461943786929.us-central1.run.app/host-event', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ const AffiliationsDashboard = () => {
 
   const fetchCampaigns = async () => {
     try {
-      const response = await axios.get('http://localhost:8002/admin/targeted-ads');
+      const response = await axios.get('https://revstream-461943786929.us-central1.run.app/admin/targeted-ads');
       setCampaigns(response.data);
     } catch (error) {
       console.error('Error fetching campaigns:', error);
@@ -27,7 +27,7 @@ const AffiliationsDashboard = () => {
 
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get('http://localhost:8002/coupons');
+      const response = await axios.get('https://revstream-461943786929.us-central1.run.app/coupons');
       console.log('response', response.data);
       setCoupons(response.data.coupons);  // Update with actual coupons data
     } catch (error) {
@@ -49,9 +49,9 @@ const AffiliationsDashboard = () => {
   const handleCampaignSave = async () => {
     try {
       if (modalMode === 'add') {
-        await axios.post('http://localhost:8002/admin/targeted-ads', currentCampaign);
+        await axios.post('https://revstream-461943786929.us-central1.run.app/admin/targeted-ads', currentCampaign);
       } else {
-        await axios.put(`http://localhost:8002/admin/targeted-ads/${currentCampaign.id}`, currentCampaign);
+        await axios.put(`https://revstream-461943786929.us-central1.run.app/admin/targeted-ads/${currentCampaign.id}`, currentCampaign);
       }
       fetchCampaigns();
       handleModalClose();
@@ -63,7 +63,7 @@ const AffiliationsDashboard = () => {
   const handleCampaignDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this campaign?')) {
       try {
-        await axios.delete(`http://localhost:8002/admin/targeted-ads/${id}`);
+        await axios.delete(`https://revstream-461943786929.us-central1.run.app/admin/targeted-ads/${id}`);
         fetchCampaigns();
       } catch (error) {
         console.error('Error deleting campaign:', error);

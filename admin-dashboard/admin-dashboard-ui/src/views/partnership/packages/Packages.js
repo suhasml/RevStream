@@ -20,7 +20,7 @@ const AdminPackageDashboard = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await axios.get('http://localhost:8002/admin/packages');
+      const response = await axios.get('https://revstream-461943786929.us-central1.run.app/admin/packages');
       setPackages(response.data);
     } catch (error) {
       console.error('Error fetching packages:', error);
@@ -29,7 +29,7 @@ const AdminPackageDashboard = () => {
 
   const fetchSponsoredPackages = async () => {
     try {
-      const response = await axios.get('http://localhost:8002/admin/sponsored-packages');
+      const response = await axios.get('https://revstream-461943786929.us-central1.run.app/admin/sponsored-packages');
       setSponsoredPackages(response.data);
     } catch (error) {
       console.error('Error fetching sponsored packages:', error);
@@ -38,7 +38,7 @@ const AdminPackageDashboard = () => {
 
   const fetchCustomRequests = async () => {
     try {
-      const response = await axios.get('http://localhost:8002/admin/custom-package-requests');
+      const response = await axios.get('https://revstream-461943786929.us-central1.run.app/admin/custom-package-requests');
       setCustomRequests(response.data);
     } catch (error) {
       console.error('Error fetching custom package requests:', error);
@@ -59,9 +59,9 @@ const AdminPackageDashboard = () => {
   const handlePackageSave = async () => {
     try {
       if (modalMode === 'add') {
-        await axios.post('http://localhost:8002/admin/packages', currentPackage);
+        await axios.post('https://revstream-461943786929.us-central1.run.app/admin/packages', currentPackage);
       } else {
-        await axios.put(`http://localhost:8002/admin/packages/${currentPackage.id}`, currentPackage);
+        await axios.put(`https://revstream-461943786929.us-central1.run.app/admin/packages/${currentPackage.id}`, currentPackage);
       }
       fetchPackages();
       handleModalClose();
@@ -73,7 +73,7 @@ const AdminPackageDashboard = () => {
   const handlePackageDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this package?')) {
       try {
-        await axios.delete(`http://localhost:8002/admin/packages/${id}`);
+        await axios.delete(`https://revstream-461943786929.us-central1.run.app/admin/packages/${id}`);
         fetchPackages();
       } catch (error) {
         console.error('Error deleting package:', error);

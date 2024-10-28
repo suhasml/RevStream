@@ -21,7 +21,7 @@ const FoodOrders = () => {
   useEffect(() => {
     const fetchFoodOrders = async () => {
       try {
-        const response = await fetch('http://localhost:8002/get-food-orders'); // API endpoint
+        const response = await fetch('https://revstream-461943786929.us-central1.run.app/get-food-orders'); // API endpoint
         if (!response.ok) {
           throw new Error('Failed to fetch food orders');
         }

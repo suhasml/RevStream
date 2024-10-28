@@ -21,7 +21,7 @@ const RoomServiceRequests = () => {
   useEffect(() => {
     const fetchRoomServices = async () => {
       try {
-        const response = await fetch('http://localhost:8002/get-room-services');
+        const response = await fetch('https://revstream-461943786929.us-central1.run.app/get-room-services');
         if (!response.ok) {
           throw new Error('Failed to fetch room services');
         }

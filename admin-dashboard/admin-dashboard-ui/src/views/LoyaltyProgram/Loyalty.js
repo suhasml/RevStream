@@ -20,7 +20,7 @@ const FrequentVisitorsDashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:8002/frequent-visitors')
+    fetch('https://revstream-461943786929.us-central1.run.app/frequent-visitors')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -11,7 +11,7 @@ const LyfCommunity = () => {
   useEffect(() => {
     const fetchCommunityMembers = async () => {
       try {
-        const response = await axios.get('http://localhost:8002/search-freelancers');
+        const response = await axios.get('https://revstream-461943786929.us-central1.run.app/search-freelancers');
         setCommunityMembers(response.data);
         setLoading(false);
       } catch (err) {

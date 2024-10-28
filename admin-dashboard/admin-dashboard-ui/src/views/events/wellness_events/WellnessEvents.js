@@ -116,7 +116,7 @@ const WellnessEventsPage = () => {
 
   // Fetch hosted events from the database on mount
   useEffect(() => {
-    fetch('http://localhost:8002/hosted-events')
+    fetch('https://revstream-461943786929.us-central1.run.app/hosted-events')
       .then((response) => response.json())
       .then((data) => {
         setHostedEvents(data)
@@ -148,7 +148,7 @@ const WellnessEventsPage = () => {
       details: selectedEvent.details,
     }
 
-    fetch('http://localhost:8002/host-event', {
+    fetch('https://revstream-461943786929.us-central1.run.app/host-event', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ const WellnessEventsPage = () => {
       details: customEvent.details.split(',').map(detail => detail.trim()), // Convert details to an array
     }
 
-    fetch('http://localhost:8002/add-custom-event', {
+    fetch('https://revstream-461943786929.us-central1.run.app/add-custom-event', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
