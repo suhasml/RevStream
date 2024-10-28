@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class ChatAgent:
-    def __init__(self, hotel_agent_prompt=hotel_agent_prompt):
+    def __init__(self):
         self.hotel_agent_prompt = hotel_agent_prompt
         embedding_function = HuggingFaceEmbeddings(model_name="thenlper/gte-small")       
         self.db = FAISS.load_local("lyf_faiss_db", embeddings=embedding_function, allow_dangerous_deserialization=True)
@@ -44,6 +44,7 @@ class ChatAgent:
         
 
     async def run_bot(self, query, session_id=None):
+        # print(self.hotel_agent_prompt)
         history = UpstashRedisChatMessageHistory(
             url=os.getenv("UPSTASH_REDIS_REST_URL"),
             token=os.getenv("UPSTASH_REDIS_REST_TOKEN"),
@@ -54,7 +55,7 @@ class ChatAgent:
         chat_history = history.messages
         prompt = ChatPromptTemplate.from_messages(
             [
-                ("system", self.hotel_agent_prompt),
+                ("system", hotel_agent_prompt),
                 MessagesPlaceholder(variable_name="chat_history"),
                 ("human", "Question : {input}, Agent scratchpad: {agent_scratchpad}"),
             ]
@@ -153,31 +154,33 @@ class ChatAgent:
             state['conversation_ended'] = False
             return {"documents": documents, "question": question, "conversation_ended": state["conversation_ended"]}
 
-        async def generate(state):
+        def generate(state):
             question = state["question"]
             documents = state["documents"]
             print("Inside generate")
             full_response = ''
 
-            async def stream_response() -> AsyncGenerator[AIMessageChunk, None]:
-                nonlocal full_response
-                try:
-                    async for chunk in agent_executor.astream({"input": question, "context": documents, "chat_history": chat_history}):
-                        print("Chunk", chunk)
-                        full_response += chunk['output']
-                        yield chunk
-                # response = agent_executor.invoke({"input": question, 
-                #                     "context": documents, 
-                #                     "chat_history": chat_history})
-                # generation = response["output"]
-                    history.add_ai_message(full_response)
-                except Exception as e:
-                    print(e)
-                    raise e
+            # async def stream_response() -> AsyncGenerator[AIMessageChunk, None]:
+            #     nonlocal full_response
+            #     try:
+            #         async for chunk in agent_executor.astream({"input": question, "context": documents, "chat_history": chat_history}):
+            #             print("Chunk", chunk)
+            #             full_response += chunk['output']
+            #             yield chunk
+            #     # response = agent_executor.invoke({"input": question, 
+            #     #                     "context": documents, 
+            #     #                     "chat_history": chat_history})
+            #     # generation = response["output"]
+            #         history.add_ai_message(full_response)
+                      
+            response = agent_executor.invoke({"input": question, 
+                                "context": documents, 
+                                "chat_history": chat_history})
+            generation = response["output"]
             
             state["conversation_ended"] = False
             # return {"documents": documents, "question": question, "generation": generation, "session_id": state["session_id"], "conversation_ended": state["conversation_ended"]}
-            return {"documents": documents, "question": question, "session_id": state["session_id"], "conversation_ended": state["conversation_ended"], "answer": stream_response()}
+            return {"documents": documents, "question": question, "session_id": state["session_id"], "conversation_ended": state["conversation_ended"], "answer": generation}
         
     
         def is_conversation_over(state):
@@ -229,28 +232,29 @@ class ChatAgent:
             ])
             llm = prompt | self.llm
             full_response = ''
-            async def stream_response() -> AsyncGenerator[AIMessageChunk, None]:
-                nonlocal full_response
-                try:
-                    async for chunk in llm.astream({"input": "end conversation", "chat_history": chat_history}):
-                        if isinstance(chunk, AIMessageChunk):
-                            full_response += chunk.content
-                            print(f"Chunk: {chunk}")
-                            yield chunk
-                        else:
-                            print(f"Unknown chunk type: {chunk}")
-                    history.add_ai_message(full_response)
-                except Exception as e:
-                    print(e)
-                    raise e
+            # async def stream_response() -> AsyncGenerator[AIMessageChunk, None]:
+            #     nonlocal full_response
+            #     try:
+            #         async for chunk in llm.astream({"input": "end conversation", "chat_history": chat_history}):
+            #             if isinstance(chunk, AIMessageChunk):
+            #                 full_response += chunk.content
+            #                 print(f"Chunk: {chunk}")
+            #                 yield chunk
+            #             else:
+            #                 print(f"Unknown chunk type: {chunk}")
+            #         history.add_ai_message(full_response)
+            #     except Exception as e:
+            #         print(e)
+            #         raise e
 
-
+            full_response = llm.invoke({"input": state['question'], "chat_history": chat_history})
+            history.add_ai_message(full_response)
             # query = llm.invoke({"input": state['question'], "chat_history": chat_history})
             # generation = query.content
             # history.add_ai_message(generation)
             # self.memory.clear()
             # return {"generation": generation, "conversation_ended": state["conversation_ended"], "documents": state["documents"], "session_id": state["session_id"]}
-            return {"answer": stream_response(), "conversation_ended": state["conversation_ended"], "documents": state["documents"], "session_id": state["session_id"]}
+            return {"answer": full_response, "conversation_ended": state["conversation_ended"], "documents": state["documents"], "session_id": state["session_id"]}
 
         workflow = StateGraph(GraphState)
         workflow.add_node("retrieve", retrieve)

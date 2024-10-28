@@ -16,6 +16,7 @@ from typing import List, Dict
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from upstash_redis.asyncio import Redis
+from langchain_core.messages import AIMessage
 import json
 import instaloader
 from bs4 import BeautifulSoup
@@ -521,70 +522,20 @@ async def get_frequent_visitors():
     
     return result
 
-# #Endpoint for chatbot:
-# @app.post("/chatbot")
-# async def chatbot(request: AgentMessage):
-#     try:
-#         async def get_response() -> AsyncIterable[str]:
-#             chat_agent = ChatAgent()
-#             task = asyncio.create_task(chat_agent.run_bot(request.message, request.session_id))
-#             queue = asyncio.Queue()
-
-#             async def agent_callback():
-#                 try:
-#                     answer = await task
-#                     await queue.put(answer)
-#                 except Exception as e:
-#                     await queue.put({"error": str(e)})
-#                 finally:
-#                     await queue.put(None)
-
-#             asyncio.create_task(agent_callback())
-
-#             while True:
-#                 try:
-#                     response = await asyncio.wait_for(queue.get(), timeout=2)
-#                     if response is None:
-#                         break
-#                     if "error" in response:
-#                         raise HTTPException(status_code=500, detail=response["error"])
-                    
-#                     async for message in response["answer"]:
-#                         print(f"Message: {message}")
-#                         if isinstance(message, dict):
-#                             if "content" in message and message["content"]:
-#                                 yield message["content"]
-#                             if "output" in message and message["output"]:
-#                                 yield message["output"]
-
-#                     break
-#                 except asyncio.TimeoutError:
-#                     await asyncio.sleep(1)  
-
-#         return StreamingResponse(get_response(), media_type="text/event-stream")
-
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=str(e))
-
 @app.post("/chatbot")
 async def chatbot(request: AgentMessage):
     try:
         chat_agent = ChatAgent()
+        print(chat_agent)
         response = await chat_agent.run_bot(request.message, request.session_id)
+        # print(response)
+        if isinstance(response['answer'], AIMessage):
+            print(response['answer'].content)
+            message = response['answer'].content
         
-        # Collect all the response chunks into a single string
-        full_response = ""
-        async for chunk in response["answer"]:
-            print("Chunk", chunk)
-            if isinstance(chunk, dict):
-                if content := chunk.get("content"):
-                    full_response += content
-                elif output := chunk.get("output"):
-                    full_response += output
-            elif isinstance(chunk, str):
-                full_response += chunk
+        message = response['answer']
         
-        return PlainTextResponse(content=full_response)
+        return PlainTextResponse(content=message)
         
     except Exception as e:
         print(e)

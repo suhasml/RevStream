@@ -1,5 +1,11 @@
 import React from 'react';
 import LoginNavbar from 'components/login-navbar/LoginNavbar';
+import GamingRoom from 'assets/amenities/gaming_room.jpg';
+import KaraokeLounge from 'assets/amenities/karaoke_lounge.jpg';
+import PoolAndSpa from 'assets/amenities/pool_and_spa.png';
+import VRAR from 'assets/amenities/vr_ar.jpg';
+import PhotoBooth from 'assets/amenities/photo_booth.jpg';
+
 
 const AmenitiesView = () => {
   const amenities = [
@@ -7,31 +13,31 @@ const AmenitiesView = () => {
       name: "Gaming Room Access",
       description: "Step into our state-of-the-art gaming paradise featuring the latest consoles, gaming PCs, and a wide selection of popular titles. Perfect for solo gaming or multiplayer tournaments.",
       pricing: "Included with Package",
-      imageAlt: "Modern gaming room setup"
+      image: GamingRoom
     },
     {
       name: "Karaoke Lounge Access",
       description: "Unleash your inner star in our premium karaoke lounges, equipped with professional-grade sound systems and an extensive library of songs from around the world.",
       pricing: "$30/hour",
-      imageAlt: "Luxurious karaoke lounge"
+      image: KaraokeLounge
     },
     {
       name: "Pool & Spa Access",
       description: "Unwind in our pristine pool and rejuvenate in our world-class spa facilities. Features heated pools, jacuzzis, and dedicated relaxation areas.",
       pricing: "Included with Package",
-      imageAlt: "Luxury pool and spa area"
+      image: PoolAndSpa
     },
     {
       name: "VR/AR Experience",
       description: "Immerse yourself in cutting-edge virtual and augmented reality experiences. From virtual tours to interactive games, explore new dimensions of entertainment.",
       pricing: "$45/hour",
-      imageAlt: "VR gaming setup"
+      image: VRAR
     },
     {
       name: "Photo Booth",
       description: "Capture memorable moments in our professional-grade photo booth with custom backgrounds, props, and instant high-quality prints to take home.",
       pricing: "$25/hour",
-      imageAlt: "Modern photo booth setup"
+      image: PhotoBooth
     }
   ];
 
@@ -48,9 +54,9 @@ const AmenitiesView = () => {
               className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <img
-                src={`/api/placeholder/400/300`}
-                alt={amenity.imageAlt}
-                className="w-full h-48 object-cover object-center"
+                src={amenity.image}
+                alt={amenity.name}
+                className="w-full h-48 object-fit object-center"
               />
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
