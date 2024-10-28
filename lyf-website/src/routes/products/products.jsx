@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LoginNavbar from 'components/login-navbar/LoginNavbar';
 
 const ProductCatalog = () => {
   const [products, setProducts] = useState([]);
@@ -41,6 +42,8 @@ const ProductCatalog = () => {
   }
 
   return (
+    <>
+    <LoginNavbar />
     <div className="container mx-auto px-4 py-6">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
@@ -85,6 +88,7 @@ const ProductCatalog = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

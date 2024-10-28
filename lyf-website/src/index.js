@@ -21,6 +21,7 @@ import Events from 'routes/events/events'
 import AmenitiesView from 'routes/amenities/amenities';
 import Offers from 'routes/offers/offers';
 import Community from 'routes/joinCommunity/joinCommunity';
+import Merchandise from 'routes/merchendise/merchandise';
 
 // if (process.env.NODE_ENV === 'development') {
 //   makeServer();
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: '/join-community',
         element: <Community />,
+      },
+      {
+        path: '/merchandise',
+        element: <Merchandise />
       }
     ],
   },

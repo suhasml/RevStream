@@ -15,3 +15,4 @@ starlette
 uvicorn
 beautifulsoup4
 starlette
+openpyxl

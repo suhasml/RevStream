@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginNavbar from 'components/login-navbar/LoginNavbar';
 
 const AmenitiesView = () => {
   const amenities = [
@@ -35,56 +36,59 @@ const AmenitiesView = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <h1 className="text-3xl font-bold text-center mb-12">Our Premium Amenities</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {amenities.map((amenity, index) => (
-          <div 
-            key={index} 
-            className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={`/api/placeholder/400/300`}
-              alt={amenity.imageAlt}
-              className="w-full h-48 object-cover object-center"
-            />
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-gray-900">{amenity.name}</h3>
-                <span className={`
-                  px-3 py-1 rounded-full text-sm font-medium
-                  ${amenity.pricing.includes('Package') 
-                    ? 'bg-green-100 text-green-800' 
-                    : 'bg-blue-100 text-blue-800'}
-                `}>
-                  {amenity.pricing}
-                </span>
+    <>
+      <LoginNavbar />
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <h1 className="text-3xl font-bold text-center mb-12">Our Premium Amenities</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {amenities.map((amenity, index) => (
+            <div 
+              key={index} 
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                src={`/api/placeholder/400/300`}
+                alt={amenity.imageAlt}
+                className="w-full h-48 object-cover object-center"
+              />
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-xl font-bold text-gray-900">{amenity.name}</h3>
+                  <span className={`
+                    px-3 py-1 rounded-full text-sm font-medium
+                    ${amenity.pricing.includes('Package') 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-blue-100 text-blue-800'}
+                  `}>
+                    {amenity.pricing}
+                  </span>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  {amenity.description}
+                </p>
+                <button className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors duration-200">
+                  {amenity.pricing.includes('Package') 
+                    ? 'Book Now' 
+                    : 'Reserve Time Slot'}
+                </button>
               </div>
-              <p className="text-gray-600 mb-4">
-                {amenity.description}
-              </p>
-              <button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-200">
-                {amenity.pricing.includes('Package') 
-                  ? 'Book Now' 
-                  : 'Reserve Time Slot'}
-              </button>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="mt-12 text-center">
-        <div className="inline-block bg-gray-100 rounded-lg p-6 max-w-2xl">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Package Benefits</h2>
-          <p className="text-gray-600">
-            Enhance your stay with our premium amenities. Some facilities are included with your package, 
-            while others can be enjoyed at hourly rates. Our staff is always available to help you make 
-            the most of these exclusive offerings.
-          </p>
+        <div className="mt-12 text-center">
+          <div className="inline-block bg-gray-100 rounded-lg p-6 max-w-2xl">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Package Benefits</h2>
+            <p className="text-gray-600">
+              Enhance your stay with our premium amenities. Some facilities are included with your package, 
+              while others can be enjoyed at hourly rates. Our staff is always available to help you make 
+              the most of these exclusive offerings.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

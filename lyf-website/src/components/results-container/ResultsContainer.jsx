@@ -216,7 +216,7 @@ const ResultsContainer = (props) => {
 
   return (
     <div className="relative">
-      <div className="flex gap-x-0 md:gap-x-4 items-start mx-2">
+      <div className="flex gap-x-0 md:gap-x-4 items-start mx-2 px-10 py-1">
         {enableFilters && selectedFiltersState.length > 0 && (
           <div ref={wrapperRef}>
             <VerticalFilters

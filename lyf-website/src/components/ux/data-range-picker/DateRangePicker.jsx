@@ -32,13 +32,13 @@ const DateRangePicker = (props) => {
     : 'Check-out';
 
   return (
-    <div className="relative flex" data-testid="date-range-picker">
+    <div className="relative flex bordered rounded-md border-gray-300 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-opacity-50" data-testid="date-range-picker">
       <input
         className={`${
           inputStyle
             ? inputSyleMap[inputStyle]
             : 'stay-booker__input--secondary'
-        } stay-booker__input px-8 py-2 w-[50%]`}
+        } stay-booker__input px-8 py-2 w-[50%] rounded-md`}
         type="text"
         value={formattedStartDate}
         onFocus={onDatePickerIconClick}
@@ -55,7 +55,7 @@ const DateRangePicker = (props) => {
           inputStyle
             ? inputSyleMap[inputStyle]
             : '  stay-booker__input--secondary'
-        } stay-booker__input px-8 py-2 w-[50%]`}
+        } stay-booker__input px-8 py-2 w-[50%] rounded-md`}
         type="text"
         value={formattedEndDate}
         onFocus={onDatePickerIconClick}

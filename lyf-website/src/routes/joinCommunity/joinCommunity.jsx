@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Users, Store, Target, WalletIcon } from 'lucide-react';
+import LoginNavbar from 'components/login-navbar/LoginNavbar';
 
 const HomePage = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -53,6 +54,8 @@ const HomePage = () => {
   };
 
   return (
+    <>
+    <LoginNavbar />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <div className="container mx-auto px-4 pt-20 pb-16">
@@ -65,7 +68,7 @@ const HomePage = () => {
           </p>
           <button
             onClick={() => setShowPopup(true)}
-            className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors duration-300"
+            className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300"
           >
             Join Community
           </button>
@@ -202,7 +205,7 @@ const HomePage = () => {
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800"
                   >
                     Submit
                   </button>
@@ -213,6 +216,7 @@ const HomePage = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
