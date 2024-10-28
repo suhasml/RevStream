@@ -9,11 +9,9 @@ langgraph
 langchain_community
 langchain_openai
 upstash_redis
-instaloader
 chat2plot
 starlette
 uvicorn
-beautifulsoup4
 starlette
 openpyxl
 faiss-cpu
