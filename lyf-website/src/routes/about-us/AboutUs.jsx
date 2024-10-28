@@ -1,3 +1,4 @@
+import GlobalNavbar from 'components/global-navbar/GlobalNavbar';
 import React from 'react';
 
 /**
@@ -6,67 +7,53 @@ import React from 'react';
  */
 const AboutUs = () => {
   return (
+    <>
+    <GlobalNavbar />
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-extrabold text-brand mb-2">About Us</h1>
       <p className="text-lg mb-8">
-        Welcome to <span className="text-brand">STAY BOOKER</span>, where we are
-        dedicated to providing you with the best experience for booking hotels
-        around the world. Our mission is to make your travel comfortable,
-        convenient, and memorable.
+        Welcome to <span className="text-brand">RevStream</span>, where we harness the power of generative AI to make your tasks simpler and enhance your experience during booking, staying, and beyond. Our platform is designed to streamline every aspect of your journey.
       </p>
 
       <h2 className="text-3xl font-extrabold text-brand mb-2">Our Vision</h2>
       <p className="text-lg mb-8">
-        At <span className="text-brand">STAY BOOKER</span>, we envision a world
-        where every traveler finds the perfect accommodation that suits their
-        needs and preferences. We aim to simplify the hotel booking process,
-        offering a wide range of options for every budget.
+        At <span className="text-brand">RevStream</span>, we envision a seamless booking experience that adapts to each user’s unique needs. Our goal is to empower travelers with smarter tools for every step of their journey and to offer administrators insights that drive increased profitability.
       </p>
 
       <h2 className="text-3xl font-extrabold text-brand mb-2">
-        Why Choose Us?
+        Why Choose RevStream?
       </h2>
       <ul className="list-disc ml-6 mb-8">
         <li className="text-lg mb-3">
-          We offer a diverse range of hotels, from luxury resorts to cozy
-          boutique stays, ensuring that you find the perfect match for your
-          travel style.
+          Our genAI technology optimizes and simplifies tasks, creating a smooth booking and stay experience for users.
         </li>
         <li className="text-lg mb-3">
-          Our user-friendly interface makes it simple and quick to book your
-          ideal stay. With just a few clicks, you can secure your reservation
-          hassle-free.
+          Our admin dashboard provides real-time revenue tracking and actionable insights, empowering decision-makers to enhance profitability.
         </li>
         <li className="text-lg mb-3">
-          Our dedicated customer support team is available 24/7 to assist you
-          with any inquiries or issues you may encounter during your booking
-          process or stay.
+          With a user-friendly interface and advanced features, you can easily manage and monitor your bookings with confidence and ease.
         </li>
         <li className="text-lg mb-3">
-          We prioritize the security of your personal information and
-          transactions. Book with confidence, knowing that your data is safe
-          with us.
+          We are committed to safeguarding your data and ensuring a secure platform for all transactions and interactions.
         </li>
       </ul>
 
       <h2 className="text-3xl font-extrabold text-brand mb-2">Contact Us</h2>
       <p className="text-lg mb-4">
-        Have questions or need assistance? Feel free to reach out to our
-        customer support team at{' '}
+        Have questions or need assistance? Our customer support team is ready to help. Reach us at{' '}
         <a
           className="text-brand hover:underline"
-          href="mailto:info@staybooker.com"
+          href="mailto:info@revstream.com"
         >
-          info@staybooker.com
+          info@revstream.com
         </a>
-        . We're here to help!
+        .
       </p>
       <p className="text-lg">
-        Thank you for choosing <span className="text-brand">STAY BOOKER</span>.
-        We look forward to being your go-to platform for all your hotel booking
-        needs.
+        Thank you for choosing <span className="text-brand">RevStream</span>. We look forward to enhancing your booking experience and supporting your journey to success.
       </p>
     </div>
+    </>
   );
 };
 

@@ -170,7 +170,7 @@ class TargetedAdsCampaign(BaseModel):
 # New collection for SME campaigns
 sme_campaigns_collection = db['sme_campaigns']
 
-L = instaloader.Instaloader()
+# L = instaloader.Instaloader()
 
 @app.get("/ongoing-sme-campaigns")
 async def get_ongoing_sme_campaigns():

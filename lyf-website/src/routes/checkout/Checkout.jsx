@@ -132,8 +132,7 @@ const Checkout = () => {
         postalCode: formData.postalCode,
         checkIn: searchParams.get('checkIn'), // Make sure this is in the correct date format
         checkOut: searchParams.get('checkOut'), // Make sure this is in the correct date format
-        hotelName: searchParams.get('hotelName').replaceAll('-', ' '),
-        package: searchParams.get('packages').replaceAll('-',' ')
+        hotelName: searchParams.get('hotelName').replaceAll('-', ' ')
       };
       console.log('Payload being sent:', JSON.stringify(paymentPayload, null, 2));
       const response = await fetch('http://localhost:8002/payments/confirmation', {
